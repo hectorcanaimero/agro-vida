@@ -112,19 +112,14 @@ class TodosLosBannersCall {
     );
   }
 
-  dynamic global(dynamic response) => getJsonField(
-        response,
-        r'''$.data''',
-        true,
-      );
   dynamic url(dynamic response) => getJsonField(
         response,
-        r'''$.data[:].attributes.Url''',
+        r'''$.data[:].Url''',
         true,
       );
-  dynamic upload(dynamic response) => getJsonField(
+  dynamic image(dynamic response) => getJsonField(
         response,
-        r'''$.data[:].attributes.Image.data.attributes.url''',
+        r'''$.data[:].Image.url''',
         true,
       );
 }

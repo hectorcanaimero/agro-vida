@@ -1,8 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -77,34 +75,30 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 2.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Hola, ',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                    Text(
-                                      'Héctor Velasques',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                  ],
-                                ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    'Hola, ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                  Text(
+                                    'Héctor Velasques',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ],
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -137,79 +131,55 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 250.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 0.0),
                     child: Container(
                       width: double.infinity,
-                      height: MediaQuery.sizeOf(context).height * 1.0,
-                      child: Stack(
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 40.0),
-                            child: PageView(
-                              controller: _model.pageViewController ??=
-                                  PageController(initialPage: 0),
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.network(
-                                    'https://picsum.photos/seed/835/600',
-                                    width: double.infinity,
-                                    height: 200.0,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.00, 1.00),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 0.0, 16.0),
-                              child: smooth_page_indicator.SmoothPageIndicator(
-                                controller: _model.pageViewController ??=
-                                    PageController(initialPage: 0),
-                                count: 1,
-                                axisDirection: Axis.horizontal,
-                                onDotClicked: (i) async {
-                                  await _model.pageViewController!
-                                      .animateToPage(
-                                    i,
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.ease,
-                                  );
-                                },
-                                effect:
-                                    smooth_page_indicator.ExpandingDotsEffect(
-                                  expansionFactor: 3.0,
-                                  spacing: 8.0,
-                                  radius: 16.0,
-                                  dotWidth: 16.0,
-                                  dotHeight: 8.0,
-                                  dotColor:
-                                      FlutterFlowTheme.of(context).accent1,
-                                  activeDotColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  paintStyle: PaintingStyle.fill,
+                      height: 200.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
+                      child: Align(
+                        alignment: AlignmentDirectional(0.00, 0.00),
+                        child: ListView(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            Align(
+                              alignment: AlignmentDirectional(0.00, 0.00),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  'https://picsum.photos/seed/416/600',
+                                  width: MediaQuery.sizeOf(context).width * 0.9,
+                                  height: 200.0,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                            Align(
+                              alignment: AlignmentDirectional(0.00, 0.00),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  'https://picsum.photos/seed/485/600',
+                                  width: MediaQuery.sizeOf(context).width * 0.9,
+                                  height: 200.0,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ].divide(SizedBox(width: 12.0)),
+                        ),
                       ),
                     ),
                   ),
                   Flexible(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 18.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 9.0, 0.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         height: 250.0,
