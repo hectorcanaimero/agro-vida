@@ -89,11 +89,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : AuthPageWidget(),
         ),
         FFRoute(
-          name: 'HomePage',
-          path: '/homePage',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'HomePage')
-              : HomePageWidget(),
+          name: 'Home2Page',
+          path: '/home2Page',
+          builder: (context, params) => Home2PageWidget(),
         ),
         FFRoute(
           name: 'OnboardingPage',
@@ -204,6 +202,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => EgresadosRegisterPageWidget(
             type: params.getParam('type', ParamType.int),
           ),
+        ),
+        FFRoute(
+          name: 'HomePage',
+          path: '/homePage',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'HomePage')
+              : HomePageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

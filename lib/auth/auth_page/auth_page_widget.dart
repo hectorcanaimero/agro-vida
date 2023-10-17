@@ -765,7 +765,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                         ));
 
                                                     context.goNamedAuth(
-                                                        'HomePage',
+                                                        'Home2Page',
                                                         context.mounted);
                                                   },
                                                   text: 'Registrar',
@@ -1103,7 +1103,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                     }
 
                                                     context.goNamedAuth(
-                                                        'HomePage',
+                                                        'Home2Page',
                                                         context.mounted);
                                                   },
                                                   text: 'Iniciar sesión',
@@ -1160,7 +1160,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                     }
 
                                                     context.goNamedAuth(
-                                                        'HomePage',
+                                                        'Home2Page',
                                                         context.mounted);
                                                   },
                                                   text:

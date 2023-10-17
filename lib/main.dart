@@ -116,7 +116,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'HomePage';
+  String _currentPageName = 'Home2Page';
   late Widget? _currentPage;
 
   @override
@@ -152,7 +152,7 @@ class _NavBarPageState extends State<NavBarPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home,
+              Icons.home_outlined,
               size: 24.0,
             ),
             label: 'Home',

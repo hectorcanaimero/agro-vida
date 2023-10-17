@@ -1,5 +1,5 @@
 // Export pages
-export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
+export '/pages/home2_page/home2_page_widget.dart' show Home2PageWidget;
 export '/pages/onboarding_page/onboarding_page_widget.dart'
     show OnboardingPageWidget;
 export '/auth/auth_page/auth_page_widget.dart' show AuthPageWidget;
@@ -32,3 +32,4 @@ export '/tools/tools_detail_page/tools_detail_page_widget.dart'
     show ToolsDetailPageWidget;
 export '/egresados/egresados_register_page/egresados_register_page_widget.dart'
     show EgresadosRegisterPageWidget;
+export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
