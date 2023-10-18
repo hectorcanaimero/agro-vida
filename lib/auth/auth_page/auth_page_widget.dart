@@ -764,9 +764,30 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                               .text,
                                                         ));
 
-                                                    context.goNamedAuth(
+                                                    context.pushNamedAuth(
                                                         'HomePage',
                                                         context.mounted);
+
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Bienvenido a AgroVida',
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                          ),
+                                                        ),
+                                                        duration: Duration(
+                                                            milliseconds: 3500),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
+                                                      ),
+                                                    );
                                                   },
                                                   text: 'Registrar',
                                                   options: FFButtonOptions(
@@ -1102,9 +1123,30 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                       return;
                                                     }
 
-                                                    context.goNamedAuth(
+                                                    context.pushNamedAuth(
                                                         'HomePage',
                                                         context.mounted);
+
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Bienvenido a AgroVida',
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                          ),
+                                                        ),
+                                                        duration: Duration(
+                                                            milliseconds: 3500),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
+                                                      ),
+                                                    );
                                                   },
                                                   text: 'Iniciar sesión',
                                                   options: FFButtonOptions(

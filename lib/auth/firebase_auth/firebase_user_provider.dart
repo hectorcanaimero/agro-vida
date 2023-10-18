@@ -7,8 +7,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class AgroVidaFirebaseUser extends BaseAuthUser {
-  AgroVidaFirebaseUser(this.user);
+class TecnoAgroFirebaseUser extends BaseAuthUser {
+  TecnoAgroFirebaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -50,17 +50,17 @@ class AgroVidaFirebaseUser extends BaseAuthUser {
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
   static BaseAuthUser fromFirebaseUser(User? user) =>
-      AgroVidaFirebaseUser(user);
+      TecnoAgroFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> agroVidaFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> tecnoAgroFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = AgroVidaFirebaseUser(user);
+        currentUser = TecnoAgroFirebaseUser(user);
         if (!kIsWeb) {
           FirebaseCrashlytics.instance.setUserIdentifier(user?.uid ?? '');
         }
