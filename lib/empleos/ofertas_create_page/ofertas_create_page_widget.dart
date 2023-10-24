@@ -1,8 +1,9 @@
-import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,16 +34,16 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
     super.initState();
     _model = createModel(context, () => OfertasCreatePageModel());
 
-    _model.cargoFieldController1 ??= TextEditingController();
-    _model.cargoFieldFocusNode1 ??= FocusNode();
-    _model.empresaFieldController1 ??= TextEditingController();
-    _model.empresaFieldFocusNode1 ??= FocusNode();
-    _model.empresaFieldController2 ??= TextEditingController();
-    _model.empresaFieldFocusNode2 ??= FocusNode();
-    _model.cargoFieldController2 ??= TextEditingController();
-    _model.cargoFieldFocusNode2 ??= FocusNode();
-    _model.cargoFieldController3 ??= TextEditingController();
-    _model.cargoFieldFocusNode3 ??= FocusNode();
+    _model.cargoFieldController ??= TextEditingController();
+    _model.cargoFieldFocusNode ??= FocusNode();
+    _model.empresaFieldController ??= TextEditingController();
+    _model.empresaFieldFocusNode ??= FocusNode();
+    _model.descriptionFieldController ??= TextEditingController();
+    _model.descriptionFieldFocusNode ??= FocusNode();
+    _model.emailFieldController ??= TextEditingController();
+    _model.emailFieldFocusNode ??= FocusNode();
+    _model.phoneFieldController ??= TextEditingController();
+    _model.phoneFieldFocusNode ??= FocusNode();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -133,8 +134,8 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               TextFormField(
-                                controller: _model.cargoFieldController1,
-                                focusNode: _model.cargoFieldFocusNode1,
+                                controller: _model.cargoFieldController,
+                                focusNode: _model.cargoFieldFocusNode,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Cargo...',
@@ -142,7 +143,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                       FlutterFlowTheme.of(context).labelMedium,
                                   hintStyle:
                                       FlutterFlowTheme.of(context).labelMedium,
-                                  enabledBorder: UnderlineInputBorder(
+                                  enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
@@ -150,7 +151,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  focusedBorder: UnderlineInputBorder(
+                                  focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -158,14 +159,14 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  errorBorder: UnderlineInputBorder(
+                                  errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  focusedErrorBorder: UnderlineInputBorder(
+                                  focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
@@ -175,12 +176,12 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                   filled: true,
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyMedium,
-                                validator: _model.cargoFieldController1Validator
+                                validator: _model.cargoFieldControllerValidator
                                     .asValidator(context),
                               ),
                               TextFormField(
-                                controller: _model.empresaFieldController1,
-                                focusNode: _model.empresaFieldFocusNode1,
+                                controller: _model.empresaFieldController,
+                                focusNode: _model.empresaFieldFocusNode,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Empresa..',
@@ -188,7 +189,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                       FlutterFlowTheme.of(context).labelMedium,
                                   hintStyle:
                                       FlutterFlowTheme.of(context).labelMedium,
-                                  enabledBorder: UnderlineInputBorder(
+                                  enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
@@ -196,7 +197,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  focusedBorder: UnderlineInputBorder(
+                                  focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -204,14 +205,14 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  errorBorder: UnderlineInputBorder(
+                                  errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  focusedErrorBorder: UnderlineInputBorder(
+                                  focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
@@ -222,41 +223,12 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyMedium,
                                 validator: _model
-                                    .empresaFieldController1Validator
+                                    .empresaFieldControllerValidator
                                     .asValidator(context),
                               ),
-                              FlutterFlowDropDown<String>(
-                                controller: _model.dropDownValueController ??=
-                                    FormFieldController<String>(null),
-                                options: ['Option 1'],
-                                onChanged: (val) =>
-                                    setState(() => _model.dropDownValue = val),
-                                width: double.infinity,
-                                height: 50.0,
-                                textStyle:
-                                    FlutterFlowTheme.of(context).bodyMedium,
-                                hintText: 'Especialidad...',
-                                icon: Icon(
-                                  Icons.keyboard_arrow_down_rounded,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
-                                ),
-                                fillColor: FlutterFlowTheme.of(context).info,
-                                elevation: 2.0,
-                                borderColor:
-                                    FlutterFlowTheme.of(context).alternate,
-                                borderWidth: 2.0,
-                                borderRadius: 8.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 4.0, 16.0, 4.0),
-                                hidesUnderline: true,
-                                isSearchable: false,
-                                isMultiSelect: false,
-                              ),
                               TextFormField(
-                                controller: _model.empresaFieldController2,
-                                focusNode: _model.empresaFieldFocusNode2,
+                                controller: _model.descriptionFieldController,
+                                focusNode: _model.descriptionFieldFocusNode,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Descripción del empleo...',
@@ -264,7 +236,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                       FlutterFlowTheme.of(context).labelMedium,
                                   hintStyle:
                                       FlutterFlowTheme.of(context).labelMedium,
-                                  enabledBorder: UnderlineInputBorder(
+                                  enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
@@ -272,7 +244,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  focusedBorder: UnderlineInputBorder(
+                                  focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -280,14 +252,14 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  errorBorder: UnderlineInputBorder(
+                                  errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  focusedErrorBorder: UnderlineInputBorder(
+                                  focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
@@ -300,12 +272,12 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                 maxLines: 8,
                                 keyboardType: TextInputType.multiline,
                                 validator: _model
-                                    .empresaFieldController2Validator
+                                    .descriptionFieldControllerValidator
                                     .asValidator(context),
                               ),
                               TextFormField(
-                                controller: _model.cargoFieldController2,
-                                focusNode: _model.cargoFieldFocusNode2,
+                                controller: _model.emailFieldController,
+                                focusNode: _model.emailFieldFocusNode,
                                 autofillHints: [AutofillHints.email],
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -314,7 +286,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                       FlutterFlowTheme.of(context).labelMedium,
                                   hintStyle:
                                       FlutterFlowTheme.of(context).labelMedium,
-                                  enabledBorder: UnderlineInputBorder(
+                                  enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
@@ -322,7 +294,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  focusedBorder: UnderlineInputBorder(
+                                  focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -330,14 +302,14 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  errorBorder: UnderlineInputBorder(
+                                  errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  focusedErrorBorder: UnderlineInputBorder(
+                                  focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
@@ -348,12 +320,12 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyMedium,
                                 keyboardType: TextInputType.emailAddress,
-                                validator: _model.cargoFieldController2Validator
+                                validator: _model.emailFieldControllerValidator
                                     .asValidator(context),
                               ),
                               TextFormField(
-                                controller: _model.cargoFieldController3,
-                                focusNode: _model.cargoFieldFocusNode3,
+                                controller: _model.phoneFieldController,
+                                focusNode: _model.phoneFieldFocusNode,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Teléfono de contacto...',
@@ -361,7 +333,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                       FlutterFlowTheme.of(context).labelMedium,
                                   hintStyle:
                                       FlutterFlowTheme.of(context).labelMedium,
-                                  enabledBorder: UnderlineInputBorder(
+                                  enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
@@ -369,7 +341,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  focusedBorder: UnderlineInputBorder(
+                                  focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -377,14 +349,14 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  errorBorder: UnderlineInputBorder(
+                                  errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  focusedErrorBorder: UnderlineInputBorder(
+                                  focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 2.0,
@@ -395,15 +367,55 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyMedium,
                                 keyboardType: TextInputType.phone,
-                                validator: _model.cargoFieldController3Validator
+                                validator: _model.phoneFieldControllerValidator
                                     .asValidator(context),
-                                inputFormatters: [_model.cargoFieldMask3],
+                                inputFormatters: [_model.phoneFieldMask],
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 36.0, 0.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
+                                    if (_model.formKey.currentState == null ||
+                                        !_model.formKey.currentState!
+                                            .validate()) {
+                                      return;
+                                    }
+
+                                    await JobsRecord.collection
+                                        .doc()
+                                        .set(createJobsRecordData(
+                                          titleJob:
+                                              _model.cargoFieldController.text,
+                                          company: _model
+                                              .empresaFieldController.text,
+                                          description: _model
+                                              .descriptionFieldController.text,
+                                          email:
+                                              _model.emailFieldController.text,
+                                          phone:
+                                              _model.phoneFieldController.text,
+                                          user: currentUserReference,
+                                          published: true,
+                                          createdOn: getCurrentTimestamp,
+                                        ));
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text('Show'),
+                                          content:
+                                              Text('Se registro con éxito!'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                     Navigator.pop(context);
                                   },
                                   text: 'Salvar',

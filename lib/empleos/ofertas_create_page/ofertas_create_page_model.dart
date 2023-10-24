@@ -1,9 +1,10 @@
-import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'ofertas_create_page_widget.dart' show OfertasCreatePageWidget;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,49 +16,46 @@ class OfertasCreatePageModel extends FlutterFlowModel<OfertasCreatePageWidget> {
 
   final formKey = GlobalKey<FormState>();
   // State field(s) for cargoField widget.
-  FocusNode? cargoFieldFocusNode1;
-  TextEditingController? cargoFieldController1;
-  String? Function(BuildContext, String?)? cargoFieldController1Validator;
+  FocusNode? cargoFieldFocusNode;
+  TextEditingController? cargoFieldController;
+  String? Function(BuildContext, String?)? cargoFieldControllerValidator;
   // State field(s) for empresaField widget.
-  FocusNode? empresaFieldFocusNode1;
-  TextEditingController? empresaFieldController1;
-  String? Function(BuildContext, String?)? empresaFieldController1Validator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
-  // State field(s) for empresaField widget.
-  FocusNode? empresaFieldFocusNode2;
-  TextEditingController? empresaFieldController2;
-  String? Function(BuildContext, String?)? empresaFieldController2Validator;
-  // State field(s) for cargoField widget.
-  FocusNode? cargoFieldFocusNode2;
-  TextEditingController? cargoFieldController2;
-  String? Function(BuildContext, String?)? cargoFieldController2Validator;
-  // State field(s) for cargoField widget.
-  FocusNode? cargoFieldFocusNode3;
-  TextEditingController? cargoFieldController3;
-  final cargoFieldMask3 = MaskTextInputFormatter(mask: '(###) ###-####');
-  String? Function(BuildContext, String?)? cargoFieldController3Validator;
+  FocusNode? empresaFieldFocusNode;
+  TextEditingController? empresaFieldController;
+  String? Function(BuildContext, String?)? empresaFieldControllerValidator;
+  // State field(s) for descriptionField widget.
+  FocusNode? descriptionFieldFocusNode;
+  TextEditingController? descriptionFieldController;
+  String? Function(BuildContext, String?)? descriptionFieldControllerValidator;
+  // State field(s) for emailField widget.
+  FocusNode? emailFieldFocusNode;
+  TextEditingController? emailFieldController;
+  String? Function(BuildContext, String?)? emailFieldControllerValidator;
+  // State field(s) for phoneField widget.
+  FocusNode? phoneFieldFocusNode;
+  TextEditingController? phoneFieldController;
+  final phoneFieldMask = MaskTextInputFormatter(mask: '(###) ###-####');
+  String? Function(BuildContext, String?)? phoneFieldControllerValidator;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
 
   void dispose() {
-    cargoFieldFocusNode1?.dispose();
-    cargoFieldController1?.dispose();
+    cargoFieldFocusNode?.dispose();
+    cargoFieldController?.dispose();
 
-    empresaFieldFocusNode1?.dispose();
-    empresaFieldController1?.dispose();
+    empresaFieldFocusNode?.dispose();
+    empresaFieldController?.dispose();
 
-    empresaFieldFocusNode2?.dispose();
-    empresaFieldController2?.dispose();
+    descriptionFieldFocusNode?.dispose();
+    descriptionFieldController?.dispose();
 
-    cargoFieldFocusNode2?.dispose();
-    cargoFieldController2?.dispose();
+    emailFieldFocusNode?.dispose();
+    emailFieldController?.dispose();
 
-    cargoFieldFocusNode3?.dispose();
-    cargoFieldController3?.dispose();
+    phoneFieldFocusNode?.dispose();
+    phoneFieldController?.dispose();
   }
 
   /// Action blocks are added here.

@@ -145,7 +145,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DetailsOfertaPage',
           path: '/detailsOfertaPage',
-          builder: (context, params) => DetailsOfertaPageWidget(),
+          builder: (context, params) => DetailsOfertaPageWidget(
+            uid: params
+                .getParam('uid', ParamType.DocumentReference, false, ['jobs']),
+          ),
         ),
         FFRoute(
           name: 'DetailRevistaPage',
