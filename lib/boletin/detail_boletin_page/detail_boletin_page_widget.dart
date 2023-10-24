@@ -250,11 +250,12 @@ class _DetailBoletinPageWidgetState extends State<DetailBoletinPageWidget> {
                                 ].divide(SizedBox(width: 8.0)),
                               ),
                               Container(
-                                width: double.infinity,
-                                height: 100.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: MediaQuery.sizeOf(context).height * 1.0,
                                 child: custom_widgets.ReadMarkdownWidget(
-                                  width: double.infinity,
-                                  height: 100.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  height:
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   data:
                                       detailBoletinPageBlogsRecord.description,
                                 ),

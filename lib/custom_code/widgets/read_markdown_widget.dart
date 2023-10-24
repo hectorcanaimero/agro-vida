@@ -29,8 +29,10 @@ class ReadMarkdownWidget extends StatefulWidget {
 class _ReadMarkdownWidgetState extends State<ReadMarkdownWidget> {
   @override
   Widget build(BuildContext context) {
-    return Markdown(
-      data: widget.data,
+    return Container(
+      child: Markdown(
+        data: widget.data,
+      ),
     );
   }
 }
