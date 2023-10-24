@@ -16,13 +16,13 @@ class CarroselWidget extends StatefulWidget {
     this.width,
     this.height,
     required this.imageList,
-    this.autoStart = false,
+    required this.autoStart,
   }) : super(key: key);
 
   final double? width;
   final double? height;
   final List<String> imageList;
-  final bool? autoStart;
+  final bool autoStart;
 
   @override
   _CarroselWidgetState createState() => _CarroselWidgetState();
