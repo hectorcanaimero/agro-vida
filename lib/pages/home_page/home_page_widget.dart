@@ -170,8 +170,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           if (!snapshot.hasData) {
                             return Center(
                               child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
+                                width: 36.0,
+                                height: 36.0,
                                 child: CircularProgressIndicator(
                                   valueColor: AlwaysStoppedAnimation<Color>(
                                     FlutterFlowTheme.of(context).primary,
@@ -184,7 +184,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               snapshot.data!;
                           return Container(
                             width: double.infinity,
-                            height: 310.0,
+                            height: 400.0,
                             child: Stack(
                               children: [
                                 Padding(
@@ -198,6 +198,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 pageViewBannersRecordList
                                                         .length -
                                                     1)),
+                                    onPageChanged: (_) => setState(() {}),
                                     scrollDirection: Axis.horizontal,
                                     itemCount: pageViewBannersRecordList.length,
                                     itemBuilder: (context, pageViewIndex) {
@@ -454,27 +455,27 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                                 ),
                               ),
-                              Material(
-                                color: Colors.transparent,
-                                elevation: 3.0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                child: Container(
-                                  width: 100.0,
-                                  height: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF52EDDA),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed('ListAdvidorsPage');
+                                },
+                                child: Material(
+                                  color: Colors.transparent,
+                                  elevation: 3.0,
+                                  shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      context.pushNamed('AsesoresTecnicoPage');
-                                    },
+                                  child: Container(
+                                    width: 100.0,
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF52EDDA),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -720,8 +721,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   if (!snapshot.hasData) {
                                     return Center(
                                       child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
+                                        width: 36.0,
+                                        height: 36.0,
                                         child: CircularProgressIndicator(
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(

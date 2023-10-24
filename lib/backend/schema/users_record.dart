@@ -66,6 +66,11 @@ class UsersRecord extends FirestoreRecord {
   int get type => _type ?? 0;
   bool hasType() => _type != null;
 
+  // "advisor" field.
+  bool? _advisor;
+  bool get advisor => _advisor ?? false;
+  bool hasAdvisor() => _advisor != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -77,6 +82,7 @@ class UsersRecord extends FirestoreRecord {
     _profession = UserProfessionStruct.maybeFromMap(snapshotData['profession']);
     _born = snapshotData['born'] as String?;
     _type = castToType<int>(snapshotData['type']);
+    _advisor = snapshotData['advisor'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -123,6 +129,7 @@ Map<String, dynamic> createUsersRecordData({
   UserProfessionStruct? profession,
   String? born,
   int? type,
+  bool? advisor,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -136,6 +143,7 @@ Map<String, dynamic> createUsersRecordData({
       'profession': UserProfessionStruct().toMap(),
       'born': born,
       'type': type,
+      'advisor': advisor,
     }.withoutNulls,
   );
 
@@ -162,7 +170,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.ubication == e2?.ubication &&
         e1?.profession == e2?.profession &&
         e1?.born == e2?.born &&
-        e1?.type == e2?.type;
+        e1?.type == e2?.type &&
+        e1?.advisor == e2?.advisor;
   }
 
   @override
@@ -176,7 +185,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.ubication,
         e?.profession,
         e?.born,
-        e?.type
+        e?.type,
+        e?.advisor
       ]);
 
   @override

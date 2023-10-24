@@ -116,26 +116,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : BoletimPageWidget(),
         ),
         FFRoute(
-          name: 'AsesoresTecnicoPage',
-          path: '/asesoresTecnicoPage',
-          builder: (context, params) => AsesoresTecnicoPageWidget(),
+          name: 'ListAdvidorsPage',
+          path: '/listAdvidorsPage',
+          builder: (context, params) => ListAdvidorsPageWidget(),
         ),
         FFRoute(
-          name: 'ChatPage',
-          path: '/chatPage',
+          name: 'ChatAdvidorPage',
+          path: '/chatAdvidorPage',
           asyncParams: {
             'chatUser': getDoc(['users'], UsersRecord.fromSnapshot),
           },
-          builder: (context, params) => ChatPageWidget(
+          builder: (context, params) => ChatAdvidorPageWidget(
             chatUser: params.getParam('chatUser', ParamType.Document),
             chatRef: params.getParam(
                 'chatRef', ParamType.DocumentReference, false, ['chats']),
           ),
         ),
         FFRoute(
-          name: 'AsesorDetailPage',
-          path: '/asesorDetailPage',
-          builder: (context, params) => AsesorDetailPageWidget(),
+          name: 'DetailAdvisorPage',
+          path: '/detailAdvisorPage',
+          builder: (context, params) => DetailAdvisorPageWidget(),
         ),
         FFRoute(
           name: 'ListOfertasPage',
@@ -212,6 +212,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'HomePage')
               : HomePageWidget(),
+        ),
+        FFRoute(
+          name: 'CreateAdvisorPage',
+          path: '/createAdvisorPage',
+          builder: (context, params) => CreateAdvisorPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -393,8 +398,8 @@ class FFRoute {
           final child = appStateNotifier.loading
               ? Center(
                   child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
+                    width: 36.0,
+                    height: 36.0,
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
                         FlutterFlowTheme.of(context).primary,
@@ -437,7 +442,11 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => TransitionInfo(
+        hasTransition: true,
+        transitionType: PageTransitionType.fade,
+        duration: Duration(milliseconds: 0),
+      );
 }
 
 class RootPageContext {

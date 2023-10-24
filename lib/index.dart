@@ -6,11 +6,12 @@ export '/auth/forgot_password_page/forgot_password_page_widget.dart'
     show ForgotPasswordPageWidget;
 export '/auth/profile_page/profile_page_widget.dart' show ProfilePageWidget;
 export '/pages/boletim_page/boletim_page_widget.dart' show BoletimPageWidget;
-export '/asesor/asesores_tecnico_page/asesores_tecnico_page_widget.dart'
-    show AsesoresTecnicoPageWidget;
-export '/asesor/chat_page/chat_page_widget.dart' show ChatPageWidget;
-export '/asesor/asesor_detail_page/asesor_detail_page_widget.dart'
-    show AsesorDetailPageWidget;
+export '/advisors/list_advidors_page/list_advidors_page_widget.dart'
+    show ListAdvidorsPageWidget;
+export '/advisors/chat_advidor_page/chat_advidor_page_widget.dart'
+    show ChatAdvidorPageWidget;
+export '/advisors/detail_advisor_page/detail_advisor_page_widget.dart'
+    show DetailAdvisorPageWidget;
 export '/empleos/list_ofertas_page/list_ofertas_page_widget.dart'
     show ListOfertasPageWidget;
 export '/empleos/details_oferta_page/details_oferta_page_widget.dart'
@@ -32,3 +33,5 @@ export '/tools/tools_detail_page/tools_detail_page_widget.dart'
 export '/egresados/egresados_register_page/egresados_register_page_widget.dart'
     show EgresadosRegisterPageWidget;
 export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
+export '/advisors/create_advisor_page/create_advisor_page_widget.dart'
+    show CreateAdvisorPageWidget;

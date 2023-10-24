@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -7,26 +8,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'asesores_tecnico_page_model.dart';
-export 'asesores_tecnico_page_model.dart';
+import 'list_advidors_page_model.dart';
+export 'list_advidors_page_model.dart';
 
-class AsesoresTecnicoPageWidget extends StatefulWidget {
-  const AsesoresTecnicoPageWidget({Key? key}) : super(key: key);
+class ListAdvidorsPageWidget extends StatefulWidget {
+  const ListAdvidorsPageWidget({Key? key}) : super(key: key);
 
   @override
-  _AsesoresTecnicoPageWidgetState createState() =>
-      _AsesoresTecnicoPageWidgetState();
+  _ListAdvidorsPageWidgetState createState() => _ListAdvidorsPageWidgetState();
 }
 
-class _AsesoresTecnicoPageWidgetState extends State<AsesoresTecnicoPageWidget> {
-  late AsesoresTecnicoPageModel _model;
+class _ListAdvidorsPageWidgetState extends State<ListAdvidorsPageWidget> {
+  late ListAdvidorsPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AsesoresTecnicoPageModel());
+    _model = createModel(context, () => ListAdvidorsPageModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -56,6 +56,24 @@ class _AsesoresTecnicoPageWidgetState extends State<AsesoresTecnicoPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        floatingActionButton: Visibility(
+          visible:
+              valueOrDefault<bool>(currentUserDocument?.advisor, false) == true,
+          child: AuthUserStreamWidget(
+            builder: (context) => FloatingActionButton(
+              onPressed: () {
+                print('FloatingActionButton pressed ...');
+              },
+              backgroundColor: FlutterFlowTheme.of(context).primary,
+              elevation: 8.0,
+              child: Icon(
+                Icons.add,
+                color: FlutterFlowTheme.of(context).info,
+                size: 24.0,
+              ),
+            ),
+          ),
+        ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
@@ -110,7 +128,7 @@ class _AsesoresTecnicoPageWidgetState extends State<AsesoresTecnicoPageWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed('AsesorDetailPage');
+                          context.pushNamed('DetailAdvisorPage');
                         },
                         child: Container(
                           width: 160.0,
@@ -378,7 +396,7 @@ class _AsesoresTecnicoPageWidgetState extends State<AsesoresTecnicoPageWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  context.pushNamed('AsesorDetailPage');
+                                  context.pushNamed('DetailAdvisorPage');
                                 },
                                 text: 'View',
                                 options: FFButtonOptions(

@@ -188,8 +188,8 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                                   if (!snapshot.hasData) {
                                     return Center(
                                       child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
+                                        width: 36.0,
+                                        height: 36.0,
                                         child: CircularProgressIndicator(
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(
@@ -315,8 +315,8 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                                   if (!snapshot.hasData) {
                                     return Center(
                                       child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
+                                        width: 36.0,
+                                        height: 36.0,
                                         child: CircularProgressIndicator(
                                           valueColor:
                                               AlwaysStoppedAnimation<Color>(

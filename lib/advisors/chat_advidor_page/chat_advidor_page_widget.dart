@@ -9,11 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'chat_page_model.dart';
-export 'chat_page_model.dart';
+import 'chat_advidor_page_model.dart';
+export 'chat_advidor_page_model.dart';
 
-class ChatPageWidget extends StatefulWidget {
-  const ChatPageWidget({
+class ChatAdvidorPageWidget extends StatefulWidget {
+  const ChatAdvidorPageWidget({
     Key? key,
     this.chatUser,
     this.chatRef,
@@ -23,11 +23,11 @@ class ChatPageWidget extends StatefulWidget {
   final DocumentReference? chatRef;
 
   @override
-  _ChatPageWidgetState createState() => _ChatPageWidgetState();
+  _ChatAdvidorPageWidgetState createState() => _ChatAdvidorPageWidgetState();
 }
 
-class _ChatPageWidgetState extends State<ChatPageWidget> {
-  late ChatPageModel _model;
+class _ChatAdvidorPageWidgetState extends State<ChatAdvidorPageWidget> {
+  late ChatAdvidorPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   FFChatInfo? _chatInfo;
@@ -44,7 +44,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ChatPageModel());
+    _model = createModel(context, () => ChatAdvidorPageModel());
 
     FFChatManager.instance
         .getChatInfo(
@@ -161,8 +161,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                 )
               : Center(
                   child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
+                    width: 36.0,
+                    height: 36.0,
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
                         FlutterFlowTheme.of(context).primary,

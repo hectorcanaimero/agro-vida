@@ -7,25 +7,26 @@ import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'asesor_detail_page_model.dart';
-export 'asesor_detail_page_model.dart';
+import 'detail_advisor_page_model.dart';
+export 'detail_advisor_page_model.dart';
 
-class AsesorDetailPageWidget extends StatefulWidget {
-  const AsesorDetailPageWidget({Key? key}) : super(key: key);
+class DetailAdvisorPageWidget extends StatefulWidget {
+  const DetailAdvisorPageWidget({Key? key}) : super(key: key);
 
   @override
-  _AsesorDetailPageWidgetState createState() => _AsesorDetailPageWidgetState();
+  _DetailAdvisorPageWidgetState createState() =>
+      _DetailAdvisorPageWidgetState();
 }
 
-class _AsesorDetailPageWidgetState extends State<AsesorDetailPageWidget> {
-  late AsesorDetailPageModel _model;
+class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget> {
+  late DetailAdvisorPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AsesorDetailPageModel());
+    _model = createModel(context, () => DetailAdvisorPageModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
