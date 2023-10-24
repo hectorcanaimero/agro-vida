@@ -133,51 +133,59 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              TextFormField(
-                                controller: _model.cargoFieldController,
-                                focusNode: _model.cargoFieldFocusNode,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Cargo...',
-                                  labelStyle:
-                                      FlutterFlowTheme.of(context).labelMedium,
-                                  hintStyle:
-                                      FlutterFlowTheme.of(context).labelMedium,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 2.0,
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 24.0, 0.0, 0.0),
+                                child: TextFormField(
+                                  controller: _model.cargoFieldController,
+                                  focusNode: _model.cargoFieldFocusNode,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText: 'Cargo...',
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium,
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 2.0,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    filled: true,
                                   ),
-                                  filled: true,
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  validator: _model
+                                      .cargoFieldControllerValidator
+                                      .asValidator(context),
                                 ),
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                                validator: _model.cargoFieldControllerValidator
-                                    .asValidator(context),
                               ),
                               TextFormField(
                                 controller: _model.empresaFieldController,

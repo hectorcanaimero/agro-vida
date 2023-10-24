@@ -138,21 +138,25 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                     decoration: BoxDecoration(),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(18.0, 24.0, 18.0, 0.0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Align(
                               alignment: AlignmentDirectional(-1.00, 0.00),
-                              child: Text(
-                                detailsOfertaPageJobsRecord.company,
-                                style: FlutterFlowTheme.of(context)
-                                    .labelLarge
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.normal,
-                                    ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 12.0),
+                                child: Text(
+                                  detailsOfertaPageJobsRecord.company,
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
                               ),
                             ),
                             Align(
@@ -174,82 +178,128 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 4.0, 0.0, 4.0),
-                              child: Row(
+                                  0.0, 24.0, 0.0, 0.0),
+                              child: Column(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Row(
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 4.0, 0.0, 4.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Icon(
+                                              Icons.calendar_month,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 28.0,
+                                            ),
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  -1.00, 0.00),
+                                              child: Text(
+                                                dateTimeFormat(
+                                                    'd/M H:mm',
+                                                    detailsOfertaPageJobsRecord
+                                                        .createdOn!),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
+                                              ),
+                                            ),
+                                          ].divide(SizedBox(width: 6.0)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(
+                                    thickness: 1.0,
+                                    color: Color(0xCCB5B5B5),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 4.0, 0.0, 4.0),
+                                  child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Icon(
-                                        Icons.calendar_month,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 6.0, 0.0),
+                                        child: Icon(
+                                          Icons.person,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 28.0,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Publicado por ',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
                                       ),
                                       Align(
                                         alignment:
                                             AlignmentDirectional(-1.00, 0.00),
                                         child: Text(
-                                          dateTimeFormat(
-                                              'd/M H:mm',
-                                              detailsOfertaPageJobsRecord
-                                                  .createdOn!),
+                                          containerUsersRecord.displayName,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 6.0)),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                Divider(
+                                  thickness: 1.0,
+                                  color: Color(0xCCB5B5B5),
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 4.0, 0.0, 4.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 6.0, 0.0),
-                                    child: Icon(
-                                      Icons.person,
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.inbox,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      size: 24.0,
+                                      size: 28.0,
                                     ),
-                                  ),
-                                  Text(
-                                    'Publicado por ',
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
-                                  Align(
-                                    alignment:
-                                        AlignmentDirectional(-1.00, 0.00),
-                                    child: Text(
-                                      containerUsersRecord.displayName,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(-1.00, 0.00),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 18.0, 0.0, 24.0),
+                                        child: Text(
+                                          detailsOfertaPageJobsRecord
+                                              .description,
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelLarge,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional(-1.00, 0.00),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 18.0, 0.0, 24.0),
-                                child: Text(
-                                  detailsOfertaPageJobsRecord.description,
-                                  style:
-                                      FlutterFlowTheme.of(context).labelLarge,
+                                  ].divide(SizedBox(width: 10.0)),
                                 ),
-                              ),
+                                Divider(
+                                  thickness: 1.0,
+                                  color: Color(0xCCB5B5B5),
+                                ),
+                              ],
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
