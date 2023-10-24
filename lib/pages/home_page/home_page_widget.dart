@@ -163,6 +163,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       child: StreamBuilder<List<BannersRecord>>(
                         stream: queryBannersRecord(
                           queryBuilder: (bannersRecord) => bannersRecord
+                              .where(
+                                'position',
+                                isEqualTo: 'block-1',
+                              )
                               .orderBy('created_on', descending: true),
                         ),
                         builder: (context, snapshot) {
