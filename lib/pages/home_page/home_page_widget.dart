@@ -160,92 +160,124 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
-                      child: Container(
-                        width: double.infinity,
-                        height: 310.0,
-                        child: Stack(
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 40.0),
-                              child: PageView(
-                                controller: _model.pageViewController ??=
-                                    PageController(initialPage: 0),
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(0.0),
-                                    child: Image.network(
-                                      'https://picsum.photos/seed/66/600',
-                                      width: double.infinity,
-                                      height:
-                                          MediaQuery.sizeOf(context).height *
-                                              1.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(0.0),
-                                    child: Image.network(
-                                      'https://picsum.photos/seed/932/600',
-                                      width: double.infinity,
-                                      height:
-                                          MediaQuery.sizeOf(context).height *
-                                              1.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(0.0),
-                                    child: Image.network(
-                                      'https://picsum.photos/seed/288/600',
-                                      width: double.infinity,
-                                      height:
-                                          MediaQuery.sizeOf(context).height *
-                                              1.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional(0.00, 1.00),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
-                                child:
-                                    smooth_page_indicator.SmoothPageIndicator(
-                                  controller: _model.pageViewController ??=
-                                      PageController(initialPage: 0),
-                                  count: 3,
-                                  axisDirection: Axis.horizontal,
-                                  onDotClicked: (i) async {
-                                    await _model.pageViewController!
-                                        .animateToPage(
-                                      i,
-                                      duration: Duration(milliseconds: 500),
-                                      curve: Curves.ease,
-                                    );
-                                  },
-                                  effect:
-                                      smooth_page_indicator.ExpandingDotsEffect(
-                                    expansionFactor: 3.0,
-                                    spacing: 8.0,
-                                    radius: 16.0,
-                                    dotWidth: 16.0,
-                                    dotHeight: 8.0,
-                                    dotColor:
-                                        FlutterFlowTheme.of(context).accent1,
-                                    activeDotColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    paintStyle: PaintingStyle.fill,
+                      child: StreamBuilder<List<BannersRecord>>(
+                        stream: queryBannersRecord(
+                          queryBuilder: (bannersRecord) => bannersRecord
+                              .where(
+                                'category',
+                                arrayContains: 'block1',
+                              )
+                              .orderBy('created_on', descending: true),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
                                   ),
                                 ),
                               ),
+                            );
+                          }
+                          List<BannersRecord> pageViewBannersRecordList =
+                              snapshot.data!;
+                          return Container(
+                            width: double.infinity,
+                            height: 310.0,
+                            child: Stack(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 40.0),
+                                  child: PageView.builder(
+                                    controller: _model.pageViewController ??=
+                                        PageController(
+                                            initialPage: min(
+                                                0,
+                                                pageViewBannersRecordList
+                                                        .length -
+                                                    1)),
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: pageViewBannersRecordList.length,
+                                    itemBuilder: (context, pageViewIndex) {
+                                      final pageViewBannersRecord =
+                                          pageViewBannersRecordList[
+                                              pageViewIndex];
+                                      return InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await launchURL(
+                                              pageViewBannersRecord.url);
+                                        },
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
+                                          child: Image.network(
+                                            pageViewBannersRecord.image,
+                                            width: double.infinity,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                Align(
+                                  alignment: AlignmentDirectional(0.00, 1.00),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 16.0),
+                                    child: smooth_page_indicator
+                                        .SmoothPageIndicator(
+                                      controller: _model.pageViewController ??=
+                                          PageController(
+                                              initialPage: min(
+                                                  0,
+                                                  pageViewBannersRecordList
+                                                          .length -
+                                                      1)),
+                                      count: pageViewBannersRecordList.length,
+                                      axisDirection: Axis.horizontal,
+                                      onDotClicked: (i) async {
+                                        await _model.pageViewController!
+                                            .animateToPage(
+                                          i,
+                                          duration: Duration(milliseconds: 500),
+                                          curve: Curves.ease,
+                                        );
+                                      },
+                                      effect: smooth_page_indicator
+                                          .ExpandingDotsEffect(
+                                        expansionFactor: 3.0,
+                                        spacing: 8.0,
+                                        radius: 16.0,
+                                        dotWidth: 16.0,
+                                        dotHeight: 8.0,
+                                        dotColor: FlutterFlowTheme.of(context)
+                                            .accent1,
+                                        activeDotColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                        paintStyle: PaintingStyle.fill,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          );
+                        },
                       ),
                     ),
                     Container(

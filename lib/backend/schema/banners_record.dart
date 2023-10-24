@@ -51,6 +51,11 @@ class BannersRecord extends FirestoreRecord {
   DateTime? get expiresOn => _expiresOn;
   bool hasExpiresOn() => _expiresOn != null;
 
+  // "category" field.
+  List<String>? _category;
+  List<String> get category => _category ?? const [];
+  bool hasCategory() => _category != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _url = snapshotData['url'] as String?;
@@ -59,6 +64,7 @@ class BannersRecord extends FirestoreRecord {
     _published = snapshotData['published'] as bool?;
     _createdOn = snapshotData['created_on'] as DateTime?;
     _expiresOn = snapshotData['expires_on'] as DateTime?;
+    _category = getDataList(snapshotData['category']);
   }
 
   static CollectionReference get collection =>
@@ -124,13 +130,15 @@ class BannersRecordDocumentEquality implements Equality<BannersRecord> {
 
   @override
   bool equals(BannersRecord? e1, BannersRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.name == e2?.name &&
         e1?.url == e2?.url &&
         e1?.image == e2?.image &&
         e1?.status == e2?.status &&
         e1?.published == e2?.published &&
         e1?.createdOn == e2?.createdOn &&
-        e1?.expiresOn == e2?.expiresOn;
+        e1?.expiresOn == e2?.expiresOn &&
+        listEquality.equals(e1?.category, e2?.category);
   }
 
   @override
@@ -141,7 +149,8 @@ class BannersRecordDocumentEquality implements Equality<BannersRecord> {
         e?.status,
         e?.published,
         e?.createdOn,
-        e?.expiresOn
+        e?.expiresOn,
+        e?.category
       ]);
 
   @override
