@@ -7,8 +7,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class TecnoAgroFirebaseUser extends BaseAuthUser {
-  TecnoAgroFirebaseUser(this.user);
+class AgrovidaFirebaseUser extends BaseAuthUser {
+  AgrovidaFirebaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -25,7 +25,13 @@ class TecnoAgroFirebaseUser extends BaseAuthUser {
   Future? delete() => user?.delete();
 
   @override
-  Future? updateEmail(String email) async => await user?.updateEmail(email);
+  Future? updateEmail(String email) async {
+    try {
+      await user?.updateEmail(email);
+    } catch (_) {
+      await user?.verifyBeforeUpdateEmail(email);
+    }
+  }
 
   @override
   Future? sendEmailVerification() => user?.sendEmailVerification();
@@ -50,17 +56,17 @@ class TecnoAgroFirebaseUser extends BaseAuthUser {
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
   static BaseAuthUser fromFirebaseUser(User? user) =>
-      TecnoAgroFirebaseUser(user);
+      AgrovidaFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> tecnoAgroFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> agrovidaFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = TecnoAgroFirebaseUser(user);
+        currentUser = AgrovidaFirebaseUser(user);
         if (!kIsWeb) {
           FirebaseCrashlytics.instance.setUserIdentifier(user?.uid ?? '');
         }

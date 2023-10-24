@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 
-import '../../auth/base_auth_user_provider.dart';
+import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
@@ -89,11 +89,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : AuthPageWidget(),
         ),
         FFRoute(
-          name: 'HomePage',
-          path: '/homePage',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'HomePage')
-              : HomePageWidget(),
+          name: 'Home2Page',
+          path: '/home2Page',
+          builder: (context, params) => Home2PageWidget(),
         ),
         FFRoute(
           name: 'OnboardingPage',
@@ -157,7 +155,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DetailRevistaPage',
           path: '/detailRevistaPage',
-          builder: (context, params) => DetailRevistaPageWidget(),
+          builder: (context, params) => DetailRevistaPageWidget(
+            url: params.getParam('url', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'ListRevistaPage',
@@ -172,7 +172,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DetailBoletinPage',
           path: '/detailBoletinPage',
-          builder: (context, params) => DetailBoletinPageWidget(),
+          builder: (context, params) => DetailBoletinPageWidget(
+            uid: params
+                .getParam('uid', ParamType.DocumentReference, false, ['blogs']),
+          ),
         ),
         FFRoute(
           name: 'MenuPage',
@@ -204,6 +207,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => EgresadosRegisterPageWidget(
             type: params.getParam('type', ParamType.int),
           ),
+        ),
+        FFRoute(
+          name: 'HomePage',
+          path: '/homePage',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'HomePage')
+              : HomePageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

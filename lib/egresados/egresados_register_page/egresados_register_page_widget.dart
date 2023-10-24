@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'egresados_register_page_model.dart';
@@ -34,8 +35,12 @@ class _EgresadosRegisterPageWidgetState
     _model = createModel(context, () => EgresadosRegisterPageModel());
 
     _model.nameFieldController ??= TextEditingController();
+    _model.nameFieldFocusNode ??= FocusNode();
     _model.idFieldController ??= TextEditingController();
+    _model.idFieldFocusNode ??= FocusNode();
     _model.emailFieldController ??= TextEditingController();
+    _model.emailFieldFocusNode ??= FocusNode();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -47,6 +52,15 @@ class _EgresadosRegisterPageWidgetState
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -107,6 +121,7 @@ class _EgresadosRegisterPageWidgetState
                                   8.0, 0.0, 8.0, 0.0),
                               child: TextFormField(
                                 controller: _model.nameFieldController,
+                                focusNode: _model.nameFieldFocusNode,
                                 autofocus: true,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -156,6 +171,7 @@ class _EgresadosRegisterPageWidgetState
                                   8.0, 0.0, 8.0, 0.0),
                               child: TextFormField(
                                 controller: _model.idFieldController,
+                                focusNode: _model.idFieldFocusNode,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Cedula de Identidad',
@@ -205,6 +221,7 @@ class _EgresadosRegisterPageWidgetState
                                   8.0, 0.0, 8.0, 0.0),
                               child: TextFormField(
                                 controller: _model.emailFieldController,
+                                focusNode: _model.emailFieldFocusNode,
                                 autofillHints: [AutofillHints.email],
                                 obscureText: false,
                                 decoration: InputDecoration(

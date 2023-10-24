@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'forgot_password_page_model.dart';
@@ -28,6 +29,8 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
     _model = createModel(context, () => ForgotPasswordPageModel());
 
     _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressFocusNode ??= FocusNode();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -39,6 +42,15 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -135,6 +147,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                   width: double.infinity,
                   child: TextFormField(
                     controller: _model.emailAddressController,
+                    focusNode: _model.emailAddressFocusNode,
                     autofillHints: [AutofillHints.email],
                     obscureText: false,
                     decoration: InputDecoration(

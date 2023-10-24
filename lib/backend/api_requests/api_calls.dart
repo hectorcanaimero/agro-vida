@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import '../../flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
@@ -26,7 +26,7 @@ class StrapiGroup {
 }
 
 class TodosLosBoletinesUniversitariosCall {
-  Future<ApiCallResponse> call() {
+  Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'Todos los Boletines Universitarios',
       apiUrl: '${StrapiGroup.baseUrl}/boletin-universitarios',
@@ -68,7 +68,7 @@ class TodosLosBoletinesUniversitariosCall {
 class TodosLosBoletinesUniversitarioConFiltroCall {
   Future<ApiCallResponse> call({
     String? situation = 'last',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Todos los Boletines Universitario con filtro',
       apiUrl: '${StrapiGroup.baseUrl}//boletin-universitarios',
@@ -95,7 +95,7 @@ class TodosLosBoletinesUniversitarioConFiltroCall {
 class TodosLosBannersCall {
   Future<ApiCallResponse> call({
     String? position = 'block-1',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Todos los Banners',
       apiUrl: '${StrapiGroup.baseUrl}/banners',
@@ -132,7 +132,7 @@ class TodosLosBannersCall {
 class GetToolsCall {
   Future<ApiCallResponse> call({
     String? position = 'top',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'get Tools',
       apiUrl: '${StrapiGroup.baseUrl}/tools',
@@ -153,7 +153,7 @@ class GetToolsCall {
 class GetToolByIdCall {
   Future<ApiCallResponse> call({
     int? id,
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'getToolById',
       apiUrl: '${StrapiGroup.baseUrl}/tools/${id}',
@@ -169,7 +169,7 @@ class GetToolByIdCall {
 }
 
 class GetArticlesCall {
-  Future<ApiCallResponse> call() {
+  Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Articles',
       apiUrl: '${StrapiGroup.baseUrl}/articles',
@@ -184,6 +184,11 @@ class GetArticlesCall {
       cache: false,
     );
   }
+
+  dynamic global(dynamic response) => getJsonField(
+        response,
+        r'''$''',
+      );
 }
 
 /// End Strapi Group Code

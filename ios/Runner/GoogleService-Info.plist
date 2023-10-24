@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>414924023560-vf4v2lsm72l360e5ratquqldvslpr862.apps.googleusercontent.com</string>
+	<string>414924023560-6jmue9lfng91vr03lkm2iaunmpqhbnn5.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.414924023560-vf4v2lsm72l360e5ratquqldvslpr862</string>
+	<string>com.googleusercontent.apps.414924023560-6jmue9lfng91vr03lkm2iaunmpqhbnn5</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>414924023560-k05kalrm544k5kf1h3akv0ajve3dtb5o.apps.googleusercontent.com</string>
+	<string>414924023560-ado4eiub9fneebt81lgdep219m3c3r42.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCTUStR1YEg-avSSeoZQTBx4qdM84jZw14</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.guayoyo.tecnoagro</string>
+	<string>com.guayoyo.agrovida</string>
 	<key>PROJECT_ID</key>
 	<string>palcarro-c7561</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:414924023560:ios:661d78a9718fb7f1bfaebd</string>
+	<string>1:414924023560:ios:e80c22f8cd69110fbfaebd</string>
 </dict>
 </plist>

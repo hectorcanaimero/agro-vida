@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -107,11 +108,19 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
       initialIndex: 0,
     )..addListener(() => setState(() {}));
     _model.displayNameController ??= TextEditingController();
+    _model.displayNameFocusNode ??= FocusNode();
     _model.emailAddressRegisterController ??= TextEditingController();
+    _model.emailAddressRegisterFocusNode ??= FocusNode();
     _model.passwordController ??= TextEditingController();
+    _model.passwordFocusNode ??= FocusNode();
     _model.rePasswordController ??= TextEditingController();
+    _model.rePasswordFocusNode ??= FocusNode();
     _model.emailLoginController ??= TextEditingController();
+    _model.emailLoginFocusNode ??= FocusNode();
     _model.passwordLoginController ??= TextEditingController();
+    _model.passwordLoginFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -123,6 +132,15 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -246,6 +264,8 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                 child: TextFormField(
                                                   controller: _model
                                                       .displayNameController,
+                                                  focusNode: _model
+                                                      .displayNameFocusNode,
                                                   autofillHints: [
                                                     AutofillHints.name
                                                   ],
@@ -354,6 +374,8 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                 child: TextFormField(
                                                   controller: _model
                                                       .emailAddressRegisterController,
+                                                  focusNode: _model
+                                                      .emailAddressRegisterFocusNode,
                                                   autofillHints: [
                                                     AutofillHints.email
                                                   ],
@@ -463,6 +485,8 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                 child: TextFormField(
                                                   controller:
                                                       _model.passwordController,
+                                                  focusNode:
+                                                      _model.passwordFocusNode,
                                                   autofillHints: [
                                                     AutofillHints.password
                                                   ],
@@ -592,6 +616,8 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                 child: TextFormField(
                                                   controller: _model
                                                       .rePasswordController,
+                                                  focusNode: _model
+                                                      .rePasswordFocusNode,
                                                   autofillHints: [
                                                     AutofillHints.password
                                                   ],
@@ -765,7 +791,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                         ));
 
                                                     context.pushNamedAuth(
-                                                        'HomePage',
+                                                        'Home2Page',
                                                         context.mounted);
 
                                                     ScaffoldMessenger.of(
@@ -883,6 +909,8 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                 child: TextFormField(
                                                   controller: _model
                                                       .emailLoginController,
+                                                  focusNode: _model
+                                                      .emailLoginFocusNode,
                                                   autofillHints: [
                                                     AutofillHints.email
                                                   ],
@@ -983,6 +1011,8 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                 child: TextFormField(
                                                   controller: _model
                                                       .passwordLoginController,
+                                                  focusNode: _model
+                                                      .passwordLoginFocusNode,
                                                   autofillHints: [
                                                     AutofillHints.password
                                                   ],
@@ -1124,7 +1154,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                     }
 
                                                     context.pushNamedAuth(
-                                                        'HomePage',
+                                                        'Home2Page',
                                                         context.mounted);
 
                                                     ScaffoldMessenger.of(

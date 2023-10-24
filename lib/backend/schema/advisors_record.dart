@@ -8,8 +8,8 @@ import '/backend/schema/util/schema_util.dart';
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class AsesorTecnicoRecord extends FirestoreRecord {
-  AsesorTecnicoRecord._(
+class AdvisorsRecord extends FirestoreRecord {
+  AdvisorsRecord._(
     DocumentReference reference,
     Map<String, dynamic> data,
   ) : super(reference, data) {
@@ -31,16 +31,6 @@ class AsesorTecnicoRecord extends FirestoreRecord {
   String get specialty => _specialty ?? '';
   bool hasSpecialty() => _specialty != null;
 
-  // "status" field.
-  bool? _status;
-  bool get status => _status ?? false;
-  bool hasStatus() => _status != null;
-
-  // "position" field.
-  int? _position;
-  int get position => _position ?? 0;
-  bool hasPosition() => _position != null;
-
   // "fullName" field.
   String? _fullName;
   String get fullName => _fullName ?? '';
@@ -56,115 +46,114 @@ class AsesorTecnicoRecord extends FirestoreRecord {
   String get phone => _phone ?? '';
   bool hasPhone() => _phone != null;
 
-  // "profile" field.
-  String? _profile;
-  String get profile => _profile ?? '';
-  bool hasProfile() => _profile != null;
+  // "avatar" field.
+  String? _avatar;
+  String get avatar => _avatar ?? '';
+  bool hasAvatar() => _avatar != null;
+
+  // "published" field.
+  bool? _published;
+  bool get published => _published ?? false;
+  bool hasPublished() => _published != null;
 
   void _initializeFields() {
     _user = snapshotData['user'] as DocumentReference?;
     _bio = snapshotData['bio'] as String?;
     _specialty = snapshotData['specialty'] as String?;
-    _status = snapshotData['status'] as bool?;
-    _position = castToType<int>(snapshotData['position']);
     _fullName = snapshotData['fullName'] as String?;
     _email = snapshotData['email'] as String?;
     _phone = snapshotData['phone'] as String?;
-    _profile = snapshotData['profile'] as String?;
+    _avatar = snapshotData['avatar'] as String?;
+    _published = snapshotData['published'] as bool?;
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('asesor_tecnico');
+      FirebaseFirestore.instance.collection('advisors');
 
-  static Stream<AsesorTecnicoRecord> getDocument(DocumentReference ref) =>
-      ref.snapshots().map((s) => AsesorTecnicoRecord.fromSnapshot(s));
+  static Stream<AdvisorsRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => AdvisorsRecord.fromSnapshot(s));
 
-  static Future<AsesorTecnicoRecord> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then((s) => AsesorTecnicoRecord.fromSnapshot(s));
+  static Future<AdvisorsRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => AdvisorsRecord.fromSnapshot(s));
 
-  static AsesorTecnicoRecord fromSnapshot(DocumentSnapshot snapshot) =>
-      AsesorTecnicoRecord._(
+  static AdvisorsRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      AdvisorsRecord._(
         snapshot.reference,
         mapFromFirestore(snapshot.data() as Map<String, dynamic>),
       );
 
-  static AsesorTecnicoRecord getDocumentFromData(
+  static AdvisorsRecord getDocumentFromData(
     Map<String, dynamic> data,
     DocumentReference reference,
   ) =>
-      AsesorTecnicoRecord._(reference, mapFromFirestore(data));
+      AdvisorsRecord._(reference, mapFromFirestore(data));
 
   @override
   String toString() =>
-      'AsesorTecnicoRecord(reference: ${reference.path}, data: $snapshotData)';
+      'AdvisorsRecord(reference: ${reference.path}, data: $snapshotData)';
 
   @override
   int get hashCode => reference.path.hashCode;
 
   @override
   bool operator ==(other) =>
-      other is AsesorTecnicoRecord &&
+      other is AdvisorsRecord &&
       reference.path.hashCode == other.reference.path.hashCode;
 }
 
-Map<String, dynamic> createAsesorTecnicoRecordData({
+Map<String, dynamic> createAdvisorsRecordData({
   DocumentReference? user,
   String? bio,
   String? specialty,
-  bool? status,
-  int? position,
   String? fullName,
   String? email,
   String? phone,
-  String? profile,
+  String? avatar,
+  bool? published,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'user': user,
       'bio': bio,
       'specialty': specialty,
-      'status': status,
-      'position': position,
       'fullName': fullName,
       'email': email,
       'phone': phone,
-      'profile': profile,
+      'avatar': avatar,
+      'published': published,
     }.withoutNulls,
   );
 
   return firestoreData;
 }
 
-class AsesorTecnicoRecordDocumentEquality
-    implements Equality<AsesorTecnicoRecord> {
-  const AsesorTecnicoRecordDocumentEquality();
+class AdvisorsRecordDocumentEquality implements Equality<AdvisorsRecord> {
+  const AdvisorsRecordDocumentEquality();
 
   @override
-  bool equals(AsesorTecnicoRecord? e1, AsesorTecnicoRecord? e2) {
+  bool equals(AdvisorsRecord? e1, AdvisorsRecord? e2) {
     return e1?.user == e2?.user &&
         e1?.bio == e2?.bio &&
         e1?.specialty == e2?.specialty &&
-        e1?.status == e2?.status &&
-        e1?.position == e2?.position &&
         e1?.fullName == e2?.fullName &&
         e1?.email == e2?.email &&
         e1?.phone == e2?.phone &&
-        e1?.profile == e2?.profile;
+        e1?.avatar == e2?.avatar &&
+        e1?.published == e2?.published;
   }
 
   @override
-  int hash(AsesorTecnicoRecord? e) => const ListEquality().hash([
+  int hash(AdvisorsRecord? e) => const ListEquality().hash([
         e?.user,
         e?.bio,
         e?.specialty,
-        e?.status,
-        e?.position,
         e?.fullName,
         e?.email,
         e?.phone,
-        e?.profile
+        e?.avatar,
+        e?.published
       ]);
 
   @override
-  bool isValidKey(Object? o) => o is AsesorTecnicoRecord;
+  bool isValidKey(Object? o) => o is AdvisorsRecord;
 }

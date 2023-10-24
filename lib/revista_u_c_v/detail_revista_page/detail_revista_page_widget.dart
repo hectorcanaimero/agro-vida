@@ -4,13 +4,19 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'detail_revista_page_model.dart';
 export 'detail_revista_page_model.dart';
 
 class DetailRevistaPageWidget extends StatefulWidget {
-  const DetailRevistaPageWidget({Key? key}) : super(key: key);
+  const DetailRevistaPageWidget({
+    Key? key,
+    required this.url,
+  }) : super(key: key);
+
+  final String? url;
 
   @override
   _DetailRevistaPageWidgetState createState() =>
@@ -26,6 +32,8 @@ class _DetailRevistaPageWidgetState extends State<DetailRevistaPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DetailRevistaPageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -37,6 +45,15 @@ class _DetailRevistaPageWidgetState extends State<DetailRevistaPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -79,10 +96,14 @@ class _DetailRevistaPageWidgetState extends State<DetailRevistaPageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
-                child: FlutterFlowPdfViewer(
-                  networkPath: 'http://www.pdf995.com/samples/pdf.pdf',
-                  height: 300.0,
-                  horizontalScroll: false,
+                child: Align(
+                  alignment: AlignmentDirectional(0.00, -1.00),
+                  child: FlutterFlowPdfViewer(
+                    networkPath: widget.url!,
+                    width: double.infinity,
+                    height: MediaQuery.sizeOf(context).height * 0.9,
+                    horizontalScroll: false,
+                  ),
                 ),
               ),
             ],

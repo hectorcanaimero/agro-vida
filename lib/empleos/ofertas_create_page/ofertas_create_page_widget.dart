@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -33,10 +34,16 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
     _model = createModel(context, () => OfertasCreatePageModel());
 
     _model.cargoFieldController1 ??= TextEditingController();
+    _model.cargoFieldFocusNode1 ??= FocusNode();
     _model.empresaFieldController1 ??= TextEditingController();
+    _model.empresaFieldFocusNode1 ??= FocusNode();
     _model.empresaFieldController2 ??= TextEditingController();
+    _model.empresaFieldFocusNode2 ??= FocusNode();
     _model.cargoFieldController2 ??= TextEditingController();
+    _model.cargoFieldFocusNode2 ??= FocusNode();
     _model.cargoFieldController3 ??= TextEditingController();
+    _model.cargoFieldFocusNode3 ??= FocusNode();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -124,6 +131,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                           children: [
                             TextFormField(
                               controller: _model.cargoFieldController1,
+                              focusNode: _model.cargoFieldFocusNode1,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Cargo...',
@@ -168,6 +176,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                             ),
                             TextFormField(
                               controller: _model.empresaFieldController1,
+                              focusNode: _model.empresaFieldFocusNode1,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Empresa..',
@@ -241,6 +250,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                             ),
                             TextFormField(
                               controller: _model.empresaFieldController2,
+                              focusNode: _model.empresaFieldFocusNode2,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Descripción del empleo...',
@@ -287,6 +297,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                             ),
                             TextFormField(
                               controller: _model.cargoFieldController2,
+                              focusNode: _model.cargoFieldFocusNode2,
                               autofillHints: [AutofillHints.email],
                               obscureText: false,
                               decoration: InputDecoration(
@@ -333,6 +344,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                             ),
                             TextFormField(
                               controller: _model.cargoFieldController3,
+                              focusNode: _model.cargoFieldFocusNode3,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Teléfono de contacto...',

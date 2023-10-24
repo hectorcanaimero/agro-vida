@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'auth_page_widget.dart' show AuthPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -22,24 +23,30 @@ class AuthPageModel extends FlutterFlowModel<AuthPageWidget> {
       tabBarController != null ? tabBarController!.index : 0;
 
   // State field(s) for displayName widget.
+  FocusNode? displayNameFocusNode;
   TextEditingController? displayNameController;
   String? Function(BuildContext, String?)? displayNameControllerValidator;
   // State field(s) for emailAddressRegister widget.
+  FocusNode? emailAddressRegisterFocusNode;
   TextEditingController? emailAddressRegisterController;
   String? Function(BuildContext, String?)?
       emailAddressRegisterControllerValidator;
   // State field(s) for password widget.
+  FocusNode? passwordFocusNode;
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
   // State field(s) for rePassword widget.
+  FocusNode? rePasswordFocusNode;
   TextEditingController? rePasswordController;
   late bool rePasswordVisibility;
   String? Function(BuildContext, String?)? rePasswordControllerValidator;
   // State field(s) for emailLogin widget.
+  FocusNode? emailLoginFocusNode;
   TextEditingController? emailLoginController;
   String? Function(BuildContext, String?)? emailLoginControllerValidator;
   // State field(s) for passwordLogin widget.
+  FocusNode? passwordLoginFocusNode;
   TextEditingController? passwordLoginController;
   late bool passwordLoginVisibility;
   String? Function(BuildContext, String?)? passwordLoginControllerValidator;
@@ -55,11 +62,22 @@ class AuthPageModel extends FlutterFlowModel<AuthPageWidget> {
   void dispose() {
     unfocusNode.dispose();
     tabBarController?.dispose();
+    displayNameFocusNode?.dispose();
     displayNameController?.dispose();
+
+    emailAddressRegisterFocusNode?.dispose();
     emailAddressRegisterController?.dispose();
+
+    passwordFocusNode?.dispose();
     passwordController?.dispose();
+
+    rePasswordFocusNode?.dispose();
     rePasswordController?.dispose();
+
+    emailLoginFocusNode?.dispose();
     emailLoginController?.dispose();
+
+    passwordLoginFocusNode?.dispose();
     passwordLoginController?.dispose();
   }
 

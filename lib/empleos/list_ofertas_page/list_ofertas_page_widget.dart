@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'list_ofertas_page_model.dart';
@@ -25,6 +26,8 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ListOfertasPageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -36,6 +39,15 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -57,7 +69,7 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
                   child: Padding(
                     padding: MediaQuery.viewInsetsOf(context),
                     child: Container(
-                      height: double.infinity,
+                      height: MediaQuery.sizeOf(context).height * 0.9,
                       child: OfertasCreatePageWidget(),
                     ),
                   ),
