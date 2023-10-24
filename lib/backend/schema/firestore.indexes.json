@@ -1,20 +1,6 @@
 {
   "indexes": [
     {
-      "collectionGroup": "banners",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "category",
-          "arrayConfig": "CONTAINS"
-        },
-        {
-          "fieldPath": "created_on",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "blogs",
       "queryScope": "COLLECTION",
       "fields": [
