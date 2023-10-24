@@ -791,7 +791,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                         ));
 
                                                     context.pushNamedAuth(
-                                                        'Home2Page',
+                                                        'HomePage',
                                                         context.mounted);
 
                                                     ScaffoldMessenger.of(
@@ -1154,7 +1154,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                     }
 
                                                     context.pushNamedAuth(
-                                                        'Home2Page',
+                                                        'HomePage',
                                                         context.mounted);
 
                                                     ScaffoldMessenger.of(

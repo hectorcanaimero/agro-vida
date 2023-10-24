@@ -1,5 +1,4 @@
 // Export pages
-export '/pages/home2_page/home2_page_widget.dart' show Home2PageWidget;
 export '/pages/onboarding_page/onboarding_page_widget.dart'
     show OnboardingPageWidget;
 export '/auth/auth_page/auth_page_widget.dart' show AuthPageWidget;
