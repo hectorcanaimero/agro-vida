@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'list_advidors_page_model.dart';
@@ -30,6 +31,8 @@ class _ListAdvidorsPageWidgetState extends State<ListAdvidorsPageWidget> {
     super.initState();
     _model = createModel(context, () => ListAdvidorsPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ListAdvidorsPage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -64,6 +67,8 @@ class _ListAdvidorsPageWidgetState extends State<ListAdvidorsPageWidget> {
           child: AuthUserStreamWidget(
             builder: (context) => FloatingActionButton(
               onPressed: () async {
+                logFirebaseEvent('LIST_ADVIDORS_FloatingActionButton_2wr80');
+                logFirebaseEvent('FloatingActionButton_bottom_sheet');
                 await showModalBottomSheet(
                   isScrollControlled: true,
                   backgroundColor: Colors.transparent,
@@ -106,6 +111,8 @@ class _ListAdvidorsPageWidgetState extends State<ListAdvidorsPageWidget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('LIST_ADVIDORS_arrow_back_rounded_ICN_ON_');
+              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
@@ -141,12 +148,11 @@ class _ListAdvidorsPageWidgetState extends State<ListAdvidorsPageWidget> {
                       if (!snapshot.hasData) {
                         return Center(
                           child: SizedBox(
-                            width: 36.0,
-                            height: 36.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
+                            width: 40.0,
+                            height: 40.0,
+                            child: SpinKitRing(
+                              color: Color(0x004B39EF),
+                              size: 40.0,
                             ),
                           ),
                         );
@@ -172,11 +178,19 @@ class _ListAdvidorsPageWidgetState extends State<ListAdvidorsPageWidget> {
                             setState(
                                 () => _model.switchListTileValue = newValue!);
                             if (newValue!) {
+                              logFirebaseEvent(
+                                  'LIST_ADVIDORS_SwitchListTile_a375ww98_ON');
+                              logFirebaseEvent('SwitchListTile_backend_call');
+
                               await containerAdvisorsRecord!.reference
                                   .update(createAdvisorsRecordData(
                                 published: true,
                               ));
                             } else {
+                              logFirebaseEvent(
+                                  'LIST_ADVIDORS_SwitchListTile_a375ww98_ON');
+                              logFirebaseEvent('SwitchListTile_backend_call');
+
                               await containerAdvisorsRecord!.reference
                                   .update(createAdvisorsRecordData(
                                 published: false,
@@ -310,6 +324,10 @@ class _ListAdvidorsPageWidgetState extends State<ListAdvidorsPageWidget> {
                                   ),
                                   FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'LIST_ADVIDORS_PAGE_PAGE_VIEW_BTN_ON_TAP');
+                                      logFirebaseEvent('Button_navigate_to');
+
                                       context.pushNamed(
                                         'DetailAdvisorPage',
                                         queryParameters: {

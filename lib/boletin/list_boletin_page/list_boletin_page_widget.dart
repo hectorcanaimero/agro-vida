@@ -28,6 +28,8 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
     super.initState();
     _model = createModel(context, () => ListBoletinPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ListBoletinPage'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -72,6 +74,8 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('LIST_BOLETIN_arrow_back_rounded_ICN_ON_T');
+              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
@@ -238,6 +242,10 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'LIST_BOLETIN_Container_zia9zysc_ON_TAP');
+                              logFirebaseEvent('Container_navigate_to');
+
                               context.pushNamed(
                                 'DetailBoletinPage',
                                 queryParameters: {

@@ -29,6 +29,8 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
     super.initState();
     _model = createModel(context, () => ListRevistaPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ListRevistaPage'});
     _model.tabBarController = TabController(
       vsync: this,
       length: 2,
@@ -76,6 +78,8 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('LIST_REVISTA_arrow_back_rounded_ICN_ON_T');
+              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
@@ -225,6 +229,11 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'LIST_REVISTA_Container_p98jg0ic_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Container_navigate_to');
+
                                           context.pushNamed(
                                             'DetailRevistaPage',
                                             queryParameters: {

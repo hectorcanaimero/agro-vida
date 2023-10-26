@@ -102,6 +102,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
     super.initState();
     _model = createModel(context, () => AuthPageModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'AuthPage'});
     _model.tabBarController = TabController(
       vsync: this,
       length: 2,
@@ -748,6 +749,10 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                         0.0, 0.0, 0.0, 16.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'AUTH_PAGE_PAGE_REGISTRAR_BTN_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Button_auth');
                                                     GoRouter.of(context)
                                                         .prepareAuthEvent();
                                                     if (_model
@@ -790,10 +795,15 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                               .text,
                                                         ));
 
+                                                    logFirebaseEvent(
+                                                        'Button_navigate_to');
+
                                                     context.pushNamedAuth(
                                                         'HomePage',
                                                         context.mounted);
 
+                                                    logFirebaseEvent(
+                                                        'Button_show_snack_bar');
                                                     ScaffoldMessenger.of(
                                                             context)
                                                         .showSnackBar(
@@ -1135,6 +1145,10 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                         0.0, 0.0, 0.0, 16.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'AUTH_PAGE_PAGE_INICIAR_SESIÓN_BTN_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Button_auth');
                                                     GoRouter.of(context)
                                                         .prepareAuthEvent();
 
@@ -1153,10 +1167,15 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                       return;
                                                     }
 
+                                                    logFirebaseEvent(
+                                                        'Button_navigate_to');
+
                                                     context.pushNamedAuth(
                                                         'HomePage',
                                                         context.mounted);
 
+                                                    logFirebaseEvent(
+                                                        'Button_show_snack_bar');
                                                     ScaffoldMessenger.of(
                                                             context)
                                                         .showSnackBar(
@@ -1221,6 +1240,10 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                         0.0, 0.0, 0.0, 16.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'AUTH_¿_HAS_OLVIDADO_TU_CONTRASEÑA?_BTN_O');
+                                                    logFirebaseEvent(
+                                                        'Button_auth');
                                                     GoRouter.of(context)
                                                         .prepareAuthEvent();
                                                     final user =

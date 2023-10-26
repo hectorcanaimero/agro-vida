@@ -30,6 +30,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     super.initState();
     _model = createModel(context, () => HomePageModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'HomePage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -211,6 +212,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'HOME_PAGE_PAGE_Image_5ntau9rn_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Image_launch_u_r_l');
                                           await launchURL(
                                               pageViewBannersRecord.url);
                                         },
@@ -321,6 +326,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        logFirebaseEvent(
+                                            'HOME_PAGE_PAGE_Column_u5hxpgoa_ON_TAP');
+                                        logFirebaseEvent('Column_navigate_to');
+
                                         context.pushNamed('EgresadosPage');
                                       },
                                       child: Column(
@@ -369,6 +378,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'HOME_PAGE_PAGE_Tools_ON_TAP');
+                                  logFirebaseEvent('Tools_navigate_to');
+
                                   context.pushNamed('ToolsPage');
                                 },
                                 child: Material(
@@ -434,6 +447,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'HOME_PAGE_PAGE_Column_2ia3vdqo_ON_TAP');
+                                      logFirebaseEvent('Column_navigate_to');
+
                                       context.pushNamed('ListOfertasPage');
                                     },
                                     child: Column(
@@ -473,6 +490,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'HOME_PAGE_PAGE_asesorTecnico_ON_TAP');
+                                  logFirebaseEvent('asesorTecnico_navigate_to');
+
                                   context.pushNamed('ListAdvidorsPage');
                                 },
                                 child: Material(
@@ -541,6 +562,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'HOME_PAGE_PAGE_Column_owkp04qs_ON_TAP');
+                                      logFirebaseEvent('Column_navigate_to');
+
                                       context.pushNamed('ListRevistaPage');
                                     },
                                     child: Column(
@@ -598,6 +623,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'HOME_PAGE_PAGE_Column_m57nprbn_ON_TAP');
+                                      logFirebaseEvent('Column_navigate_to');
+
                                       context.pushNamed('ListBoletinPage');
                                     },
                                     child: Column(
@@ -699,15 +728,28 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ),
-                                  Text(
-                                    'Ver Todas',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF889193),
-                                          fontSize: 16.0,
-                                        ),
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'HOME_PAGE_PAGE_Text_yvo5sni4_ON_TAP');
+                                      logFirebaseEvent('Text_navigate_to');
+
+                                      context.pushNamed('BoletimPage');
+                                    },
+                                    child: Text(
+                                      'Ver Todas',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFF889193),
+                                            fontSize: 16.0,
+                                          ),
+                                    ),
                                   ),
                                 ].divide(SizedBox(width: 12.0)),
                               ),
@@ -764,6 +806,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'HOME_PAGE_PAGE_Container_f0zlkdck_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Container_navigate_to');
+
                                           context.pushNamed(
                                             'DetailBoletinPage',
                                             queryParameters: {

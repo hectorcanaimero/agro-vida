@@ -33,6 +33,8 @@ class _DetailRevistaPageWidgetState extends State<DetailRevistaPageWidget> {
     super.initState();
     _model = createModel(context, () => DetailRevistaPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'DetailRevistaPage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -75,6 +77,8 @@ class _DetailRevistaPageWidgetState extends State<DetailRevistaPageWidget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('DETAIL_REVISTA_arrow_back_rounded_ICN_ON');
+              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),

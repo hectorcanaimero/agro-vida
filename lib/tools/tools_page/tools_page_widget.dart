@@ -27,6 +27,7 @@ class _ToolsPageWidgetState extends State<ToolsPageWidget> {
     super.initState();
     _model = createModel(context, () => ToolsPageModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'ToolsPage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -69,6 +70,8 @@ class _ToolsPageWidgetState extends State<ToolsPageWidget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('TOOLS_arrow_back_rounded_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
@@ -201,6 +204,10 @@ class _ToolsPageWidgetState extends State<ToolsPageWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'TOOLS_Container_hkik1bae_ON_TAP');
+                                    logFirebaseEvent('Container_navigate_to');
+
                                     context.pushNamed(
                                       'ToolsDetailPage',
                                       queryParameters: {

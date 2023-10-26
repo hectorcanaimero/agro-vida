@@ -46,6 +46,8 @@ class _ChatAdvidorPageWidgetState extends State<ChatAdvidorPageWidget> {
     super.initState();
     _model = createModel(context, () => ChatAdvidorPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ChatAdvidorPage'});
     FFChatManager.instance
         .getChatInfo(
       otherUserRecord: widget.chatUser,
@@ -94,6 +96,8 @@ class _ChatAdvidorPageWidgetState extends State<ChatAdvidorPageWidget> {
             size: 24.0,
           ),
           onPressed: () async {
+            logFirebaseEvent('CHAT_ADVIDOR_arrow_back_rounded_ICN_ON_T');
+            logFirebaseEvent('IconButton_navigate_back');
             context.pop();
           },
         ),

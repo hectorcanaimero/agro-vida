@@ -25,6 +25,7 @@ class _BoletimPageWidgetState extends State<BoletimPageWidget> {
     super.initState();
     _model = createModel(context, () => BoletimPageModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'BoletimPage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 

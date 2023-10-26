@@ -28,6 +28,8 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
     super.initState();
     _model = createModel(context, () => ForgotPasswordPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ForgotPasswordPage'});
     _model.emailAddressController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -68,6 +70,8 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
             size: 30.0,
           ),
           onPressed: () async {
+            logFirebaseEvent('FORGOT_PASSWORD_arrow_back_rounded_ICN_O');
+            logFirebaseEvent('IconButton_navigate_back');
             context.pop();
           },
         ),
@@ -101,6 +105,8 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
+                      logFirebaseEvent('FORGOT_PASSWORD_Row_kvnvgevp_ON_TAP');
+                      logFirebaseEvent('Row_navigate_back');
                       context.safePop();
                     },
                     child: Row(
@@ -203,6 +209,8 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
+                      logFirebaseEvent('FORGOT_PASSWORD_Button-Login_ON_TAP');
+                      logFirebaseEvent('Button-Login_auth');
                       if (_model.emailAddressController.text.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

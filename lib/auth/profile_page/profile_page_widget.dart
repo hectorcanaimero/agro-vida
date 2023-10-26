@@ -28,6 +28,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
     super.initState();
     _model = createModel(context, () => ProfilePageModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'ProfilePage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -198,6 +199,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'PROFILE_PAGE_PAGE_Text_loi7apwg_ON_TAP');
+                                      logFirebaseEvent('Text_auth');
                                       GoRouter.of(context).prepareAuthEvent();
                                       await authManager.signOut();
                                       GoRouter.of(context)

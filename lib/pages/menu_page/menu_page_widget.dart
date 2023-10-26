@@ -26,6 +26,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
     super.initState();
     _model = createModel(context, () => MenuPageModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'MenuPage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -116,9 +117,14 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'MENU_PAGE_PAGE_Container_6cquw4l0_ON_TAP');
+                              logFirebaseEvent('Container_auth');
                               GoRouter.of(context).prepareAuthEvent();
                               await authManager.signOut();
                               GoRouter.of(context).clearRedirectLocation();
+
+                              logFirebaseEvent('Container_navigate_to');
 
                               context.pushNamedAuth(
                                   'AuthPage', context.mounted);

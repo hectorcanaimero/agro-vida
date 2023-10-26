@@ -28,6 +28,8 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
     super.initState();
     _model = createModel(context, () => ListOfertasPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ListOfertasPage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -58,6 +60,8 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
+            logFirebaseEvent('LIST_OFERTAS_FloatingActionButton_yd18fw');
+            logFirebaseEvent('FloatingActionButton_bottom_sheet');
             await showModalBottomSheet(
               isScrollControlled: true,
               backgroundColor: Colors.transparent,
@@ -100,6 +104,8 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('LIST_OFERTAS_arrow_back_rounded_ICN_ON_T');
+              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
@@ -166,6 +172,10 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            logFirebaseEvent(
+                                'LIST_OFERTAS_Container_t6w316xr_ON_TAP');
+                            logFirebaseEvent('Container_navigate_to');
+
                             context.pushNamed(
                               'DetailsOfertaPage',
                               queryParameters: {

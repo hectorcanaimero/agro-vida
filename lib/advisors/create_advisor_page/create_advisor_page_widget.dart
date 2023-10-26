@@ -493,6 +493,10 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'CREATE_ADVISOR_CircleImage_tdheh4c5_ON_T');
+                                            logFirebaseEvent(
+                                                'CircleImage_upload_media_to_firebase');
                                             final selectedMedia =
                                                 await selectMediaWithSourceBottomSheet(
                                               context: context,
@@ -624,15 +628,21 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                         0.0, 36.0, 0.0, 0.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'CREATE_ADVISOR_SALVAR_BTN_ON_TAP');
                                         if (createNoteAdvisorsRecord
                                                 ?.reference !=
                                             null) {
+                                          logFirebaseEvent(
+                                              'Button_validate_form');
                                           if (_model.formKey.currentState ==
                                                   null ||
                                               !_model.formKey.currentState!
                                                   .validate()) {
                                             return;
                                           }
+                                          logFirebaseEvent(
+                                              'Button_backend_call');
 
                                           await createNoteAdvisorsRecord!
                                               .reference
@@ -653,6 +663,8 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                             published: true,
                                             createdOn: getCurrentTimestamp,
                                           ));
+                                          logFirebaseEvent(
+                                              'Button_alert_dialog');
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
@@ -671,14 +683,20 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                               );
                                             },
                                           );
+                                          logFirebaseEvent(
+                                              'Button_bottom_sheet');
                                           Navigator.pop(context);
                                         } else {
+                                          logFirebaseEvent(
+                                              'Button_validate_form');
                                           if (_model.formKey.currentState ==
                                                   null ||
                                               !_model.formKey.currentState!
                                                   .validate()) {
                                             return;
                                           }
+                                          logFirebaseEvent(
+                                              'Button_backend_call');
 
                                           await AdvisorsRecord.collection
                                               .doc()
@@ -701,6 +719,8 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                                 published: true,
                                                 createdOn: getCurrentTimestamp,
                                               ));
+                                          logFirebaseEvent(
+                                              'Button_alert_dialog');
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
@@ -719,6 +739,8 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                               );
                                             },
                                           );
+                                          logFirebaseEvent(
+                                              'Button_bottom_sheet');
                                           Navigator.pop(context);
                                         }
                                       },

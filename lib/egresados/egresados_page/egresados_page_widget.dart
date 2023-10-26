@@ -26,6 +26,8 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
     super.initState();
     _model = createModel(context, () => EgresadosPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'EgresadosPage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -68,6 +70,8 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('EGRESADOS_arrow_back_rounded_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
@@ -126,6 +130,9 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('EGRESADOS_btnRegisterUCV_ON_TAP');
+                        logFirebaseEvent('btnRegisterUCV_navigate_to');
+
                         context.pushNamed(
                           'EgresadosRegisterPage',
                           queryParameters: {
@@ -160,6 +167,9 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                     ),
                     FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('EGRESADOS_btnRegisterOther_ON_TAP');
+                        logFirebaseEvent('btnRegisterOther_navigate_to');
+
                         context.pushNamed(
                           'EgresadosRegisterPage',
                           queryParameters: {

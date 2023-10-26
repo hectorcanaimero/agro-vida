@@ -34,6 +34,8 @@ class _EgresadosRegisterPageWidgetState
     super.initState();
     _model = createModel(context, () => EgresadosRegisterPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'EgresadosRegisterPage'});
     _model.nameFieldController ??= TextEditingController();
     _model.nameFieldFocusNode ??= FocusNode();
     _model.idFieldController ??= TextEditingController();
@@ -82,6 +84,8 @@ class _EgresadosRegisterPageWidgetState
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('EGRESADOS_REGISTER_arrow_back_rounded_IC');
+              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),

@@ -37,6 +37,8 @@ class _DetailBoletinPageWidgetState extends State<DetailBoletinPageWidget> {
     super.initState();
     _model = createModel(context, () => DetailBoletinPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'DetailBoletinPage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -100,6 +102,8 @@ class _DetailBoletinPageWidgetState extends State<DetailBoletinPageWidget> {
                   size: 30.0,
                 ),
                 onPressed: () async {
+                  logFirebaseEvent('DETAIL_BOLETIN_arrow_back_rounded_ICN_ON');
+                  logFirebaseEvent('IconButton_navigate_back');
                   context.pop();
                 },
               ),
@@ -235,6 +239,10 @@ class _DetailBoletinPageWidgetState extends State<DetailBoletinPageWidget> {
                                               size: 24.0,
                                             ),
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'DETAIL_BOLETIN_share_outlined_ICN_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'IconButton_share');
                                               await Share.share(
                                                 'agrovida://agrovida.com${GoRouter.of(context).location}',
                                                 sharePositionOrigin:

@@ -27,6 +27,8 @@ class _OnboardingPageWidgetState extends State<OnboardingPageWidget> {
     super.initState();
     _model = createModel(context, () => OnboardingPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'OnboardingPage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -261,6 +263,9 @@ class _OnboardingPageWidgetState extends State<OnboardingPageWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('ONBOARDING_HACER_LOGIN_BTN_ON_TAP');
+                        logFirebaseEvent('Button_navigate_to');
+
                         context.pushNamed('AuthPage');
                       },
                       text: 'Hacer Login',

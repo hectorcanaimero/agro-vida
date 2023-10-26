@@ -1,4 +1,6 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/empleos/ofertas_create_page/ofertas_create_page_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -6,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'details_oferta_page_model.dart';
@@ -34,6 +37,8 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
     super.initState();
     _model = createModel(context, () => DetailsOfertaPageModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'DetailsOfertaPage'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -83,6 +88,41 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            floatingActionButton: Visibility(
+              visible: detailsOfertaPageJobsRecord.user == currentUserReference,
+              child: FloatingActionButton(
+                onPressed: () async {
+                  logFirebaseEvent('DETAILS_OFERTA_FloatingActionButton_wbw1');
+                  logFirebaseEvent('FloatingActionButton_bottom_sheet');
+                  await showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (context) {
+                      return GestureDetector(
+                        onTap: () => _model.unfocusNode.canRequestFocus
+                            ? FocusScope.of(context)
+                                .requestFocus(_model.unfocusNode)
+                            : FocusScope.of(context).unfocus(),
+                        child: Padding(
+                          padding: MediaQuery.viewInsetsOf(context),
+                          child: OfertasCreatePageWidget(
+                            uid: widget.uid,
+                          ),
+                        ),
+                      );
+                    },
+                  ).then((value) => safeSetState(() {}));
+                },
+                backgroundColor: FlutterFlowTheme.of(context).secondary,
+                elevation: 8.0,
+                child: Icon(
+                  Icons.edit,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 24.0,
+                ),
+              ),
+            ),
             appBar: AppBar(
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
@@ -97,6 +137,8 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                   size: 30.0,
                 ),
                 onPressed: () async {
+                  logFirebaseEvent('DETAILS_OFERTA_arrow_back_rounded_ICN_ON');
+                  logFirebaseEvent('IconButton_navigate_back');
                   context.pop();
                 },
               ),
@@ -107,7 +149,60 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                       fontSize: 22.0,
                     ),
               ),
-              actions: [],
+              actions: [
+                Visibility(
+                  visible:
+                      detailsOfertaPageJobsRecord.user == currentUserReference,
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                    child: FlutterFlowIconButton(
+                      borderRadius: 20.0,
+                      borderWidth: 0.0,
+                      buttonSize: 40.0,
+                      icon: FaIcon(
+                        FontAwesomeIcons.trash,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 24.0,
+                      ),
+                      onPressed: () async {
+                        logFirebaseEvent('DETAILS_OFERTA_trash_ICN_ON_TAP');
+                        logFirebaseEvent('IconButton_alert_dialog');
+                        var confirmDialogResponse = await showDialog<bool>(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Info'),
+                                  content: Text(
+                                      'Quiere eliminar esta oferta de empleo?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: Text('Confirm'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ) ??
+                            false;
+                        if (confirmDialogResponse) {
+                          logFirebaseEvent('IconButton_backend_call');
+
+                          await widget.uid!.update(createJobsRecordData(
+                            published: false,
+                          ));
+                        }
+                      },
+                    ),
+                  ),
+                ),
+              ],
               centerTitle: false,
               elevation: 0.0,
             ),
