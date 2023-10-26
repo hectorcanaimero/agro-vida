@@ -135,7 +135,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DetailAdvisorPage',
           path: '/detailAdvisorPage',
-          builder: (context, params) => DetailAdvisorPageWidget(),
+          builder: (context, params) => DetailAdvisorPageWidget(
+            uid: params.getParam(
+                'uid', ParamType.DocumentReference, false, ['advisors']),
+          ),
         ),
         FFRoute(
           name: 'ListOfertasPage',
@@ -212,11 +215,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'HomePage')
               : HomePageWidget(),
-        ),
-        FFRoute(
-          name: 'CreateAdvisorPage',
-          path: '/createAdvisorPage',
-          builder: (context, params) => CreateAdvisorPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

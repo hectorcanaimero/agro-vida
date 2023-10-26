@@ -24,6 +24,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
           pageViewController!.page != null
       ? pageViewController!.page!.round()
       : 0;
+  // State field(s) for MouseRegion widget.
+  bool mouseRegionHovered = false;
 
   /// Initialization and disposal methods.
 

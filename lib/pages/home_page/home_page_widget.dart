@@ -298,58 +298,70 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                             scrollDirection: Axis.vertical,
                             children: [
-                              Material(
-                                color: Colors.transparent,
-                                elevation: 3.0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                child: Container(
-                                  width: 100.0,
-                                  height: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                              MouseRegion(
+                                opaque: false,
+                                cursor: MouseCursor.defer ?? MouseCursor.defer,
+                                child: Material(
+                                  color: Colors.transparent,
+                                  elevation: 3.0,
+                                  shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      context.pushNamed('EgresadosPage');
-                                    },
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.asset(
-                                            'assets/images/mortarboard.png',
-                                            width: 36.0,
-                                            height: 36.0,
-                                            fit: BoxFit.cover,
+                                  child: Container(
+                                    width: 100.0,
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed('EgresadosPage');
+                                      },
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.asset(
+                                              'assets/images/mortarboard.png',
+                                              width: 36.0,
+                                              height: 36.0,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
-                                        ),
-                                        Text(
-                                          'Egresados',
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 13.0,
-                                                lineHeight: 1.3,
-                                              ),
-                                        ),
-                                      ].divide(SizedBox(height: 12.0)),
+                                          Text(
+                                            'Egresados',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 13.0,
+                                                  lineHeight: 1.3,
+                                                ),
+                                          ),
+                                        ].divide(SizedBox(height: 12.0)),
+                                      ),
                                     ),
                                   ),
                                 ),
+                                onEnter: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered = true);
+                                }),
+                                onExit: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered = false);
+                                }),
                               ),
                               InkWell(
                                 splashColor: Colors.transparent,

@@ -33,5 +33,3 @@ export '/tools/tools_detail_page/tools_detail_page_widget.dart'
 export '/egresados/egresados_register_page/egresados_register_page_widget.dart'
     show EgresadosRegisterPageWidget;
 export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
-export '/advisors/create_advisor_page/create_advisor_page_widget.dart'
-    show CreateAdvisorPageWidget;

@@ -56,6 +56,11 @@ class AdvisorsRecord extends FirestoreRecord {
   bool get published => _published ?? false;
   bool hasPublished() => _published != null;
 
+  // "created_on" field.
+  DateTime? _createdOn;
+  DateTime? get createdOn => _createdOn;
+  bool hasCreatedOn() => _createdOn != null;
+
   void _initializeFields() {
     _user = snapshotData['user'] as DocumentReference?;
     _bio = snapshotData['bio'] as String?;
@@ -65,6 +70,7 @@ class AdvisorsRecord extends FirestoreRecord {
     _phone = snapshotData['phone'] as String?;
     _avatar = snapshotData['avatar'] as String?;
     _published = snapshotData['published'] as bool?;
+    _createdOn = snapshotData['created_on'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -110,6 +116,7 @@ Map<String, dynamic> createAdvisorsRecordData({
   String? phone,
   String? avatar,
   bool? published,
+  DateTime? createdOn,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -121,6 +128,7 @@ Map<String, dynamic> createAdvisorsRecordData({
       'phone': phone,
       'avatar': avatar,
       'published': published,
+      'created_on': createdOn,
     }.withoutNulls,
   );
 
@@ -139,7 +147,8 @@ class AdvisorsRecordDocumentEquality implements Equality<AdvisorsRecord> {
         e1?.email == e2?.email &&
         e1?.phone == e2?.phone &&
         e1?.avatar == e2?.avatar &&
-        e1?.published == e2?.published;
+        e1?.published == e2?.published &&
+        e1?.createdOn == e2?.createdOn;
   }
 
   @override
@@ -151,7 +160,8 @@ class AdvisorsRecordDocumentEquality implements Equality<AdvisorsRecord> {
         e?.email,
         e?.phone,
         e?.avatar,
-        e?.published
+        e?.published,
+        e?.createdOn
       ]);
 
   @override
