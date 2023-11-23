@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'list_advidors_page_model.dart';
 export 'list_advidors_page_model.dart';
 
@@ -54,6 +55,8 @@ class _ListAdvidorsPageWidgetState extends State<ListAdvidorsPageWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -74,7 +77,8 @@ class _ListAdvidorsPageWidgetState extends State<ListAdvidorsPageWidget> {
                   backgroundColor: Colors.transparent,
                   context: context,
                   builder: (context) {
-                    return GestureDetector(
+                    return WebViewAware(
+                        child: GestureDetector(
                       onTap: () => _model.unfocusNode.canRequestFocus
                           ? FocusScope.of(context)
                               .requestFocus(_model.unfocusNode)
@@ -83,7 +87,7 @@ class _ListAdvidorsPageWidgetState extends State<ListAdvidorsPageWidget> {
                         padding: MediaQuery.viewInsetsOf(context),
                         child: CreateAdvisorPageWidget(),
                       ),
-                    );
+                    ));
                   },
                 ).then((value) => safeSetState(() {}));
               },

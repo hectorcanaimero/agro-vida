@@ -13,14 +13,27 @@ class ForgotPasswordPageModel
     extends FlutterFlowModel<ForgotPasswordPageWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final formKey = GlobalKey<FormState>();
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
+  String? _emailAddressControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Campo es obligatorio';
+    }
+
+    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
+      return 'Email invalido';
+    }
+    return null;
+  }
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    emailAddressControllerValidator = _emailAddressControllerValidator;
+  }
 
   void dispose() {
     emailAddressFocusNode?.dispose();

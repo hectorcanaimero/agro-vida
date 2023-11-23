@@ -49,6 +49,8 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -99,110 +101,7 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                     width: double.infinity,
                     height: 100.0,
                     decoration: BoxDecoration(),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-                            textAlign: TextAlign.justify,
-                            style: FlutterFlowTheme.of(context)
-                                .labelLarge
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  lineHeight: 1.6,
-                                ),
-                          ),
-                        ].divide(SizedBox(height: 18.0)),
-                      ),
-                    ),
                   ),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                height: 100.0,
-                decoration: BoxDecoration(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    FFButtonWidget(
-                      onPressed: () async {
-                        logFirebaseEvent('EGRESADOS_btnRegisterUCV_ON_TAP');
-                        logFirebaseEvent('btnRegisterUCV_navigate_to');
-
-                        context.pushNamed(
-                          'EgresadosRegisterPage',
-                          queryParameters: {
-                            'type': serializeParam(
-                              0,
-                              ParamType.int,
-                            ),
-                          }.withoutNulls,
-                        );
-                      },
-                      text: 'Egresados UCV',
-                      options: FFButtonOptions(
-                        width: 270.0,
-                        height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Poppins',
-                                  color: Colors.white,
-                                ),
-                        elevation: 3.0,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () async {
-                        logFirebaseEvent('EGRESADOS_btnRegisterOther_ON_TAP');
-                        logFirebaseEvent('btnRegisterOther_navigate_to');
-
-                        context.pushNamed(
-                          'EgresadosRegisterPage',
-                          queryParameters: {
-                            'type': serializeParam(
-                              1,
-                              ParamType.int,
-                            ),
-                          }.withoutNulls,
-                        );
-                      },
-                      text: 'Otras Universidades',
-                      options: FFButtonOptions(
-                        width: 270.0,
-                        height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).tertiary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Poppins',
-                                  color: Colors.white,
-                                ),
-                        elevation: 3.0,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                  ].divide(SizedBox(height: 18.0)),
                 ),
               ),
             ],

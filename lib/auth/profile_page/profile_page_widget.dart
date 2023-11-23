@@ -50,6 +50,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -208,7 +210,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                           .clearRedirectLocation();
 
                                       context.goNamedAuth(
-                                          'AuthPage', context.mounted);
+                                          'OnboardingPage', context.mounted);
                                     },
                                     child: Text(
                                       'Salir',

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,25 @@ class _OnboardingPageWidgetState extends State<OnboardingPageWidget> {
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'OnboardingPage'});
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('ONBOARDING_OnboardingPage_ON_INIT_STATE');
+      if (FFAppState().onBoarding) {
+        logFirebaseEvent('OnboardingPage_navigate_to');
+
+        context.pushNamed(
+          'AuthPage',
+          extra: <String, dynamic>{
+            kTransitionInfoKey: TransitionInfo(
+              hasTransition: true,
+              transitionType: PageTransitionType.fade,
+              duration: Duration(milliseconds: 300),
+            ),
+          },
+        );
+      }
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -49,6 +69,8 @@ class _OnboardingPageWidgetState extends State<OnboardingPageWidget> {
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
@@ -264,6 +286,10 @@ class _OnboardingPageWidgetState extends State<OnboardingPageWidget> {
                     FFButtonWidget(
                       onPressed: () async {
                         logFirebaseEvent('ONBOARDING_HACER_LOGIN_BTN_ON_TAP');
+                        logFirebaseEvent('Button_update_app_state');
+                        setState(() {
+                          FFAppState().onBoarding = true;
+                        });
                         logFirebaseEvent('Button_navigate_to');
 
                         context.pushNamed('AuthPage');

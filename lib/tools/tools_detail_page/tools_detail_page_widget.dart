@@ -1,9 +1,10 @@
-import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,10 +15,10 @@ export 'tools_detail_page_model.dart';
 class ToolsDetailPageWidget extends StatefulWidget {
   const ToolsDetailPageWidget({
     Key? key,
-    this.id,
+    required this.id,
   }) : super(key: key);
 
-  final int? id;
+  final DocumentReference? id;
 
   @override
   _ToolsDetailPageWidgetState createState() => _ToolsDetailPageWidgetState();
@@ -56,10 +57,10 @@ class _ToolsDetailPageWidgetState extends State<ToolsDetailPageWidget> {
       );
     }
 
-    return FutureBuilder<ApiCallResponse>(
-      future: StrapiGroup.getToolByIdCall.call(
-        id: widget.id,
-      ),
+    context.watch<FFAppState>();
+
+    return StreamBuilder<ToolsRecord>(
+      stream: ToolsRecord.getDocument(widget.id!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -78,7 +79,7 @@ class _ToolsDetailPageWidgetState extends State<ToolsDetailPageWidget> {
             ),
           );
         }
-        final toolsDetailPageGetToolByIdResponse = snapshot.data!;
+        final toolsDetailPageToolsRecord = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -105,13 +106,16 @@ class _ToolsDetailPageWidgetState extends State<ToolsDetailPageWidget> {
                   context.pop();
                 },
               ),
-              title: Text(
-                'Regresar',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Poppins',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 22.0,
-                    ),
+              title: Align(
+                alignment: AlignmentDirectional(-1.00, 0.00),
+                child: Text(
+                  'Regresar',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Poppins',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 22.0,
+                      ),
+                ),
               ),
               actions: [],
               centerTitle: false,
@@ -125,25 +129,16 @@ class _ToolsDetailPageWidgetState extends State<ToolsDetailPageWidget> {
                   Align(
                     alignment: AlignmentDirectional(0.00, 0.00),
                     child: Text(
-                      getJsonField(
-                        toolsDetailPageGetToolByIdResponse.jsonBody,
-                        r'''$.attributes.Name''',
-                      ).toString(),
-                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w600,
-                          ),
+                      toolsDetailPageToolsRecord.name,
+                      style: FlutterFlowTheme.of(context).headlineMedium,
                     ),
                   ),
                   Expanded(
                     child: FlutterFlowWebView(
-                      content: getJsonField(
-                        toolsDetailPageGetToolByIdResponse.jsonBody,
-                        r'''$.attributes.Url''',
-                      ).toString(),
+                      content: toolsDetailPageToolsRecord.url,
                       bypass: false,
-                      height: 500.0,
-                      verticalScroll: false,
+                      height: MediaQuery.sizeOf(context).height * 1.0,
+                      verticalScroll: true,
                       horizontalScroll: false,
                     ),
                   ),

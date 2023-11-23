@@ -80,6 +80,8 @@ class _ChatAdvidorPageWidgetState extends State<ChatAdvidorPageWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(

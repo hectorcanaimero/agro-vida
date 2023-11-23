@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 class OfertasCreatePageModel extends FlutterFlowModel<OfertasCreatePageWidget> {
   ///  State fields for stateful widgets in this component.

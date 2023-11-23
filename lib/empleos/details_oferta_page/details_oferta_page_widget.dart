@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'details_oferta_page_model.dart';
 export 'details_oferta_page_model.dart';
 
@@ -60,6 +61,8 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return StreamBuilder<JobsRecord>(
       stream: JobsRecord.getDocument(widget.uid!),
       builder: (context, snapshot) {
@@ -99,7 +102,8 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                     backgroundColor: Colors.transparent,
                     context: context,
                     builder: (context) {
-                      return GestureDetector(
+                      return WebViewAware(
+                          child: GestureDetector(
                         onTap: () => _model.unfocusNode.canRequestFocus
                             ? FocusScope.of(context)
                                 .requestFocus(_model.unfocusNode)
@@ -110,7 +114,7 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                             uid: widget.uid,
                           ),
                         ),
-                      );
+                      ));
                     },
                   ).then((value) => safeSetState(() {}));
                 },
@@ -171,7 +175,8 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                         var confirmDialogResponse = await showDialog<bool>(
                               context: context,
                               builder: (alertDialogContext) {
-                                return AlertDialog(
+                                return WebViewAware(
+                                    child: AlertDialog(
                                   title: Text('Info'),
                                   content: Text(
                                       'Quiere eliminar esta oferta de empleo?'),
@@ -187,7 +192,7 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                                       child: Text('Confirm'),
                                     ),
                                   ],
-                                );
+                                ));
                               },
                             ) ??
                             false;

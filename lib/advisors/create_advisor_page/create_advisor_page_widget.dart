@@ -5,11 +5,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'create_advisor_page_model.dart';
 export 'create_advisor_page_model.dart';
 
@@ -44,6 +46,7 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
     _model.descriptionFieldFocusNode ??= FocusNode();
 
     _model.specialtyFieldFocusNode ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -56,6 +59,8 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: AlignmentDirectional(0.00, 1.00),
       child: StreamBuilder<List<AdvisorsRecord>>(
@@ -164,7 +169,7 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                           autovalidateMode: AutovalidateMode.disabled,
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                18.0, 0.0, 18.0, 0.0),
+                                24.0, 0.0, 24.0, 0.0),
                             child: SingleChildScrollView(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -575,8 +580,12 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
-                                            child: Image.network(
-                                              _model.uploadedFileUrl,
+                                            child: CachedNetworkImage(
+                                              fadeInDuration:
+                                                  Duration(milliseconds: 300),
+                                              fadeOutDuration:
+                                                  Duration(milliseconds: 300),
+                                              imageUrl: _model.uploadedFileUrl,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -668,7 +677,8 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return AlertDialog(
+                                              return WebViewAware(
+                                                  child: AlertDialog(
                                                 title: Text('Show'),
                                                 content: Text(
                                                     'Se Actualizo con éxito!'),
@@ -680,7 +690,7 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                                     child: Text('Ok'),
                                                   ),
                                                 ],
-                                              );
+                                              ));
                                             },
                                           );
                                           logFirebaseEvent(
@@ -724,7 +734,8 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return AlertDialog(
+                                              return WebViewAware(
+                                                  child: AlertDialog(
                                                 title: Text('Show'),
                                                 content: Text(
                                                     'Se registro con éxito!'),
@@ -736,7 +747,7 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                                     child: Text('Ok'),
                                                   ),
                                                 ],
-                                              );
+                                              ));
                                             },
                                           );
                                           logFirebaseEvent(
@@ -771,7 +782,7 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(SizedBox(height: 12.0)),
+                                ].divide(SizedBox(height: 24.0)),
                               ),
                             ),
                           ),

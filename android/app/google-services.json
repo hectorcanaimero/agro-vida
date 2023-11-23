@@ -95,6 +95,50 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:414924023560:android:424fd34328a2e3c5bfaebd",
+        "android_client_info": {
+          "package_name": "com.guayoyo.fagronet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "414924023560-rsdco7elrn0h94pp8nld1rfg7b05t4ur.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.guayoyo.fagronet",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "414924023560-op2fe7kbuiqa9jfeiflumcdmh98r0sq3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxs9jNVl_Aakb49yDR5EOFyt0D5brNOwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "414924023560-c2r665f1s60c99oss7jhnp17qhhsd5lm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "414924023560-0qsf548hgnpemnhk6msqr4ec82m5j9de.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mekadevelopments.cliente"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:414924023560:android:aa0aa7351997d351bfaebd",
         "android_client_info": {
           "package_name": "com.guayoyo.tecnoagro"

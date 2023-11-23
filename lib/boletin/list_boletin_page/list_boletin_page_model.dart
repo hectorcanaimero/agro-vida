@@ -14,10 +14,6 @@ class ListBoletinPageModel extends FlutterFlowModel<ListBoletinPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for ListView widget.
 
   PagingController<DocumentSnapshot?, BlogsRecord>? listViewPagingController2;
@@ -30,9 +26,6 @@ class ListBoletinPageModel extends FlutterFlowModel<ListBoletinPageWidget> {
 
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-
     listViewStreamSubscriptions2.forEach((s) => s?.cancel());
     listViewPagingController2?.dispose();
   }

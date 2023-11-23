@@ -1,4 +1,4 @@
-package com.guayoyo.agrovida
+package com.guayoyo.fagronet
 
 import io.flutter.embedding.android.FlutterActivity
 

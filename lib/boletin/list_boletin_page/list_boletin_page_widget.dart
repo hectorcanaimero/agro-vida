@@ -30,8 +30,6 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'ListBoletinPage'});
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -52,6 +50,8 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
@@ -134,53 +134,6 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 0.0),
-                    child: TextFormField(
-                      controller: _model.textController,
-                      focusNode: _model.textFieldFocusNode,
-                      autofocus: true,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                        hintText: 'Busqueda...',
-                        hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        filled: true,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium,
-                      validator:
-                          _model.textControllerValidator.asValidator(context),
-                    ),
-                  ),
                 ),
               ),
               Expanded(
@@ -271,76 +224,107 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
                               ),
                               child: Container(
                                 width: double.infinity,
+                                height: 140.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.network(
-                                        listViewBlogsRecord.image,
-                                        width: 80.0,
-                                        height: 80.0,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    Flexible(
-                                      child: Container(
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 20.0, 10.0, 20.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.network(
+                                          listViewBlogsRecord.image,
+                                          width: 96.0,
+                                          height: 96.0,
+                                          fit: BoxFit.cover,
                                         ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              listViewBlogsRecord.name,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 14.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                            ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  dateTimeFormat(
-                                                      'MMMEd',
-                                                      listViewBlogsRecord
-                                                          .createdOn!),
+                                      ),
+                                      Flexible(
+                                        child: Container(
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                listViewBlogsRecord.name,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 14.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Icon(
+                                                    Icons
+                                                        .calendar_month_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 24.0,
+                                                  ),
+                                                  Text(
+                                                    dateTimeFormat(
+                                                        'MMMEd',
+                                                        listViewBlogsRecord
+                                                            .createdOn!),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 11.0,
+                                                        ),
+                                                  ),
+                                                ].divide(SizedBox(width: 6.0)),
+                                              ),
+                                              Divider(
+                                                thickness: 1.0,
+                                                color: Color(0xFFB4B4B4),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 10.0),
+                                                child: Text(
+                                                  listViewBlogsRecord
+                                                      .description,
+                                                  maxLines: 2,
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 11.0,
-                                                      ),
+                                                      .bodyMedium,
                                                 ),
-                                              ].divide(SizedBox(width: 12.0)),
-                                            ),
-                                          ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ]
-                                      .divide(SizedBox(width: 8.0))
-                                      .addToEnd(SizedBox(width: 12.0)),
+                                    ]
+                                        .divide(SizedBox(width: 8.0))
+                                        .addToEnd(SizedBox(width: 12.0)),
+                                  ),
                                 ),
                               ),
                             ),

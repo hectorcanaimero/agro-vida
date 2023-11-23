@@ -1,4 +1,4 @@
-import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -49,6 +49,8 @@ class _ToolsPageWidgetState extends State<ToolsPageWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -94,70 +96,6 @@ class _ToolsPageWidgetState extends State<ToolsPageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
-                width: double.infinity,
-                height: 150.0,
-                decoration: BoxDecoration(),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 0.0),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        FutureBuilder<ApiCallResponse>(
-                          future: StrapiGroup.getToolsCall.call(
-                            position: 'top',
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 36.0,
-                                  height: 36.0,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }
-                            final containerGetToolsResponse = snapshot.data!;
-                            return Material(
-                              color: Colors.transparent,
-                              elevation: 3.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: Container(
-                                width: MediaQuery.sizeOf(context).width * 0.7,
-                                height: MediaQuery.sizeOf(context).height * 1.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                child: Align(
-                                  alignment: AlignmentDirectional(0.00, 0.00),
-                                  child: Text(
-                                    getJsonField(
-                                      containerGetToolsResponse.jsonBody,
-                                      r'''$.attributes.Name''',
-                                    ).toString(),
-                                    style:
-                                        FlutterFlowTheme.of(context).titleSmall,
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ].divide(SizedBox(width: 18.0)),
-                    ),
-                  ),
-                ),
-              ),
               Expanded(
                 child: Container(
                   width: double.infinity,
@@ -166,9 +104,12 @@ class _ToolsPageWidgetState extends State<ToolsPageWidget> {
                   child: Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 0.0),
-                    child: FutureBuilder<ApiCallResponse>(
-                      future: StrapiGroup.getToolsCall.call(
-                        position: 'list',
+                    child: StreamBuilder<List<ToolsRecord>>(
+                      stream: queryToolsRecord(
+                        queryBuilder: (toolsRecord) => toolsRecord.where(
+                          'published',
+                          isEqualTo: true,
+                        ),
                       ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
@@ -185,88 +126,73 @@ class _ToolsPageWidgetState extends State<ToolsPageWidget> {
                             ),
                           );
                         }
-                        final listViewGetToolsResponse = snapshot.data!;
-                        return Builder(
-                          builder: (context) {
-                            final tools = getJsonField(
-                              listViewGetToolsResponse.jsonBody,
-                              r'''$''',
-                            ).toList();
-                            return ListView.builder(
-                              padding: EdgeInsets.zero,
-                              scrollDirection: Axis.vertical,
-                              itemCount: tools.length,
-                              itemBuilder: (context, toolsIndex) {
-                                final toolsItem = tools[toolsIndex];
-                                return InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'TOOLS_Container_hkik1bae_ON_TAP');
-                                    logFirebaseEvent('Container_navigate_to');
+                        List<ToolsRecord> listViewToolsRecordList =
+                            snapshot.data!;
+                        return ListView.builder(
+                          padding: EdgeInsets.zero,
+                          scrollDirection: Axis.vertical,
+                          itemCount: listViewToolsRecordList.length,
+                          itemBuilder: (context, listViewIndex) {
+                            final listViewToolsRecord =
+                                listViewToolsRecordList[listViewIndex];
+                            return InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                logFirebaseEvent(
+                                    'TOOLS_Container_hkik1bae_ON_TAP');
+                                logFirebaseEvent('Container_navigate_to');
 
-                                    context.pushNamed(
-                                      'ToolsDetailPage',
-                                      queryParameters: {
-                                        'id': serializeParam(
-                                          getJsonField(
-                                            toolsItem,
-                                            r'''$.id''',
-                                          ),
-                                          ParamType.int,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  },
-                                  child: Container(
-                                    width: 100.0,
-                                    height: 55.0,
-                                    decoration: BoxDecoration(),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 12.0, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                getJsonField(
-                                                  toolsItem,
-                                                  r'''$.attributes.Name''',
-                                                ).toString(),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
-                                              ),
-                                              Icon(
-                                                Icons.arrow_forward_ios_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 24.0,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Divider(
-                                          thickness: 1.0,
-                                          color: Color(0xCCAFAFAF),
-                                        ),
-                                      ],
+                                context.pushNamed(
+                                  'ToolsDetailPage',
+                                  queryParameters: {
+                                    'id': serializeParam(
+                                      listViewToolsRecord.reference,
+                                      ParamType.DocumentReference,
                                     ),
-                                  ),
+                                  }.withoutNulls,
                                 );
                               },
+                              child: Container(
+                                width: 100.0,
+                                height: 55.0,
+                                decoration: BoxDecoration(),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 12.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            listViewToolsRecord.name,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                          Icon(
+                                            Icons.arrow_forward_ios_sharp,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Divider(
+                                      thickness: 1.0,
+                                      color: Color(0xCCAFAFAF),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             );
                           },
                         );

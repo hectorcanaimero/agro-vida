@@ -1,31 +1,22 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/empleos/ofertas_create_page/ofertas_create_page_widget.dart';
+import '/flutter_flow/chat/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'details_oferta_page_widget.dart' show DetailsOfertaPageWidget;
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'all_chats_page_widget.dart' show AllChatsPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
-class DetailsOfertaPageModel extends FlutterFlowModel<DetailsOfertaPageWidget> {
-  ///  State fields for stateful widgets in this page.
-
-  final unfocusNode = FocusNode();
-
+class AllChatsPageModel extends FlutterFlowModel<AllChatsPageWidget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
 
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 
   /// Action blocks are added here.
 

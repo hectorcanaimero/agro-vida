@@ -60,6 +60,8 @@ class _DetailBoletinPageWidgetState extends State<DetailBoletinPageWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return StreamBuilder<BlogsRecord>(
       stream: BlogsRecord.getDocument(widget.uid!),
       builder: (context, snapshot) {
@@ -244,7 +246,7 @@ class _DetailBoletinPageWidgetState extends State<DetailBoletinPageWidget> {
                                               logFirebaseEvent(
                                                   'IconButton_share');
                                               await Share.share(
-                                                'agrovida://agrovida.com${GoRouter.of(context).location}',
+                                                'fagronet://fagronet.com${GoRouter.of(context).location}',
                                                 sharePositionOrigin:
                                                     getWidgetBoundingBox(
                                                         context),

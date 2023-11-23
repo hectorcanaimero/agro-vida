@@ -9,6 +9,8 @@ import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
+import '/backend/push_notifications/push_notifications_handler.dart'
+    show PushNotificationsHandler;
 import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -80,13 +82,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : AuthPageWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : OnboardingPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : AuthPageWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : OnboardingPageWidget(),
         ),
         FFRoute(
           name: 'OnboardingPage',
@@ -199,7 +201,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ToolsDetailPage',
           path: '/toolsDetailPage',
           builder: (context, params) => ToolsDetailPageWidget(
-            id: params.getParam('id', ParamType.int),
+            id: params
+                .getParam('id', ParamType.DocumentReference, false, ['tools']),
           ),
         ),
         FFRoute(
@@ -215,6 +218,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'HomePage')
               : HomePageWidget(),
+        ),
+        FFRoute(
+          name: 'AllChatsPage',
+          path: '/allChatsPage',
+          builder: (context, params) => AllChatsPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -381,7 +389,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/authPage';
+            return '/onboardingPage';
           }
           return null;
         },
@@ -405,7 +413,7 @@ class FFRoute {
                     ),
                   ),
                 )
-              : page;
+              : PushNotificationsHandler(child: page);
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition

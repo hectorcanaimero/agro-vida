@@ -25,8 +25,7 @@ class DetailAdvisorPageWidget extends StatefulWidget {
       _DetailAdvisorPageWidgetState();
 }
 
-class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget>
-    with TickerProviderStateMixin {
+class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget> {
   late DetailAdvisorPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -38,11 +37,6 @@ class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget>
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'DetailAdvisorPage'});
-    _model.tabBarController = TabController(
-      vsync: this,
-      length: 2,
-      initialIndex: 0,
-    )..addListener(() => setState(() {}));
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -63,6 +57,8 @@ class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget>
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return StreamBuilder<AdvisorsRecord>(
       stream: AdvisorsRecord.getDocument(widget.uid!),
@@ -92,6 +88,30 @@ class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget>
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            floatingActionButton: FloatingActionButton(
+              onPressed: () async {
+                logFirebaseEvent('DETAIL_ADVISOR_FloatingActionButton_jr9a');
+                logFirebaseEvent('FloatingActionButton_navigate_to');
+
+                context.pushNamed(
+                  'AllChatsPage',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
+              },
+              backgroundColor: FlutterFlowTheme.of(context).tertiary,
+              elevation: 8.0,
+              child: Icon(
+                Icons.wechat_sharp,
+                color: FlutterFlowTheme.of(context).info,
+                size: 24.0,
+              ),
+            ),
             appBar: AppBar(
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               automaticallyImplyLeading: false,
@@ -102,7 +122,7 @@ class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget>
                 buttonSize: 60.0,
                 icon: Icon(
                   Icons.arrow_back_rounded,
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: FlutterFlowTheme.of(context).secondaryText,
                   size: 30.0,
                 ),
                 onPressed: () async {
@@ -111,8 +131,16 @@ class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget>
                   context.pop();
                 },
               ),
+              title: Text(
+                'Bio',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Poppins',
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 22.0,
+                    ),
+              ),
               actions: [],
-              centerTitle: false,
+              centerTitle: true,
               elevation: 0.0,
             ),
             body: SafeArea(
@@ -120,437 +148,222 @@ class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget>
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  if (detailAdvisorPageAdvisorsRecord.user ==
-                      currentUserReference)
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Align(
-                            alignment: Alignment(0.0, 0),
-                            child: TabBar(
-                              labelColor:
-                                  FlutterFlowTheme.of(context).primaryText,
-                              unselectedLabelColor:
-                                  FlutterFlowTheme.of(context).secondaryText,
-                              labelStyle:
-                                  FlutterFlowTheme.of(context).titleMedium,
-                              unselectedLabelStyle: TextStyle(),
-                              indicatorColor:
-                                  FlutterFlowTheme.of(context).primary,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  4.0, 4.0, 4.0, 4.0),
-                              tabs: [
-                                Tab(
-                                  text: 'Perfil',
-                                ),
-                                Tab(
-                                  text: 'Chat',
-                                ),
-                              ],
-                              controller: _model.tabBarController,
-                            ),
-                          ),
-                          Expanded(
-                            child: TabBarView(
-                              controller: _model.tabBarController,
-                              children: [
-                                Container(
-                                  width: 100.0,
-                                  height: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                        ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 8.0, 8.0, 8.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.network(
+                                    detailAdvisorPageAdvisorsRecord.avatar,
+                                    width: double.infinity,
+                                    height: 250.0,
+                                    fit: BoxFit.cover,
                                   ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 8.0, 8.0, 8.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            detailAdvisorPageAdvisorsRecord
-                                                .avatar,
-                                            width: double.infinity,
-                                            height: 250.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 8.0, 8.0),
-                                        child: Container(
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 12.0, 12.0, 12.0),
-                                            child: SingleChildScrollView(
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 8.0,
-                                                                0.0, 8.0),
-                                                    child: Text(
-                                                      detailAdvisorPageAdvisorsRecord
-                                                          .fullName,
-                                                      style:
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 0.0, 8.0, 8.0),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  elevation: 3.0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 12.0, 12.0, 12.0),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 8.0, 0.0, 8.0),
+                                              child: Text(
+                                                detailAdvisorPageAdvisorsRecord
+                                                    .fullName,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMedium,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 0.0, 10.0),
+                                              child: Text(
+                                                detailAdvisorPageAdvisorsRecord
+                                                    .phone,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium,
+                                              ),
+                                            ),
+                                            Text(
+                                              detailAdvisorPageAdvisorsRecord
+                                                  .email,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                              child: Text(
+                                                detailAdvisorPageAdvisorsRecord
+                                                    .specialty,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
+                                              ),
+                                            ),
+                                            if (detailAdvisorPageAdvisorsRecord
+                                                    .user !=
+                                                currentUserReference)
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 12.0, 0.0, 12.0),
+                                                child: Material(
+                                                  color: Colors.transparent,
+                                                  elevation: 3.0,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    height: 50.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .headlineMedium,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    detailAdvisorPageAdvisorsRecord
-                                                        .phone,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium,
-                                                  ),
-                                                  Text(
-                                                    detailAdvisorPageAdvisorsRecord
-                                                        .email,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 8.0,
-                                                                0.0, 0.0),
-                                                    child: Text(
-                                                      detailAdvisorPageAdvisorsRecord
-                                                          .specialty,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium,
-                                                    ),
-                                                  ),
-                                                  if (detailAdvisorPageAdvisorsRecord
-                                                          .user !=
-                                                      currentUserReference)
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  12.0,
-                                                                  0.0,
-                                                                  12.0),
-                                                      child: Container(
-                                                        width: double.infinity,
-                                                        height: 70.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                          border: Border.all(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
+                                                              .tertiary,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      border: Border.all(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
                                                                 .alternate,
-                                                            width: 2.0,
-                                                          ),
-                                                        ),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Expanded(
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            12.0,
-                                                                            0.0,
-                                                                            12.0),
-                                                                    child: Icon(
-                                                                      Icons
-                                                                          .chat_bubble_rounded,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      size:
-                                                                          24.0,
-                                                                    ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Padding(
+                                                                padding: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        12.0,
+                                                                        0.0,
+                                                                        12.0),
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .chat_bubble_rounded,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBtnText,
+                                                                  size: 24.0,
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
                                                                             12.0,
                                                                             0.0),
-                                                                    child: Text(
-                                                                      'Chat',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Poppins',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primary,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                ],
+                                                                child: Text(
+                                                                  'Hablar con especialista',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Poppins',
+                                                                        color: Color(
+                                                                            0xFFFAFAFA),
+                                                                        fontSize:
+                                                                            16.0,
+                                                                      ),
+                                                                ),
                                                               ),
-                                                            ),
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
-                                                      ),
+                                                      ],
                                                     ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1.00, 0.00),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0,
-                                                                  12.0),
-                                                      child: Text(
-                                                        detailAdvisorPageAdvisorsRecord
-                                                            .bio,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Text(
-                                  'Tab View 2',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 32.0,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  if (detailAdvisorPageAdvisorsRecord.user !=
-                      currentUserReference)
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 8.0, 8.0, 8.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.network(
-                                detailAdvisorPageAdvisorsRecord.avatar,
-                                width: double.infinity,
-                                height: 250.0,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 8.0),
-                            child: Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 12.0, 12.0, 12.0),
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 8.0),
-                                        child: Text(
-                                          detailAdvisorPageAdvisorsRecord
-                                              .fullName,
-                                          style: FlutterFlowTheme.of(context)
-                                              .headlineMedium,
-                                        ),
-                                      ),
-                                      Text(
-                                        detailAdvisorPageAdvisorsRecord.phone,
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium,
-                                      ),
-                                      Text(
-                                        detailAdvisorPageAdvisorsRecord.email,
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 0.0),
-                                        child: Text(
-                                          detailAdvisorPageAdvisorsRecord
-                                              .specialty,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
-                                        ),
-                                      ),
-                                      if (detailAdvisorPageAdvisorsRecord
-                                              .user !=
-                                          currentUserReference)
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 0.0, 12.0),
-                                          child: Container(
-                                            width: double.infinity,
-                                            height: 70.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                width: 2.0,
-                                              ),
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Expanded(
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    12.0,
-                                                                    0.0,
-                                                                    12.0),
-                                                        child: Icon(
-                                                          Icons
-                                                              .chat_bubble_rounded,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          size: 24.0,
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    0.0,
-                                                                    12.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          'Chat',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ],
                                                   ),
                                                 ),
-                                              ],
+                                              ),
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  -1.00, 0.00),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 8.0, 0.0, 12.0),
+                                                child: Text(
+                                                  detailAdvisorPageAdvisorsRecord
+                                                      .bio,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelMedium,
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.00, 0.00),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 8.0, 0.0, 12.0),
-                                          child: Text(
-                                            detailAdvisorPageAdvisorsRecord.bio,
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelMedium,
-                                          ),
+                                          ],
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
+                            ].divide(SizedBox(height: 24.0)),
                           ),
-                        ],
+                        ),
                       ),
                     ),
+                  ),
                 ],
               ),
             ),

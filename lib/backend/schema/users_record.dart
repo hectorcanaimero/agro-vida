@@ -71,6 +71,26 @@ class UsersRecord extends FirestoreRecord {
   bool get advisor => _advisor ?? false;
   bool hasAdvisor() => _advisor != null;
 
+  // "shortDescription" field.
+  String? _shortDescription;
+  String get shortDescription => _shortDescription ?? '';
+  bool hasShortDescription() => _shortDescription != null;
+
+  // "last_active_time" field.
+  DateTime? _lastActiveTime;
+  DateTime? get lastActiveTime => _lastActiveTime;
+  bool hasLastActiveTime() => _lastActiveTime != null;
+
+  // "role" field.
+  String? _role;
+  String get role => _role ?? '';
+  bool hasRole() => _role != null;
+
+  // "title" field.
+  String? _title;
+  String get title => _title ?? '';
+  bool hasTitle() => _title != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -83,6 +103,10 @@ class UsersRecord extends FirestoreRecord {
     _born = snapshotData['born'] as String?;
     _type = castToType<int>(snapshotData['type']);
     _advisor = snapshotData['advisor'] as bool?;
+    _shortDescription = snapshotData['shortDescription'] as String?;
+    _lastActiveTime = snapshotData['last_active_time'] as DateTime?;
+    _role = snapshotData['role'] as String?;
+    _title = snapshotData['title'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -130,6 +154,10 @@ Map<String, dynamic> createUsersRecordData({
   String? born,
   int? type,
   bool? advisor,
+  String? shortDescription,
+  DateTime? lastActiveTime,
+  String? role,
+  String? title,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -144,6 +172,10 @@ Map<String, dynamic> createUsersRecordData({
       'born': born,
       'type': type,
       'advisor': advisor,
+      'shortDescription': shortDescription,
+      'last_active_time': lastActiveTime,
+      'role': role,
+      'title': title,
     }.withoutNulls,
   );
 
@@ -171,7 +203,11 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.profession == e2?.profession &&
         e1?.born == e2?.born &&
         e1?.type == e2?.type &&
-        e1?.advisor == e2?.advisor;
+        e1?.advisor == e2?.advisor &&
+        e1?.shortDescription == e2?.shortDescription &&
+        e1?.lastActiveTime == e2?.lastActiveTime &&
+        e1?.role == e2?.role &&
+        e1?.title == e2?.title;
   }
 
   @override
@@ -186,7 +222,11 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.profession,
         e?.born,
         e?.type,
-        e?.advisor
+        e?.advisor,
+        e?.shortDescription,
+        e?.lastActiveTime,
+        e?.role,
+        e?.title
       ]);
 
   @override

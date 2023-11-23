@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'ofertas_create_page_model.dart';
 export 'ofertas_create_page_model.dart';
 
@@ -48,6 +49,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
     _model.emailFieldFocusNode ??= FocusNode();
 
     _model.phoneFieldFocusNode ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -60,6 +62,8 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: AlignmentDirectional(0.00, 1.00),
       child: StreamBuilder<JobsRecord>(
@@ -500,7 +504,8 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return AlertDialog(
+                                            return WebViewAware(
+                                                child: AlertDialog(
                                               title: Text('Show'),
                                               content: Text(
                                                   'Se registro con éxito!'),
@@ -512,7 +517,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                                   child: Text('Ok'),
                                                 ),
                                               ],
-                                            );
+                                            ));
                                           },
                                         );
                                         logFirebaseEvent('Button_bottom_sheet');
@@ -555,7 +560,8 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                             await showDialog(
                                               context: context,
                                               builder: (alertDialogContext) {
-                                                return AlertDialog(
+                                                return WebViewAware(
+                                                    child: AlertDialog(
                                                   title: Text('Show'),
                                                   content: Text(
                                                       'Se Actualizo con éxito!'),
@@ -567,7 +573,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                                       child: Text('Ok'),
                                                     ),
                                                   ],
-                                                );
+                                                ));
                                               },
                                             );
                                             logFirebaseEvent(
@@ -613,7 +619,8 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                             await showDialog(
                                               context: context,
                                               builder: (alertDialogContext) {
-                                                return AlertDialog(
+                                                return WebViewAware(
+                                                    child: AlertDialog(
                                                   title: Text('Show'),
                                                   content: Text(
                                                       'Se registro con éxito!'),
@@ -625,7 +632,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                                       child: Text('Ok'),
                                                     ),
                                                   ],
-                                                );
+                                                ));
                                               },
                                             );
                                             logFirebaseEvent(

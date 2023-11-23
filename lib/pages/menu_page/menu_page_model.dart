@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'menu_page_widget.dart' show MenuPageWidget;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +13,10 @@ class MenuPageModel extends FlutterFlowModel<MenuPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for MouseRegion widget.
+  bool mouseRegionHovered1 = false;
+  // State field(s) for MouseRegion widget.
+  bool mouseRegionHovered2 = false;
 
   /// Initialization and disposal methods.
 
