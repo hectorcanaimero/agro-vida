@@ -1,1 +1,1 @@
-export 'one_signal_init.dart' show oneSignalInit;
+export 'one_signal.dart' show oneSignal;

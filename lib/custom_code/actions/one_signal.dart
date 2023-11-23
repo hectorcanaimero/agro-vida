@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
-Future oneSignalInit() async {
+Future oneSignal() async {
   // Add your function code here!
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.initialize("d6a6fdef-86fe-4dbd-bba7-82d8b7d11a85");
