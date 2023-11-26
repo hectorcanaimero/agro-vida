@@ -14,5 +14,5 @@ Future oneSignal() async {
   // Add your function code here!
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.initialize("d6a6fdef-86fe-4dbd-bba7-82d8b7d11a85");
-  OneSignal.Notification.requestPermission(true);
+  OneSignal.Notifications.requestPermission(true);
 }

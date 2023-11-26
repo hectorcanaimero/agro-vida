@@ -34,10 +34,6 @@ dependencies:
   cloud_functions: 4.3.2
   cloud_functions_platform_interface: 5.4.2
   cloud_functions_web: 4.5.2
-  dash_chat: 
-    git:
-      url: https://github.com/FlutterFlow/flutterflow_dash_chat.git
-
   device_info_plus: 8.0.0
   device_info_plus_platform_interface: 7.0.0
   equatable: 2.0.5

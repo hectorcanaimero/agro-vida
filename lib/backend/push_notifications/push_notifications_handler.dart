@@ -118,13 +118,6 @@ final parametersBuilderMap =
   'ProfilePage': ParameterData.none(),
   'BoletimPage': ParameterData.none(),
   'ListAdvidorsPage': ParameterData.none(),
-  'ChatAdvidorPage': (data) async => ParameterData(
-        allParams: {
-          'chatUser': await getDocumentParameter<UsersRecord>(
-              data, 'chatUser', UsersRecord.fromSnapshot),
-          'chatRef': getParameter<DocumentReference>(data, 'chatRef'),
-        },
-      ),
   'DetailAdvisorPage': (data) async => ParameterData(
         allParams: {
           'uid': getParameter<DocumentReference>(data, 'uid'),
@@ -162,7 +155,6 @@ final parametersBuilderMap =
         },
       ),
   'HomePage': ParameterData.none(),
-  'AllChatsPage': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

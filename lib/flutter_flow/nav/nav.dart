@@ -123,18 +123,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ListAdvidorsPageWidget(),
         ),
         FFRoute(
-          name: 'ChatAdvidorPage',
-          path: '/chatAdvidorPage',
-          asyncParams: {
-            'chatUser': getDoc(['users'], UsersRecord.fromSnapshot),
-          },
-          builder: (context, params) => ChatAdvidorPageWidget(
-            chatUser: params.getParam('chatUser', ParamType.Document),
-            chatRef: params.getParam(
-                'chatRef', ParamType.DocumentReference, false, ['chats']),
-          ),
-        ),
-        FFRoute(
           name: 'DetailAdvisorPage',
           path: '/detailAdvisorPage',
           builder: (context, params) => DetailAdvisorPageWidget(
@@ -218,11 +206,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'HomePage')
               : HomePageWidget(),
-        ),
-        FFRoute(
-          name: 'AllChatsPage',
-          path: '/allChatsPage',
-          builder: (context, params) => AllChatsPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

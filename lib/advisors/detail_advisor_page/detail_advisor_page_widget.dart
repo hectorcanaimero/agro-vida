@@ -89,20 +89,8 @@ class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             floatingActionButton: FloatingActionButton(
-              onPressed: () async {
-                logFirebaseEvent('DETAIL_ADVISOR_FloatingActionButton_jr9a');
-                logFirebaseEvent('FloatingActionButton_navigate_to');
-
-                context.pushNamed(
-                  'AllChatsPage',
-                  extra: <String, dynamic>{
-                    kTransitionInfoKey: TransitionInfo(
-                      hasTransition: true,
-                      transitionType: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                    ),
-                  },
-                );
+              onPressed: () {
+                print('FloatingActionButton pressed ...');
               },
               backgroundColor: FlutterFlowTheme.of(context).tertiary,
               elevation: 8.0,
