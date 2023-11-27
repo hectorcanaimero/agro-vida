@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -166,36 +167,52 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                 child: Container(
                   width: double.infinity,
-                  height: 80.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
                   alignment: AlignmentDirectional(0.00, 0.00),
                   child: Align(
                     alignment: AlignmentDirectional(0.00, 0.00),
-                    child: Row(
+                    child: Column(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Fagro',
-                          style: FlutterFlowTheme.of(context)
-                              .displaySmall
-                              .override(
-                                fontFamily: 'Poppins',
-                                color: Color(0xFF4E7C13),
-                                fontWeight: FontWeight.w800,
-                              ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            'assets/images/ico.png',
+                            width: 84.0,
+                            height: 84.0,
+                            fit: BoxFit.fitHeight,
+                          ),
                         ),
-                        Text(
-                          'Net',
-                          style: FlutterFlowTheme.of(context)
-                              .displaySmall
-                              .override(
-                                fontFamily: 'Poppins',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontWeight: FontWeight.w500,
+                        RichText(
+                          textScaleFactor:
+                              MediaQuery.of(context).textScaleFactor,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Fagro',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
+                              TextSpan(
+                                text: 'NET',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              )
+                            ],
+                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          ),
                         ),
                       ],
                     ),
