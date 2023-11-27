@@ -336,7 +336,20 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   18.0, 0.0, 18.0, 0.0),
                               child: StreamBuilder<List<PublicationsRecord>>(
-                                stream: queryPublicationsRecord(),
+                                stream: queryPublicationsRecord(
+                                  queryBuilder: (publicationsRecord) =>
+                                      publicationsRecord
+                                          .where(
+                                            'categories',
+                                            arrayContains: 'magazine2',
+                                          )
+                                          .where(
+                                            'published',
+                                            isEqualTo: true,
+                                          )
+                                          .orderBy('created_on',
+                                              descending: true),
+                                ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
                                   if (!snapshot.hasData) {
@@ -415,32 +428,25 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         children: [
-                                                          Text(
-                                                            listViewPublicationsRecord
-                                                                .name,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                          ),
-                                                          Text(
-                                                            '2022',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
+                                                          Expanded(
+                                                            child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(),
+                                                              child: Text(
+                                                                listViewPublicationsRecord
+                                                                    .name,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelLarge
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Poppins',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    ),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ],
                                                       ),

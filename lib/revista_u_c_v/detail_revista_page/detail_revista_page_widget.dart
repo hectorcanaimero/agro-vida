@@ -131,7 +131,6 @@ class _DetailRevistaPageWidgetState extends State<DetailRevistaPageWidget> {
                         networkPath:
                             detailRevistaPagePublicationsRecord.fileUpload,
                         width: double.infinity,
-                        height: MediaQuery.sizeOf(context).height * 0.9,
                         horizontalScroll: false,
                       ),
                     ),
