@@ -31,3 +31,5 @@ export '/tools/tools_detail_page/tools_detail_page_widget.dart'
 export '/egresados/egresados_register_page/egresados_register_page_widget.dart'
     show EgresadosRegisterPageWidget;
 export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
+export '/pages/fagro_i_a_page/fagro_i_a_page_widget.dart'
+    show FagroIAPageWidget;

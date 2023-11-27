@@ -36,6 +36,7 @@ dependencies:
   cloud_functions_web: 4.5.2
   device_info_plus: 8.0.0
   device_info_plus_platform_interface: 7.0.0
+  dropdown_button2: 2.0.0
   equatable: 2.0.5
   file_picker: 5.2.6
   firebase_analytics: 10.4.2

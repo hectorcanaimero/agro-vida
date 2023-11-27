@@ -210,7 +210,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                           .clearRedirectLocation();
 
                                       context.goNamedAuth(
-                                          'OnboardingPage', context.mounted);
+                                          'AuthPage', context.mounted);
                                     },
                                     child: Text(
                                       'Salir',

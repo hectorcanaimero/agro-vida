@@ -82,13 +82,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : OnboardingPageWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : AuthPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : OnboardingPageWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : AuthPageWidget(),
         ),
         FFRoute(
           name: 'OnboardingPage',
@@ -197,7 +197,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'EgresadosRegisterPage',
           path: '/egresadosRegisterPage',
           builder: (context, params) => EgresadosRegisterPageWidget(
-            type: params.getParam('type', ParamType.int),
+            uid: params.getParam(
+                'uid', ParamType.DocumentReference, false, ['egresados']),
           ),
         ),
         FFRoute(
@@ -206,6 +207,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'HomePage')
               : HomePageWidget(),
+        ),
+        FFRoute(
+          name: 'FagroIAPage',
+          path: '/fagroIAPage',
+          builder: (context, params) => FagroIAPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -372,7 +378,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/onboardingPage';
+            return '/authPage';
           }
           return null;
         },

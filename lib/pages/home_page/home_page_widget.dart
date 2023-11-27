@@ -7,7 +7,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
@@ -86,10 +85,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            FaIcon(
-                              FontAwesomeIcons.ello,
-                              color: FlutterFlowTheme.of(context).secondary,
-                              size: 36.0,
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(
+                                'assets/images/ico.png',
+                                width: 46.0,
+                                height: 46.0,
+                                fit: BoxFit.contain,
+                              ),
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
@@ -140,7 +143,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                     ),
                                     Text(
-                                      'Agrovida',
+                                      'Fagronet',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -154,7 +157,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                               ],
                             ),
-                          ].divide(SizedBox(width: 12.0)),
+                          ].divide(SizedBox(width: 10.0)),
                         ),
                       ),
                     ),
@@ -493,10 +496,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   logFirebaseEvent(
-                                      'HOME_PAGE_PAGE_asesorTecnico_ON_TAP');
-                                  logFirebaseEvent('asesorTecnico_navigate_to');
+                                      'HOME_PAGE_PAGE_fagroIA_ON_TAP');
+                                  logFirebaseEvent('fagroIA_navigate_to');
 
-                                  context.pushNamed('ListAdvidorsPage');
+                                  context.pushNamed('FagroIAPage');
                                 },
                                 child: Material(
                                   color: Colors.transparent,
@@ -508,7 +511,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     width: 100.0,
                                     height: 100.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFF52EDDA),
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Column(
@@ -520,14 +524,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: Image.asset(
-                                            'assets/images/consultor.png',
-                                            width: 36.0,
-                                            height: 36.0,
+                                            'assets/images/assistente-de-robo.png',
+                                            width: 48.0,
+                                            height: 48.0,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
                                         Text(
-                                          'Consultor\nTécnico',
+                                          'FAGROIA',
                                           textAlign: TextAlign.center,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -535,7 +539,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 fontFamily: 'Poppins',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryText,
+                                                        .secondaryBackground,
                                                 fontSize: 13.0,
                                                 fontWeight: FontWeight.w500,
                                                 lineHeight: 1.2,

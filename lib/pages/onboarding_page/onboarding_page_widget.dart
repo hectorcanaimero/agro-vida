@@ -297,6 +297,7 @@ class _OnboardingPageWidgetState extends State<OnboardingPageWidget> {
                       text: 'Hacer Login',
                       icon: Icon(
                         Icons.login,
+                        color: FlutterFlowTheme.of(context).primaryBtnText,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
@@ -307,12 +308,12 @@ class _OnboardingPageWidgetState extends State<OnboardingPageWidget> {
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).secondary,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .titleSmall
-                            .override(
-                              fontFamily: 'Poppins',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Poppins',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
                         elevation: 2.0,
                         borderSide: BorderSide(
                           color: Colors.transparent,

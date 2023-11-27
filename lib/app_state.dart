@@ -23,6 +23,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _onBoarding = prefs.getBool('ff_onBoarding') ?? _onBoarding;
     });
+    _safeInit(() {
+      _yaRegistro = prefs.getBool('ff_yaRegistro') ?? _yaRegistro;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -37,6 +40,19 @@ class FFAppState extends ChangeNotifier {
   set onBoarding(bool _value) {
     _onBoarding = _value;
     prefs.setBool('ff_onBoarding', _value);
+  }
+
+  String _idEgresados = '';
+  String get idEgresados => _idEgresados;
+  set idEgresados(String _value) {
+    _idEgresados = _value;
+  }
+
+  bool _yaRegistro = false;
+  bool get yaRegistro => _yaRegistro;
+  set yaRegistro(bool _value) {
+    _yaRegistro = _value;
+    prefs.setBool('ff_yaRegistro', _value);
   }
 }
 

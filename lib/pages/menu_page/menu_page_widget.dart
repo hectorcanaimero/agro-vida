@@ -410,11 +410,10 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'MENU_PAGE_PAGE_asesorTecnico_ON_TAP');
-                                        logFirebaseEvent(
-                                            'asesorTecnico_navigate_to');
+                                            'MENU_PAGE_PAGE_fagroIA_ON_TAP');
+                                        logFirebaseEvent('fagroIA_navigate_to');
 
-                                        context.pushNamed('ListAdvidorsPage');
+                                        context.pushNamed('FagroIAPage');
                                       },
                                       child: Material(
                                         color: Colors.transparent,
@@ -428,7 +427,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                           height: 100.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryBtnText,
+                                                .secondary,
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
@@ -441,14 +440,14 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                                 child: Image.asset(
-                                                  'assets/images/consultor.png',
-                                                  width: 36.0,
-                                                  height: 36.0,
+                                                  'assets/images/assistente-de-robo.png',
+                                                  width: 48.0,
+                                                  height: 48.0,
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
                                               Text(
-                                                'Consultor\nTécnico',
+                                                'FAGROIA',
                                                 textAlign: TextAlign.center,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -457,7 +456,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                           fontFamily: 'Poppins',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primaryText,
+                                                              .secondaryBackground,
                                                           fontSize: 13.0,
                                                           fontWeight:
                                                               FontWeight.w500,
@@ -855,7 +854,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                             ),
                       ),
                       Text(
-                        'Build',
+                        '1.0',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Poppins',
                               color: FlutterFlowTheme.of(context).secondaryText,

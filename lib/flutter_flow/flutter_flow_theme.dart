@@ -35,6 +35,7 @@ abstract class FlutterFlowTheme {
   late Color primaryBtnText;
   late Color lineColor;
   late Color backgroundComponents;
+  late Color bgInput;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -108,7 +109,7 @@ class LightModeTheme extends FlutterFlowTheme {
   Color get tertiaryColor => tertiary;
 
   late Color primary = const Color(0xFF4B39EF);
-  late Color secondary = const Color(0xFF39D2C0);
+  late Color secondary = const Color(0xFF257A62);
   late Color tertiary = const Color(0xFFEE8B60);
   late Color alternate = const Color(0xFFE0E3E7);
   late Color primaryText = const Color(0xFF14181B);
@@ -127,6 +128,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color primaryBtnText = Color(0xFFFFFFFF);
   late Color lineColor = Color(0xFFE0E3E7);
   late Color backgroundComponents = Color(0xFF1D2428);
+  late Color bgInput = Color(0xFFE9EAEE);
 }
 
 abstract class Typography {

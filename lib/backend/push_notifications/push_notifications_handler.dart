@@ -151,10 +151,11 @@ final parametersBuilderMap =
       ),
   'EgresadosRegisterPage': (data) async => ParameterData(
         allParams: {
-          'type': getParameter<int>(data, 'type'),
+          'uid': getParameter<DocumentReference>(data, 'uid'),
         },
       ),
   'HomePage': ParameterData.none(),
+  'FagroIAPage': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {
