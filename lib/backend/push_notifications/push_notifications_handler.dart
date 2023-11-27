@@ -156,6 +156,7 @@ final parametersBuilderMap =
       ),
   'HomePage': ParameterData.none(),
   'FagroIAPage': ParameterData.none(),
+  'SupportPage': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

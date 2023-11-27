@@ -16,6 +16,7 @@ import 'schema/jobs_record.dart';
 import 'schema/tools_record.dart';
 import 'schema/egresados_record.dart';
 import 'schema/asignatura_record.dart';
+import 'schema/soporte_record.dart';
 import 'dart:async';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -36,6 +37,7 @@ export 'schema/jobs_record.dart';
 export 'schema/tools_record.dart';
 export 'schema/egresados_record.dart';
 export 'schema/asignatura_record.dart';
+export 'schema/soporte_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -876,6 +878,88 @@ Future<FFFirestorePage<AsignaturaRecord>> queryAsignaturaRecordPage({
       if (isStream) {
         final streamSubscription =
             (page.dataStream)?.listen((List<AsignaturaRecord> data) {
+          data.forEach((item) {
+            final itemIndexes = controller.itemList!
+                .asMap()
+                .map((k, v) => MapEntry(v.reference.id, k));
+            final index = itemIndexes[item.reference.id];
+            final items = controller.itemList!;
+            if (index != null) {
+              items.replaceRange(index, index + 1, [item]);
+              controller.itemList = {
+                for (var item in items) item.reference: item
+              }.values.toList();
+            }
+          });
+        });
+        streamSubscriptions?.add(streamSubscription);
+      }
+      return page;
+    });
+
+/// Functions to query SoporteRecords (as a Stream and as a Future).
+Future<int> querySoporteRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      SoporteRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<SoporteRecord>> querySoporteRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      SoporteRecord.collection(parent),
+      SoporteRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<SoporteRecord>> querySoporteRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      SoporteRecord.collection(parent),
+      SoporteRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+Future<FFFirestorePage<SoporteRecord>> querySoporteRecordPage({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+  required PagingController<DocumentSnapshot?, SoporteRecord> controller,
+  List<StreamSubscription?>? streamSubscriptions,
+}) =>
+    queryCollectionPage(
+      SoporteRecord.collection(parent),
+      SoporteRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    ).then((page) {
+      controller.appendPage(
+        page.data,
+        page.nextPageMarker,
+      );
+      if (isStream) {
+        final streamSubscription =
+            (page.dataStream)?.listen((List<SoporteRecord> data) {
           data.forEach((item) {
             final itemIndexes = controller.itemList!
                 .asMap()

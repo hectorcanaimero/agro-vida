@@ -623,8 +623,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                               logFirebaseEvent(
                                                   'Column_navigate_to');
 
-                                              context
-                                                  .pushNamed('ListBoletinPage');
+                                              context.pushNamed('SupportPage');
                                             },
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,

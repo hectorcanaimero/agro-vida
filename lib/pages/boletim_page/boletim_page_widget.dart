@@ -470,7 +470,10 @@ class _BoletimPageWidgetState extends State<BoletimPageWidget> {
                                                         size: 18.0,
                                                       ),
                                                       Text(
-                                                        '3 Oct 2023',
+                                                        dateTimeFormat(
+                                                            'd/M/y',
+                                                            listViewBlogsRecord
+                                                                .createdOn!),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .bodyMedium

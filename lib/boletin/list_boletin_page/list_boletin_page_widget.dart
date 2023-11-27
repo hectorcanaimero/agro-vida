@@ -119,7 +119,6 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
                           borderRadius: BorderRadius.circular(0.0),
                           child: Image.network(
                             'https://images.unsplash.com/photo-1625758477730-e228a4b58adb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80',
-                            height: MediaQuery.sizeOf(context).height * 1.0,
                             fit: BoxFit.cover,
                             alignment: Alignment(0.00, 0.00),
                           ),

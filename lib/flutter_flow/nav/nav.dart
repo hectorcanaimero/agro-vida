@@ -213,6 +213,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'FagroIAPage',
           path: '/fagroIAPage',
           builder: (context, params) => FagroIAPageWidget(),
+        ),
+        FFRoute(
+          name: 'SupportPage',
+          path: '/supportPage',
+          builder: (context, params) => SupportPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
