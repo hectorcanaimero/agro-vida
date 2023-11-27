@@ -142,7 +142,7 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
                   decoration: BoxDecoration(),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(18.0, 18.0, 18.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     child: PagedListView<DocumentSnapshot<Object?>?,
                         BlogsRecord>.separated(
                       pagingController: _model.setListViewController2(
@@ -153,11 +153,11 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
                             )
                             .orderBy('created_on', descending: true),
                       ),
-                      padding: EdgeInsets.zero,
+                      padding: EdgeInsets.symmetric(vertical: 24.0),
                       shrinkWrap: true,
                       reverse: false,
                       scrollDirection: Axis.vertical,
-                      separatorBuilder: (_, __) => SizedBox(height: 14.0),
+                      separatorBuilder: (_, __) => SizedBox(height: 24.0),
                       builderDelegate: PagedChildBuilderDelegate<BlogsRecord>(
                         // Customize what your widget looks like when it's loading the first page.
                         firstPageProgressIndicatorBuilder: (_) => Center(
@@ -235,14 +235,23 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          listViewBlogsRecord.image,
-                                          width: 96.0,
-                                          height: 96.0,
-                                          fit: BoxFit.cover,
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.00, 0.00),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 0.0, 0.0, 0.0),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.network(
+                                              listViewBlogsRecord.image,
+                                              width: 96.0,
+                                              height: 96.0,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                       Flexible(
@@ -286,7 +295,7 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
                                                   ),
                                                   Text(
                                                     dateTimeFormat(
-                                                        'MMMEd',
+                                                        'd/M/y',
                                                         listViewBlogsRecord
                                                             .createdOn!),
                                                     style: FlutterFlowTheme.of(
@@ -298,24 +307,6 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
                                                         ),
                                                   ),
                                                 ].divide(SizedBox(width: 6.0)),
-                                              ),
-                                              Divider(
-                                                thickness: 1.0,
-                                                color: Color(0xFFB4B4B4),
-                                              ),
-                                              Expanded(
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(),
-                                                  child: Text(
-                                                    listViewBlogsRecord
-                                                        .description,
-                                                    maxLines: 2,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium,
-                                                  ),
-                                                ),
                                               ),
                                             ],
                                           ),

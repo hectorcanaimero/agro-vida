@@ -260,10 +260,10 @@ class _DetailBoletinPageWidgetState extends State<DetailBoletinPageWidget> {
                                 ].divide(SizedBox(width: 8.0)),
                               ),
                               Container(
-                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                width: double.infinity,
                                 height: MediaQuery.sizeOf(context).height * 1.0,
                                 child: custom_widgets.ReadMarkdownWidget(
-                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  width: double.infinity,
                                   height:
                                       MediaQuery.sizeOf(context).height * 1.0,
                                   data:
@@ -274,7 +274,9 @@ class _DetailBoletinPageWidgetState extends State<DetailBoletinPageWidget> {
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(height: 18.0)),
+                    ]
+                        .divide(SizedBox(height: 24.0))
+                        .around(SizedBox(height: 24.0)),
                   ),
                 ),
               ),
