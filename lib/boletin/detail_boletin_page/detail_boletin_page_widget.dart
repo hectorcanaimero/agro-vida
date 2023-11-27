@@ -7,10 +7,8 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:share_plus/share_plus.dart';
 import 'detail_boletin_page_model.dart';
 export 'detail_boletin_page_model.dart';
 
@@ -123,150 +121,37 @@ class _DetailBoletinPageWidgetState extends State<DetailBoletinPageWidget> {
             ),
             body: SafeArea(
               top: true,
-              child: Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: BoxDecoration(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(0.0),
-                      child: Image.network(
-                        detailBoletinPageBlogsRecord.image,
-                        width: double.infinity,
-                        height: 180.0,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 0.0),
-                      child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: MediaQuery.sizeOf(context).width * 0.7,
-                                  decoration: BoxDecoration(),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Icon(
-                                            Icons.calendar_month,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 24.0,
-                                          ),
-                                          Text(
-                                            dateTimeFormat(
-                                                'MMMEd',
-                                                detailBoletinPageBlogsRecord
-                                                    .createdOn!),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
-                                          ),
-                                        ].divide(SizedBox(width: 6.0)),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          FaIcon(
-                                            FontAwesomeIcons.tag,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 24.0,
-                                          ),
-                                          Text(
-                                            detailBoletinPageBlogsRecord
-                                                .categories.first,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
-                                          ),
-                                        ].divide(SizedBox(width: 4.0)),
-                                      ),
-                                    ].divide(SizedBox(width: 16.0)),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: AlignmentDirectional(1.00, 0.00),
-                                    child: Container(
-                                      decoration: BoxDecoration(),
-                                      child: Builder(
-                                        builder: (context) =>
-                                            FlutterFlowIconButton(
-                                          borderRadius: 20.0,
-                                          borderWidth: 1.0,
-                                          buttonSize: 40.0,
-                                          icon: Icon(
-                                            Icons.share_outlined,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
-                                          ),
-                                          onPressed: () async {
-                                            logFirebaseEvent(
-                                                'DETAIL_BOLETIN_share_outlined_ICN_ON_TAP');
-                                            logFirebaseEvent(
-                                                'IconButton_share');
-                                            await Share.share(
-                                              'fagronet://fagronet.com${GoRouter.of(context).location}',
-                                              sharePositionOrigin:
-                                                  getWidgetBoundingBox(context),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ].divide(SizedBox(width: 8.0)),
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional(-1.00, 0.00),
-                              child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(),
-                                child: Text(
-                                  detailBoletinPageBlogsRecord.name,
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: double.infinity,
-                              height: MediaQuery.sizeOf(context).height * 1.0,
-                              child: custom_widgets.ReadMarkdownWidget(
-                                width: double.infinity,
-                                height: MediaQuery.sizeOf(context).height * 1.0,
-                                data: detailBoletinPageBlogsRecord.description,
-                              ),
-                            ),
-                          ].divide(SizedBox(height: 12.0)),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(
+                          detailBoletinPageBlogsRecord.image,
+                          width: double.infinity,
+                          height: 200.0,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    ),
-                  ].divide(SizedBox(height: 10.0)),
+                      Text(
+                        detailBoletinPageBlogsRecord.name,
+                        style: FlutterFlowTheme.of(context).titleLarge,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: MediaQuery.sizeOf(context).height * 1.0,
+                        child: custom_widgets.ReadMarkdownWidget(
+                          width: double.infinity,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
+                          data: detailBoletinPageBlogsRecord.description,
+                        ),
+                      ),
+                    ].divide(SizedBox(height: 18.0)),
+                  ),
                 ),
               ),
             ),
