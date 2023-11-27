@@ -270,6 +270,7 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
                                             children: [
                                               Text(
                                                 listViewBlogsRecord.name,
+                                                maxLines: 2,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium

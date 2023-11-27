@@ -127,31 +127,118 @@ class _DetailBoletinPageWidgetState extends State<DetailBoletinPageWidget> {
                 width: double.infinity,
                 height: double.infinity,
                 decoration: BoxDecoration(),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(0.0),
-                        child: Image.network(
-                          detailBoletinPageBlogsRecord.image,
-                          width: double.infinity,
-                          height: 250.0,
-                          fit: BoxFit.cover,
-                        ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(0.0),
+                      child: Image.network(
+                        detailBoletinPageBlogsRecord.image,
+                        width: double.infinity,
+                        height: 180.0,
+                        fit: BoxFit.cover,
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            18.0, 0.0, 18.0, 0.0),
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(-1.00, 0.00),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 0.0),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: MediaQuery.sizeOf(context).width * 0.7,
+                                  decoration: BoxDecoration(),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Icon(
+                                            Icons.calendar_month,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                          Text(
+                                            dateTimeFormat(
+                                                'MMMEd',
+                                                detailBoletinPageBlogsRecord
+                                                    .createdOn!),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                        ].divide(SizedBox(width: 6.0)),
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          FaIcon(
+                                            FontAwesomeIcons.tag,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                          Text(
+                                            detailBoletinPageBlogsRecord
+                                                .categories.first,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                        ].divide(SizedBox(width: 4.0)),
+                                      ),
+                                    ].divide(SizedBox(width: 16.0)),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Align(
+                                    alignment: AlignmentDirectional(1.00, 0.00),
+                                    child: Container(
+                                      decoration: BoxDecoration(),
+                                      child: Builder(
+                                        builder: (context) =>
+                                            FlutterFlowIconButton(
+                                          borderRadius: 20.0,
+                                          borderWidth: 1.0,
+                                          buttonSize: 40.0,
+                                          icon: Icon(
+                                            Icons.share_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () async {
+                                            logFirebaseEvent(
+                                                'DETAIL_BOLETIN_share_outlined_ICN_ON_TAP');
+                                            logFirebaseEvent(
+                                                'IconButton_share');
+                                            await Share.share(
+                                              'fagronet://fagronet.com${GoRouter.of(context).location}',
+                                              sharePositionOrigin:
+                                                  getWidgetBoundingBox(context),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ].divide(SizedBox(width: 8.0)),
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional(-1.00, 0.00),
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   detailBoletinPageBlogsRecord.name,
                                   textAlign: TextAlign.start,
@@ -165,119 +252,21 @@ class _DetailBoletinPageWidgetState extends State<DetailBoletinPageWidget> {
                                       ),
                                 ),
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 0.7,
-                                    decoration: BoxDecoration(),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Icon(
-                                              Icons.calendar_month,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 24.0,
-                                            ),
-                                            Text(
-                                              dateTimeFormat(
-                                                  'MMMEd',
-                                                  detailBoletinPageBlogsRecord
-                                                      .createdOn!),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
-                                            ),
-                                          ].divide(SizedBox(width: 6.0)),
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            FaIcon(
-                                              FontAwesomeIcons.tag,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 24.0,
-                                            ),
-                                            Text(
-                                              detailBoletinPageBlogsRecord
-                                                  .categories.first,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
-                                            ),
-                                          ].divide(SizedBox(width: 4.0)),
-                                        ),
-                                      ].divide(SizedBox(width: 16.0)),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Align(
-                                      alignment:
-                                          AlignmentDirectional(1.00, 0.00),
-                                      child: Container(
-                                        decoration: BoxDecoration(),
-                                        child: Builder(
-                                          builder: (context) =>
-                                              FlutterFlowIconButton(
-                                            borderRadius: 20.0,
-                                            borderWidth: 1.0,
-                                            buttonSize: 40.0,
-                                            icon: Icon(
-                                              Icons.share_outlined,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
-                                            ),
-                                            onPressed: () async {
-                                              logFirebaseEvent(
-                                                  'DETAIL_BOLETIN_share_outlined_ICN_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'IconButton_share');
-                                              await Share.share(
-                                                'fagronet://fagronet.com${GoRouter.of(context).location}',
-                                                sharePositionOrigin:
-                                                    getWidgetBoundingBox(
-                                                        context),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ].divide(SizedBox(width: 8.0)),
-                              ),
-                              Container(
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: MediaQuery.sizeOf(context).height * 1.0,
+                              child: custom_widgets.ReadMarkdownWidget(
                                 width: double.infinity,
                                 height: MediaQuery.sizeOf(context).height * 1.0,
-                                child: custom_widgets.ReadMarkdownWidget(
-                                  width: double.infinity,
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 1.0,
-                                  data:
-                                      detailBoletinPageBlogsRecord.description,
-                                ),
+                                data: detailBoletinPageBlogsRecord.description,
                               ),
-                            ].divide(SizedBox(height: 12.0)),
-                          ),
+                            ),
+                          ].divide(SizedBox(height: 12.0)),
                         ),
                       ),
-                    ]
-                        .divide(SizedBox(height: 24.0))
-                        .around(SizedBox(height: 24.0)),
-                  ),
+                    ),
+                  ].divide(SizedBox(height: 10.0)),
                 ),
               ),
             ),
