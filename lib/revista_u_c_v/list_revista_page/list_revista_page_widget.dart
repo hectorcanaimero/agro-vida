@@ -281,19 +281,25 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                                                             ),
                                                           ),
                                                         ),
-                                                        Text(
-                                                          listViewPublicationsRecord
-                                                              .name,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelLarge
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
+                                                        Expanded(
+                                                          child: Container(
+                                                            decoration:
+                                                                BoxDecoration(),
+                                                            child: Text(
+                                                              listViewPublicationsRecord
+                                                                  .name,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelLarge
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Poppins',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                  ),
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
