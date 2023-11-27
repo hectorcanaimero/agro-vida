@@ -15,6 +15,7 @@ import 'schema/publications_record.dart';
 import 'schema/jobs_record.dart';
 import 'schema/tools_record.dart';
 import 'schema/egresados_record.dart';
+import 'schema/asignatura_record.dart';
 import 'dart:async';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -34,6 +35,7 @@ export 'schema/publications_record.dart';
 export 'schema/jobs_record.dart';
 export 'schema/tools_record.dart';
 export 'schema/egresados_record.dart';
+export 'schema/asignatura_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -796,6 +798,84 @@ Future<FFFirestorePage<EgresadosRecord>> queryEgresadosRecordPage({
       if (isStream) {
         final streamSubscription =
             (page.dataStream)?.listen((List<EgresadosRecord> data) {
+          data.forEach((item) {
+            final itemIndexes = controller.itemList!
+                .asMap()
+                .map((k, v) => MapEntry(v.reference.id, k));
+            final index = itemIndexes[item.reference.id];
+            final items = controller.itemList!;
+            if (index != null) {
+              items.replaceRange(index, index + 1, [item]);
+              controller.itemList = {
+                for (var item in items) item.reference: item
+              }.values.toList();
+            }
+          });
+        });
+        streamSubscriptions?.add(streamSubscription);
+      }
+      return page;
+    });
+
+/// Functions to query AsignaturaRecords (as a Stream and as a Future).
+Future<int> queryAsignaturaRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AsignaturaRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AsignaturaRecord>> queryAsignaturaRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AsignaturaRecord.collection,
+      AsignaturaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AsignaturaRecord>> queryAsignaturaRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AsignaturaRecord.collection,
+      AsignaturaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+Future<FFFirestorePage<AsignaturaRecord>> queryAsignaturaRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+  required PagingController<DocumentSnapshot?, AsignaturaRecord> controller,
+  List<StreamSubscription?>? streamSubscriptions,
+}) =>
+    queryCollectionPage(
+      AsignaturaRecord.collection,
+      AsignaturaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    ).then((page) {
+      controller.appendPage(
+        page.data,
+        page.nextPageMarker,
+      );
+      if (isStream) {
+        final streamSubscription =
+            (page.dataStream)?.listen((List<AsignaturaRecord> data) {
           data.forEach((item) {
             final itemIndexes = controller.itemList!
                 .asMap()

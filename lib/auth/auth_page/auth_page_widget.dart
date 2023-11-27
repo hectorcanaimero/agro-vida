@@ -890,105 +890,116 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                 ),
                                               ),
                                             ),
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.00, 0.00),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 12.0),
-                                                child: Text(
-                                                  'o puedes crear una cuenta con',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium,
+                                            if (responsiveVisibility(
+                                              context: context,
+                                              phone: false,
+                                            ))
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.00, 0.00),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 12.0),
+                                                  child: Text(
+                                                    'o puedes crear una cuenta con',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.00, 0.00),
-                                              child: FFButtonWidget(
-                                                onPressed: () async {
-                                                  logFirebaseEvent(
-                                                      'AUTH_CONTINUE_CON_GOOGLE_BTN_ON_TAP');
-                                                  logFirebaseEvent(
-                                                      'Button_auth');
-                                                  GoRouter.of(context)
-                                                      .prepareAuthEvent();
-                                                  final user = await authManager
-                                                      .signInWithGoogle(
-                                                          context);
-                                                  if (user == null) {
-                                                    return;
-                                                  }
-                                                  logFirebaseEvent(
-                                                      'Button_navigate_to');
+                                            if (responsiveVisibility(
+                                              context: context,
+                                              phone: false,
+                                            ))
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.00, 0.00),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'AUTH_CONTINUE_CON_GOOGLE_BTN_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Button_auth');
+                                                    GoRouter.of(context)
+                                                        .prepareAuthEvent();
+                                                    final user =
+                                                        await authManager
+                                                            .signInWithGoogle(
+                                                                context);
+                                                    if (user == null) {
+                                                      return;
+                                                    }
+                                                    logFirebaseEvent(
+                                                        'Button_navigate_to');
 
-                                                  context.pushNamedAuth(
-                                                      'HomePage',
-                                                      context.mounted);
+                                                    context.pushNamedAuth(
+                                                        'HomePage',
+                                                        context.mounted);
 
-                                                  logFirebaseEvent(
-                                                      'Button_show_snack_bar');
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        'Bienvenido a AgroVida',
-                                                        style: TextStyle(
+                                                    logFirebaseEvent(
+                                                        'Button_show_snack_bar');
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Bienvenido a AgroVida',
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                          ),
+                                                        ),
+                                                        duration: Duration(
+                                                            milliseconds: 3500),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
+                                                      ),
+                                                    );
+                                                  },
+                                                  text: 'Continue con Google',
+                                                  icon: FaIcon(
+                                                    FontAwesomeIcons.google,
+                                                  ),
+                                                  options: FFButtonOptions(
+                                                    width: 270.0,
+                                                    height: 50.0,
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(24.0, 0.0,
+                                                                24.0, 0.0),
+                                                    iconPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: Colors.white,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Poppins',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
                                                         ),
-                                                      ),
-                                                      duration: Duration(
-                                                          milliseconds: 3500),
-                                                      backgroundColor:
+                                                    elevation: 0.0,
+                                                    borderSide: BorderSide(
+                                                      color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondary,
+                                                              .success,
+                                                      width: 0.0,
                                                     ),
-                                                  );
-                                                },
-                                                text: 'Continue con Google',
-                                                icon: FaIcon(
-                                                  FontAwesomeIcons.google,
-                                                ),
-                                                options: FFButtonOptions(
-                                                  width: 270.0,
-                                                  height: 50.0,
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          24.0, 0.0, 24.0, 0.0),
-                                                  iconPadding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: Colors.white,
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                  elevation: 0.0,
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .success,
-                                                    width: 0.0,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25.0),
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25.0),
                                                 ),
                                               ),
-                                            ),
                                           ],
                                         ),
                                       ).animateOnPageLoad(animationsMap[
@@ -1361,105 +1372,116 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                 ),
                                               ),
                                             ),
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.00, 0.00),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 12.0, 0.0, 16.0),
-                                                child: Text(
-                                                  'o puedes accesar usando',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium,
+                                            if (responsiveVisibility(
+                                              context: context,
+                                              phone: false,
+                                            ))
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.00, 0.00),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 12.0, 0.0, 16.0),
+                                                  child: Text(
+                                                    'o puedes accesar usando',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.00, 0.00),
-                                              child: FFButtonWidget(
-                                                onPressed: () async {
-                                                  logFirebaseEvent(
-                                                      'AUTH_CONTINUE_CON_GOOGLE_BTN_ON_TAP');
-                                                  logFirebaseEvent(
-                                                      'Button_auth');
-                                                  GoRouter.of(context)
-                                                      .prepareAuthEvent();
-                                                  final user = await authManager
-                                                      .signInWithGoogle(
-                                                          context);
-                                                  if (user == null) {
-                                                    return;
-                                                  }
-                                                  logFirebaseEvent(
-                                                      'Button_navigate_to');
+                                            if (responsiveVisibility(
+                                              context: context,
+                                              phone: false,
+                                            ))
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.00, 0.00),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    logFirebaseEvent(
+                                                        'AUTH_CONTINUE_CON_GOOGLE_BTN_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Button_auth');
+                                                    GoRouter.of(context)
+                                                        .prepareAuthEvent();
+                                                    final user =
+                                                        await authManager
+                                                            .signInWithGoogle(
+                                                                context);
+                                                    if (user == null) {
+                                                      return;
+                                                    }
+                                                    logFirebaseEvent(
+                                                        'Button_navigate_to');
 
-                                                  context.pushNamedAuth(
-                                                      'HomePage',
-                                                      context.mounted);
+                                                    context.pushNamedAuth(
+                                                        'HomePage',
+                                                        context.mounted);
 
-                                                  logFirebaseEvent(
-                                                      'Button_show_snack_bar');
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        'Bienvenido a AgroVida',
-                                                        style: TextStyle(
+                                                    logFirebaseEvent(
+                                                        'Button_show_snack_bar');
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Bienvenido a AgroVida',
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                          ),
+                                                        ),
+                                                        duration: Duration(
+                                                            milliseconds: 3500),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
+                                                      ),
+                                                    );
+                                                  },
+                                                  text: 'Continue con Google',
+                                                  icon: FaIcon(
+                                                    FontAwesomeIcons.google,
+                                                  ),
+                                                  options: FFButtonOptions(
+                                                    width: 270.0,
+                                                    height: 50.0,
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(24.0, 0.0,
+                                                                24.0, 0.0),
+                                                    iconPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: Colors.white,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Poppins',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
                                                         ),
-                                                      ),
-                                                      duration: Duration(
-                                                          milliseconds: 3500),
-                                                      backgroundColor:
+                                                    elevation: 0.0,
+                                                    borderSide: BorderSide(
+                                                      color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondary,
+                                                              .success,
+                                                      width: 0.0,
                                                     ),
-                                                  );
-                                                },
-                                                text: 'Continue con Google',
-                                                icon: FaIcon(
-                                                  FontAwesomeIcons.google,
-                                                ),
-                                                options: FFButtonOptions(
-                                                  width: 270.0,
-                                                  height: 50.0,
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          24.0, 0.0, 24.0, 0.0),
-                                                  iconPadding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: Colors.white,
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                  elevation: 0.0,
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .success,
-                                                    width: 0.0,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25.0),
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25.0),
                                                 ),
                                               ),
-                                            ),
                                             Align(
                                               alignment: AlignmentDirectional(
                                                   0.00, 0.00),

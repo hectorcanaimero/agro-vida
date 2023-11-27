@@ -108,110 +108,251 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: 400.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                            child: Align(
-                              alignment: AlignmentDirectional(0.00, 0.00),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    18.0, 0.0, 18.0, 0.0),
-                                child: GridView(
-                                  padding: EdgeInsets.zero,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
-                                    crossAxisSpacing: 15.0,
-                                    mainAxisSpacing: 15.0,
-                                    childAspectRatio: 1.0,
-                                  ),
-                                  scrollDirection: Axis.vertical,
-                                  children: [
-                                    MouseRegion(
-                                      opaque: false,
-                                      cursor: MouseCursor.defer ??
-                                          MouseCursor.defer,
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        elevation: 3.0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Container(
-                                          width: 100.0,
-                                          height: 100.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: 380.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Align(
+                                alignment: AlignmentDirectional(0.00, 0.00),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      18.0, 0.0, 18.0, 0.0),
+                                  child: GridView(
+                                    padding: EdgeInsets.zero,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      crossAxisSpacing: 15.0,
+                                      mainAxisSpacing: 15.0,
+                                      childAspectRatio: 1.0,
+                                    ),
+                                    scrollDirection: Axis.vertical,
+                                    children: [
+                                      MouseRegion(
+                                        opaque: false,
+                                        cursor: MouseCursor.defer ??
+                                            MouseCursor.defer,
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          elevation: 3.0,
+                                          shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              logFirebaseEvent(
-                                                  'MENU_PAGE_PAGE_Column_qs38bnq5_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'Column_navigate_to');
+                                          child: Container(
+                                            width: 100.0,
+                                            height: 100.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'MENU_PAGE_PAGE_Column_qs38bnq5_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Column_navigate_to');
 
-                                              context
-                                                  .pushNamed('EgresadosPage');
-                                            },
+                                                context
+                                                    .pushNamed('EgresadosPage');
+                                              },
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.person,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 36.0,
+                                                  ),
+                                                  Text(
+                                                    'Perfil',
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 13.0,
+                                                          lineHeight: 1.3,
+                                                        ),
+                                                  ),
+                                                ].divide(
+                                                    SizedBox(height: 12.0)),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        onEnter: ((event) async {
+                                          setState(() => _model
+                                              .mouseRegionHovered1 = true);
+                                        }),
+                                        onExit: ((event) async {
+                                          setState(() => _model
+                                              .mouseRegionHovered1 = false);
+                                        }),
+                                      ),
+                                      MouseRegion(
+                                        opaque: false,
+                                        cursor: MouseCursor.defer ??
+                                            MouseCursor.defer,
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          elevation: 3.0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          child: Container(
+                                            width: 100.0,
+                                            height: 100.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'MENU_PAGE_PAGE_Column_oevgwgjf_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Column_navigate_to');
+
+                                                context
+                                                    .pushNamed('EgresadosPage');
+                                              },
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.asset(
+                                                      'assets/images/mortarboard.png',
+                                                      width: 36.0,
+                                                      height: 36.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Egresados',
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 13.0,
+                                                          lineHeight: 1.3,
+                                                        ),
+                                                  ),
+                                                ].divide(
+                                                    SizedBox(height: 12.0)),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        onEnter: ((event) async {
+                                          setState(() => _model
+                                              .mouseRegionHovered2 = true);
+                                        }),
+                                        onExit: ((event) async {
+                                          setState(() => _model
+                                              .mouseRegionHovered2 = false);
+                                        }),
+                                      ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'MENU_PAGE_PAGE_Tools_ON_TAP');
+                                          logFirebaseEvent('Tools_navigate_to');
+
+                                          context.pushNamed('ToolsPage');
+                                        },
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          elevation: 3.0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          child: Container(
+                                            width: 100.0,
+                                            height: 100.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Icon(
-                                                  Icons.person,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 36.0,
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.asset(
+                                                    'assets/images/construction-tools.png',
+                                                    width: 36.0,
+                                                    height: 36.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                                 Text(
-                                                  'Perfil',
-                                                  textAlign: TextAlign.center,
+                                                  'Herramientas',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Poppins',
                                                         fontSize: 13.0,
-                                                        lineHeight: 1.3,
                                                       ),
                                                 ),
-                                              ].divide(SizedBox(height: 12.0)),
+                                              ].divide(SizedBox(height: 10.0)),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      onEnter: ((event) async {
-                                        setState(() =>
-                                            _model.mouseRegionHovered1 = true);
-                                      }),
-                                      onExit: ((event) async {
-                                        setState(() =>
-                                            _model.mouseRegionHovered1 = false);
-                                      }),
-                                    ),
-                                    MouseRegion(
-                                      opaque: false,
-                                      cursor: MouseCursor.defer ??
-                                          MouseCursor.defer,
-                                      child: Material(
+                                      Material(
                                         color: Colors.transparent,
                                         elevation: 3.0,
                                         shape: RoundedRectangleBorder(
@@ -234,12 +375,12 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               logFirebaseEvent(
-                                                  'MENU_PAGE_PAGE_Column_oevgwgjf_ON_TAP');
+                                                  'MENU_PAGE_PAGE_Column_wo84svuz_ON_TAP');
                                               logFirebaseEvent(
                                                   'Column_navigate_to');
 
                                               context
-                                                  .pushNamed('EgresadosPage');
+                                                  .pushNamed('ListOfertasPage');
                                             },
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -251,14 +392,14 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                       BorderRadius.circular(
                                                           8.0),
                                                   child: Image.asset(
-                                                    'assets/images/mortarboard.png',
+                                                    'assets/images/ofertas_empleo.png',
                                                     width: 36.0,
                                                     height: 36.0,
                                                     fit: BoxFit.cover,
                                                   ),
                                                 ),
                                                 Text(
-                                                  'Egresados',
+                                                  'Ofertas\n Empleo',
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -266,36 +407,149 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                       .override(
                                                         fontFamily: 'Poppins',
                                                         fontSize: 13.0,
-                                                        lineHeight: 1.3,
+                                                        lineHeight: 1.2,
                                                       ),
                                                 ),
-                                              ].divide(SizedBox(height: 12.0)),
+                                              ].divide(SizedBox(height: 10.0)),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      onEnter: ((event) async {
-                                        setState(() =>
-                                            _model.mouseRegionHovered2 = true);
-                                      }),
-                                      onExit: ((event) async {
-                                        setState(() =>
-                                            _model.mouseRegionHovered2 = false);
-                                      }),
-                                    ),
-                                    InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        logFirebaseEvent(
-                                            'MENU_PAGE_PAGE_Tools_ON_TAP');
-                                        logFirebaseEvent('Tools_navigate_to');
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'MENU_PAGE_PAGE_fagroIA_ON_TAP');
+                                          logFirebaseEvent(
+                                              'fagroIA_navigate_to');
 
-                                        context.pushNamed('ToolsPage');
-                                      },
-                                      child: Material(
+                                          context.pushNamed('FagroIAPage');
+                                        },
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          elevation: 3.0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          child: Container(
+                                            width: 100.0,
+                                            height: 100.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.asset(
+                                                    'assets/images/assistente-de-robo.png',
+                                                    width: 48.0,
+                                                    height: 48.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'FAGROIA',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        fontSize: 13.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        lineHeight: 1.2,
+                                                      ),
+                                                ),
+                                              ].divide(SizedBox(height: 10.0)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Material(
+                                        color: Colors.transparent,
+                                        elevation: 3.0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'MENU_PAGE_PAGE_Column_nk9ugj34_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Column_navigate_to');
+
+                                              context
+                                                  .pushNamed('ListRevistaPage');
+                                            },
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.asset(
+                                                    'assets/images/magazine.png',
+                                                    width: 36.0,
+                                                    height: 36.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.00, 0.00),
+                                                  child: Text(
+                                                    'Revista Uniersitaria',
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 13.0,
+                                                          lineHeight: 1.2,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ].divide(SizedBox(height: 10.0)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Material(
                                         color: Colors.transparent,
                                         elevation: 3.0,
                                         shape: RoundedRectangleBorder(
@@ -311,111 +565,54 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.asset(
-                                                  'assets/images/construction-tools.png',
-                                                  width: 36.0,
-                                                  height: 36.0,
-                                                  fit: BoxFit.cover,
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'MENU_PAGE_PAGE_Column_hfcyuz5x_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Column_navigate_to');
+
+                                              context
+                                                  .pushNamed('ListBoletinPage');
+                                            },
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.asset(
+                                                    'assets/images/boletin_mensual.png',
+                                                    width: 36.0,
+                                                    height: 36.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
-                                              ),
-                                              Text(
-                                                'Herramientas',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 13.0,
-                                                        ),
-                                              ),
-                                            ].divide(SizedBox(height: 10.0)),
+                                                Text(
+                                                  'Boletín\nMensual',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 13.0,
+                                                        lineHeight: 1.2,
+                                                      ),
+                                                ),
+                                              ].divide(SizedBox(height: 10.0)),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Material(
-                                      color: Colors.transparent,
-                                      elevation: 3.0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Container(
-                                        width: 100.0,
-                                        height: 100.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'MENU_PAGE_PAGE_Column_wo84svuz_ON_TAP');
-                                            logFirebaseEvent(
-                                                'Column_navigate_to');
-
-                                            context
-                                                .pushNamed('ListOfertasPage');
-                                          },
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.asset(
-                                                  'assets/images/ofertas_empleo.png',
-                                                  width: 36.0,
-                                                  height: 36.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              Text(
-                                                'Ofertas\n Empleo',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 13.0,
-                                                          lineHeight: 1.2,
-                                                        ),
-                                              ),
-                                            ].divide(SizedBox(height: 10.0)),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        logFirebaseEvent(
-                                            'MENU_PAGE_PAGE_fagroIA_ON_TAP');
-                                        logFirebaseEvent('fagroIA_navigate_to');
-
-                                        context.pushNamed('FagroIAPage');
-                                      },
-                                      child: Material(
+                                      Material(
                                         color: Colors.transparent,
                                         elevation: 3.0,
                                         shape: RoundedRectangleBorder(
@@ -427,95 +624,38 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                           height: 100.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
-                                                .secondary,
+                                                .secondaryBackground,
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.asset(
-                                                  'assets/images/assistente-de-robo.png',
-                                                  width: 48.0,
-                                                  height: 48.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              Text(
-                                                'FAGROIA',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          fontSize: 13.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          lineHeight: 1.2,
-                                                        ),
-                                              ),
-                                            ].divide(SizedBox(height: 10.0)),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Material(
-                                      color: Colors.transparent,
-                                      elevation: 3.0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'MENU_PAGE_PAGE_Column_nk9ugj34_ON_TAP');
-                                            logFirebaseEvent(
-                                                'Column_navigate_to');
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'MENU_PAGE_PAGE_Column_s3hyli4x_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Column_navigate_to');
 
-                                            context
-                                                .pushNamed('ListRevistaPage');
-                                          },
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.asset(
-                                                  'assets/images/magazine.png',
-                                                  width: 36.0,
-                                                  height: 36.0,
-                                                  fit: BoxFit.cover,
+                                              context
+                                                  .pushNamed('ListBoletinPage');
+                                            },
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.support_agent,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 36.0,
                                                 ),
-                                              ),
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    0.00, 0.00),
-                                                child: Text(
-                                                  'Revista Uniersitaria',
+                                                Text(
+                                                  'Soporte\nChat',
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -526,228 +666,202 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                         lineHeight: 1.2,
                                                       ),
                                                 ),
-                                              ),
-                                            ].divide(SizedBox(height: 10.0)),
+                                              ].divide(SizedBox(height: 10.0)),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Material(
-                                      color: Colors.transparent,
-                                      elevation: 3.0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Container(
-                                        width: 100.0,
-                                        height: 100.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                      Material(
+                                        color: Colors.transparent,
+                                        elevation: 3.0,
+                                        shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'MENU_PAGE_PAGE_Column_hfcyuz5x_ON_TAP');
-                                            logFirebaseEvent(
-                                                'Column_navigate_to');
-
-                                            context
-                                                .pushNamed('ListBoletinPage');
-                                          },
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.asset(
-                                                  'assets/images/boletin_mensual.png',
-                                                  width: 36.0,
-                                                  height: 36.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              Text(
-                                                'Boletín\nMensual',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 13.0,
-                                                          lineHeight: 1.2,
-                                                        ),
-                                              ),
-                                            ].divide(SizedBox(height: 10.0)),
+                                        child: Container(
+                                          width: 100.0,
+                                          height: 100.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
                                           ),
-                                        ),
-                                      ),
-                                    ),
-                                    Material(
-                                      color: Colors.transparent,
-                                      elevation: 3.0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Container(
-                                        width: 100.0,
-                                        height: 100.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'MENU_PAGE_PAGE_Column_s3hyli4x_ON_TAP');
-                                            logFirebaseEvent(
-                                                'Column_navigate_to');
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'MENU_PAGE_PAGE_Column_ev1rdnio_ON_TAP');
+                                              logFirebaseEvent('Column_auth');
+                                              GoRouter.of(context)
+                                                  .prepareAuthEvent();
+                                              await authManager.signOut();
+                                              GoRouter.of(context)
+                                                  .clearRedirectLocation();
 
-                                            context
-                                                .pushNamed('ListBoletinPage');
-                                          },
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.support_agent,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 36.0,
-                                              ),
-                                              Text(
-                                                'Soporte\nChat',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 13.0,
-                                                          lineHeight: 1.2,
-                                                        ),
-                                              ),
-                                            ].divide(SizedBox(height: 10.0)),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Material(
-                                      color: Colors.transparent,
-                                      elevation: 3.0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Container(
-                                        width: 100.0,
-                                        height: 100.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'MENU_PAGE_PAGE_Column_ev1rdnio_ON_TAP');
-                                            logFirebaseEvent('Column_auth');
-                                            GoRouter.of(context)
-                                                .prepareAuthEvent();
-                                            await authManager.signOut();
-                                            GoRouter.of(context)
-                                                .clearRedirectLocation();
-
-                                            logFirebaseEvent(
-                                                'Column_show_snack_bar');
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: Text(
-                                                  'Que pena! Esperamos que vuelvas pronto',
-                                                  style: TextStyle(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
+                                              logFirebaseEvent(
+                                                  'Column_show_snack_bar');
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Que pena! Esperamos que vuelvas pronto',
+                                                    style: TextStyle(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                    ),
                                                   ),
+                                                  duration: Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .backgroundComponents,
                                                 ),
-                                                duration: Duration(
-                                                    milliseconds: 4000),
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .backgroundComponents,
-                                              ),
-                                            );
-                                            logFirebaseEvent(
-                                                'Column_navigate_to');
+                                              );
+                                              logFirebaseEvent(
+                                                  'Column_navigate_to');
 
-                                            context.pushNamedAuth(
-                                              'AuthPage',
-                                              context.mounted,
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
+                                              context.pushNamedAuth(
+                                                'AuthPage',
+                                                context.mounted,
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType.fade,
+                                                    duration: Duration(
+                                                        milliseconds: 0),
+                                                  ),
+                                                },
+                                              );
+                                            },
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.logout_outlined,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 36.0,
                                                 ),
-                                              },
-                                            );
-                                          },
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.logout_outlined,
+                                                Text(
+                                                  'Cerrar\nSesión',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 13.0,
+                                                        lineHeight: 1.2,
+                                                      ),
+                                                ),
+                                              ].divide(SizedBox(height: 10.0)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(-1.00, 0.00),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 16.0),
+                                        child: Text(
+                                          'Plataforma de:',
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 36.0,
+                                                        .primaryText,
                                               ),
-                                              Text(
-                                                'Cerrar\nSesión',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 13.0,
-                                                          lineHeight: 1.2,
-                                                        ),
-                                              ),
-                                            ].divide(SizedBox(height: 10.0)),
+                                        ),
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: CachedNetworkImage(
+                                            fadeInDuration:
+                                                Duration(milliseconds: 500),
+                                            fadeOutDuration:
+                                                Duration(milliseconds: 500),
+                                            imageUrl:
+                                                'https://4.bp.blogspot.com/-pRUGYKIhSWk/T791KHTtYNI/AAAAAAAAABM/NUOZwMSnPdQ/s1600/logoucv.jpg',
+                                            width: 100.0,
+                                            height: 80.0,
+                                            fit: BoxFit.fitHeight,
                                           ),
+                                        ),
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: CachedNetworkImage(
+                                            fadeInDuration:
+                                                Duration(milliseconds: 500),
+                                            fadeOutDuration:
+                                                Duration(milliseconds: 500),
+                                            imageUrl:
+                                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuqrHYGIaTnTfY9jjfb_pPZzYsdio3HJWrGc1nT9spKtAD2ea55h5CYVq2aJ7GsDurIx0&usqp=CAU',
+                                            width: 100.0,
+                                            height: 100.0,
+                                            fit: BoxFit.fitHeight,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(0.00, 0.00),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 16.0),
+                                        child: Text(
+                                          'Una plataforma para egresados \nde las ciencias del agro y mar',
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 15.0,
+                                                fontStyle: FontStyle.italic,
+                                              ),
                                         ),
                                       ),
                                     ),
@@ -755,113 +869,10 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Align(
-                                    alignment:
-                                        AlignmentDirectional(-1.00, 0.00),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 16.0),
-                                      child: Text(
-                                        'Plataforma de:',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: CachedNetworkImage(
-                                          fadeInDuration:
-                                              Duration(milliseconds: 500),
-                                          fadeOutDuration:
-                                              Duration(milliseconds: 500),
-                                          imageUrl:
-                                              'https://4.bp.blogspot.com/-pRUGYKIhSWk/T791KHTtYNI/AAAAAAAAABM/NUOZwMSnPdQ/s1600/logoucv.jpg',
-                                          width: 100.0,
-                                          height: 100.0,
-                                          fit: BoxFit.fitHeight,
-                                        ),
-                                      ),
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: CachedNetworkImage(
-                                          fadeInDuration:
-                                              Duration(milliseconds: 500),
-                                          fadeOutDuration:
-                                              Duration(milliseconds: 500),
-                                          imageUrl:
-                                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuqrHYGIaTnTfY9jjfb_pPZzYsdio3HJWrGc1nT9spKtAD2ea55h5CYVq2aJ7GsDurIx0&usqp=CAU',
-                                          width: 100.0,
-                                          height: 100.0,
-                                          fit: BoxFit.fitHeight,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                height: 50.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Build',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Poppins',
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                            ),
-                      ),
-                      Text(
-                        '1.0',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Poppins',
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
-                    ].divide(SizedBox(width: 5.0)),
                   ),
                 ),
               ),

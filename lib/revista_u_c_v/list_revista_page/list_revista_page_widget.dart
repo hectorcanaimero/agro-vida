@@ -165,7 +165,7 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                               4.0, 4.0, 4.0, 4.0),
                           tabs: [
                             Tab(
-                              text: 'Revista 1',
+                              text: 'Publicaciones',
                             ),
                             Tab(
                               text: 'Revista 2',
@@ -184,10 +184,17 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                               child: StreamBuilder<List<PublicationsRecord>>(
                                 stream: queryPublicationsRecord(
                                   queryBuilder: (publicationsRecord) =>
-                                      publicationsRecord.where(
-                                    'published',
-                                    isEqualTo: true,
-                                  ),
+                                      publicationsRecord
+                                          .where(
+                                            'published',
+                                            isEqualTo: true,
+                                          )
+                                          .where(
+                                            'categories',
+                                            arrayContains: 'magazine1',
+                                          )
+                                          .orderBy('created_on',
+                                              descending: true),
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
@@ -225,90 +232,98 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                                       final listViewPublicationsRecord =
                                           listViewPublicationsRecordList[
                                               listViewIndex];
-                                      return InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          logFirebaseEvent(
-                                              'LIST_REVISTA_Container_p98jg0ic_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Container_navigate_to');
-
-                                          context.pushNamed(
-                                            'DetailRevistaPage',
-                                            queryParameters: {
-                                              'url': serializeParam(
-                                                'https://firebasestorage.googleapis.com/v0/b/palcarro-c7561.appspot.com/o/publications%2Fjzwn2_001-01.pdf?alt=media&token=1c76ac3d-4724-4984-96c2-4329b58c85f3&_gl=1*46hky0*_ga*MjA0MTE4NDUzNi4xNjg2MzUzMjM3*_ga_CW55HF8NVT*MTY5ODEwNzUxNC4yMzYuMS4xNjk4MTA3NTU5LjE1LjAuMA..',
-                                                ParamType.String,
-                                              ),
-                                            }.withoutNulls,
-                                          );
-                                        },
-                                        child: Container(
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Expanded(
-                                                    child: Container(
-                                                      width: double.infinity,
-                                                      decoration:
-                                                          BoxDecoration(),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
-                                                            listViewPublicationsRecord
-                                                                .name,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    width: MediaQuery.sizeOf(
-                                                                context)
-                                                            .width *
-                                                        0.1,
+                                      return Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: Container(
+                                                    width: double.infinity,
                                                     decoration: BoxDecoration(),
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            1.00, 0.00),
-                                                    child: Icon(
-                                                      Icons
-                                                          .arrow_forward_ios_sharp,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      size: 24.0,
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0.00, 0.00),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        7.0,
+                                                                        0.0),
+                                                            child: Container(
+                                                              width: 48.0,
+                                                              height: 48.0,
+                                                              clipBehavior: Clip
+                                                                  .antiAlias,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                              ),
+                                                              child:
+                                                                  Image.network(
+                                                                listViewPublicationsRecord
+                                                                    .image,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          listViewPublicationsRecord
+                                                              .name,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
-                                                ].divide(SizedBox(width: 5.0)),
-                                              ),
-                                              Divider(
-                                                thickness: 1.0,
-                                                color: Color(0x4A57636C),
-                                              ),
-                                            ].divide(SizedBox(height: 4.0)),
-                                          ),
+                                                ),
+                                                Container(
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          0.1,
+                                                  decoration: BoxDecoration(),
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1.00, 0.00),
+                                                  child: Icon(
+                                                    Icons
+                                                        .arrow_forward_ios_sharp,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 24.0,
+                                                  ),
+                                                ),
+                                              ].divide(SizedBox(width: 5.0)),
+                                            ),
+                                            Divider(
+                                              thickness: 1.0,
+                                              color: Color(0x4A57636C),
+                                            ),
+                                          ].divide(SizedBox(height: 4.0)),
                                         ),
                                       );
                                     },
@@ -363,67 +378,94 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Expanded(
-                                                  child: Container(
-                                                    width: double.infinity,
-                                                    decoration: BoxDecoration(),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Text(
-                                                          listViewPublicationsRecord
-                                                              .name,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelLarge
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          '2022',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelLarge
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
-                                                      ],
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'LIST_REVISTA_Row_13m1c1rn_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Row_navigate_to');
+
+                                                context.pushNamed(
+                                                  'DetailRevistaPage',
+                                                  queryParameters: {
+                                                    'uid': serializeParam(
+                                                      listViewPublicationsRecord
+                                                          .reference,
+                                                      ParamType
+                                                          .DocumentReference,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
+                                              },
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Expanded(
+                                                    child: Container(
+                                                      width: double.infinity,
+                                                      decoration:
+                                                          BoxDecoration(),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            listViewPublicationsRecord
+                                                                .name,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                          Text(
+                                                            '2022',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                                Container(
-                                                  width:
-                                                      MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          0.15,
-                                                  decoration: BoxDecoration(),
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          1.00, 0.00),
-                                                  child: Icon(
-                                                    Icons
-                                                        .arrow_forward_ios_sharp,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 24.0,
+                                                  Container(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        0.15,
+                                                    decoration: BoxDecoration(),
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1.00, 0.00),
+                                                    child: Icon(
+                                                      Icons
+                                                          .arrow_forward_ios_sharp,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 24.0,
+                                                    ),
                                                   ),
-                                                ),
-                                              ].divide(SizedBox(width: 5.0)),
+                                                ].divide(SizedBox(width: 5.0)),
+                                              ),
                                             ),
                                             Divider(
                                               thickness: 1.0,

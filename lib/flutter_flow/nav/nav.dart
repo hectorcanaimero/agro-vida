@@ -147,7 +147,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'DetailRevistaPage',
           path: '/detailRevistaPage',
           builder: (context, params) => DetailRevistaPageWidget(
-            url: params.getParam('url', ParamType.String),
+            uid: params.getParam(
+                'uid', ParamType.DocumentReference, false, ['publications']),
           ),
         ),
         FFRoute(

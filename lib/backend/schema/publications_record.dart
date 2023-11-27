@@ -47,9 +47,14 @@ class PublicationsRecord extends FirestoreRecord {
   bool hasExpiresOn() => _expiresOn != null;
 
   // "categories" field.
-  String? _categories;
-  String get categories => _categories ?? '';
+  List<String>? _categories;
+  List<String> get categories => _categories ?? const [];
   bool hasCategories() => _categories != null;
+
+  // "image" field.
+  String? _image;
+  String get image => _image ?? '';
+  bool hasImage() => _image != null;
 
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
@@ -58,7 +63,8 @@ class PublicationsRecord extends FirestoreRecord {
     _published = snapshotData['published'] as bool?;
     _createdOn = snapshotData['created_on'] as DateTime?;
     _expiresOn = snapshotData['expires_on'] as DateTime?;
-    _categories = snapshotData['categories'] as String?;
+    _categories = getDataList(snapshotData['categories']);
+    _image = snapshotData['image'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -102,7 +108,7 @@ Map<String, dynamic> createPublicationsRecordData({
   bool? published,
   DateTime? createdOn,
   DateTime? expiresOn,
-  String? categories,
+  String? image,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -112,7 +118,7 @@ Map<String, dynamic> createPublicationsRecordData({
       'published': published,
       'created_on': createdOn,
       'expires_on': expiresOn,
-      'categories': categories,
+      'image': image,
     }.withoutNulls,
   );
 
@@ -125,13 +131,15 @@ class PublicationsRecordDocumentEquality
 
   @override
   bool equals(PublicationsRecord? e1, PublicationsRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.name == e2?.name &&
         e1?.fileUpload == e2?.fileUpload &&
         e1?.status == e2?.status &&
         e1?.published == e2?.published &&
         e1?.createdOn == e2?.createdOn &&
         e1?.expiresOn == e2?.expiresOn &&
-        e1?.categories == e2?.categories;
+        listEquality.equals(e1?.categories, e2?.categories) &&
+        e1?.image == e2?.image;
   }
 
   @override
@@ -142,7 +150,8 @@ class PublicationsRecordDocumentEquality
         e?.published,
         e?.createdOn,
         e?.expiresOn,
-        e?.categories
+        e?.categories,
+        e?.image
       ]);
 
   @override

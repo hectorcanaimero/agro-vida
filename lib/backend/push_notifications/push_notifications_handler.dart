@@ -131,7 +131,7 @@ final parametersBuilderMap =
       ),
   'DetailRevistaPage': (data) async => ParameterData(
         allParams: {
-          'url': getParameter<String>(data, 'url'),
+          'uid': getParameter<DocumentReference>(data, 'uid'),
         },
       ),
   'ListRevistaPage': ParameterData.none(),
