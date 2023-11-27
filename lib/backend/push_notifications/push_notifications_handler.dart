@@ -112,7 +112,6 @@ class ParameterData {
 
 final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
-  'OnboardingPage': ParameterData.none(),
   'AuthPage': ParameterData.none(),
   'ForgotPasswordPage': ParameterData.none(),
   'ProfilePage': ParameterData.none(),

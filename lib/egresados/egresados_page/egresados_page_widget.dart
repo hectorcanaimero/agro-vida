@@ -179,6 +179,12 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                                   .cedulaTextFieldControllerValidator
                                   .asValidator(context),
                             ),
+                            Text(
+                              (_model.cedulaTextFieldFocusNode?.hasFocus ??
+                                      false)
+                                  .toString(),
+                              style: FlutterFlowTheme.of(context).bodyMedium,
+                            ),
                           ].divide(SizedBox(height: 24.0)),
                         ),
                       ),

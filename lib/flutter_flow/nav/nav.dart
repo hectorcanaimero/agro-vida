@@ -91,11 +91,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : AuthPageWidget(),
         ),
         FFRoute(
-          name: 'OnboardingPage',
-          path: '/onboardingPage',
-          builder: (context, params) => OnboardingPageWidget(),
-        ),
-        FFRoute(
           name: 'AuthPage',
           path: '/authPage',
           builder: (context, params) => AuthPageWidget(),

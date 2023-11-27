@@ -1,6 +1,4 @@
 // Export pages
-export '/pages/onboarding_page/onboarding_page_widget.dart'
-    show OnboardingPageWidget;
 export '/auth/auth_page/auth_page_widget.dart' show AuthPageWidget;
 export '/auth/forgot_password_page/forgot_password_page_widget.dart'
     show ForgotPasswordPageWidget;
