@@ -46,6 +46,11 @@ class SoporteRecord extends FirestoreRecord {
   bool get image => _image ?? false;
   bool hasImage() => _image != null;
 
+  // "url_image" field.
+  String? _urlImage;
+  String get urlImage => _urlImage ?? '';
+  bool hasUrlImage() => _urlImage != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -55,6 +60,7 @@ class SoporteRecord extends FirestoreRecord {
     _readCustomer = snapshotData['read_customer'] as bool?;
     _type = castToType<int>(snapshotData['type']);
     _image = snapshotData['image'] as bool?;
+    _urlImage = snapshotData['url_image'] as String?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -103,6 +109,7 @@ Map<String, dynamic> createSoporteRecordData({
   bool? readCustomer,
   int? type,
   bool? image,
+  String? urlImage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -112,6 +119,7 @@ Map<String, dynamic> createSoporteRecordData({
       'read_customer': readCustomer,
       'type': type,
       'image': image,
+      'url_image': urlImage,
     }.withoutNulls,
   );
 
@@ -128,7 +136,8 @@ class SoporteRecordDocumentEquality implements Equality<SoporteRecord> {
         e1?.readUser == e2?.readUser &&
         e1?.readCustomer == e2?.readCustomer &&
         e1?.type == e2?.type &&
-        e1?.image == e2?.image;
+        e1?.image == e2?.image &&
+        e1?.urlImage == e2?.urlImage;
   }
 
   @override
@@ -138,7 +147,8 @@ class SoporteRecordDocumentEquality implements Equality<SoporteRecord> {
         e?.readUser,
         e?.readCustomer,
         e?.type,
-        e?.image
+        e?.image,
+        e?.urlImage
       ]);
 
   @override

@@ -190,19 +190,33 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                                             ),
                                           ),
                                         ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.00, 0.00),
-                                          child: Text(
-                                            'Hello World',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Poppins',
-                                                  fontSize: 12.0,
-                                                ),
+                                        if (!valueOrDefault<bool>(
+                                          listViewSoporteRecord.image,
+                                          false,
+                                        ))
+                                          Align(
+                                            alignment: AlignmentDirectional(
+                                                -1.00, 0.00),
+                                            child: Text(
+                                              'Hello World',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 12.0,
+                                                      ),
+                                            ),
                                           ),
-                                        ),
+                                        if (listViewSoporteRecord.image)
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.network(
+                                              listViewSoporteRecord.urlImage,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                         Align(
                                           alignment:
                                               AlignmentDirectional(1.00, 0.00),
@@ -391,11 +405,12 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                                       await SoporteRecord.createDoc(
                                               currentUserReference!)
                                           .set(createSoporteRecordData(
-                                        message: _model.uploadedFileUrl,
                                         createdOn: getCurrentTimestamp,
                                         readUser: false,
                                         readCustomer: false,
                                         type: 0,
+                                        image: true,
+                                        urlImage: _model.uploadedFileUrl,
                                       ));
                                     },
                                     child: Icon(
@@ -424,6 +439,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget> {
                                       readUser: false,
                                       readCustomer: false,
                                       type: 0,
+                                      image: false,
                                     ));
                                   },
                                   child: Icon(
