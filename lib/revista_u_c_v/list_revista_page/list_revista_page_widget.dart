@@ -238,92 +238,87 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Expanded(
-                                                  child: Container(
-                                                    width: double.infinity,
-                                                    decoration: BoxDecoration(),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  0.00, 0.00),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        7.0,
-                                                                        0.0),
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'LIST_REVISTA_Row_eqvuvriw_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Row_navigate_to');
+
+                                                context.pushNamed(
+                                                  'DetailRevistaPage',
+                                                  queryParameters: {
+                                                    'uid': serializeParam(
+                                                      listViewPublicationsRecord
+                                                          .reference,
+                                                      ParamType
+                                                          .DocumentReference,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
+                                              },
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Expanded(
+                                                    child: Container(
+                                                      width: double.infinity,
+                                                      decoration:
+                                                          BoxDecoration(),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Expanded(
                                                             child: Container(
-                                                              width: 48.0,
-                                                              height: 48.0,
-                                                              clipBehavior: Clip
-                                                                  .antiAlias,
                                                               decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                              ),
-                                                              child:
-                                                                  Image.network(
+                                                                  BoxDecoration(),
+                                                              child: Text(
                                                                 listViewPublicationsRecord
-                                                                    .image,
-                                                                fit: BoxFit
-                                                                    .cover,
+                                                                    .name,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelLarge
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Poppins',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    ),
                                                               ),
                                                             ),
                                                           ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Container(
-                                                            decoration:
-                                                                BoxDecoration(),
-                                                            child: Text(
-                                                              listViewPublicationsRecord
-                                                                  .name,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Poppins',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                                Container(
-                                                  width:
-                                                      MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          0.1,
-                                                  decoration: BoxDecoration(),
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          1.00, 0.00),
-                                                  child: Icon(
-                                                    Icons
-                                                        .arrow_forward_ios_sharp,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 24.0,
+                                                  Container(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        0.1,
+                                                    decoration: BoxDecoration(),
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1.00, 0.00),
+                                                    child: Icon(
+                                                      Icons
+                                                          .arrow_forward_ios_sharp,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 24.0,
+                                                    ),
                                                   ),
-                                                ),
-                                              ].divide(SizedBox(width: 5.0)),
+                                                ].divide(SizedBox(width: 5.0)),
+                                              ),
                                             ),
                                             Divider(
                                               thickness: 1.0,
