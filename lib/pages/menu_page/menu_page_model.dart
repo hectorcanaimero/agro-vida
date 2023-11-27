@@ -14,9 +14,7 @@ class MenuPageModel extends FlutterFlowModel<MenuPageWidget> {
 
   final unfocusNode = FocusNode();
   // State field(s) for MouseRegion widget.
-  bool mouseRegionHovered1 = false;
-  // State field(s) for MouseRegion widget.
-  bool mouseRegionHovered2 = false;
+  bool mouseRegionHovered = false;
 
   /// Initialization and disposal methods.
 

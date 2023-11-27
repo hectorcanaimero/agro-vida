@@ -90,7 +90,7 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
           elevation: 8.0,
           child: Icon(
             Icons.add,
-            color: FlutterFlowTheme.of(context).secondaryText,
+            color: FlutterFlowTheme.of(context).secondaryBackground,
             size: 24.0,
           ),
         ),
@@ -140,8 +140,12 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
               ),
               StreamBuilder<List<JobsRecord>>(
                 stream: queryJobsRecord(
-                  queryBuilder: (jobsRecord) =>
-                      jobsRecord.orderBy('created_on', descending: true),
+                  queryBuilder: (jobsRecord) => jobsRecord
+                      .where(
+                        'published',
+                        isEqualTo: true,
+                      )
+                      .orderBy('created_on', descending: true),
                 ),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.

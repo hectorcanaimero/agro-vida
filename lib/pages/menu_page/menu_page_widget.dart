@@ -167,81 +167,6 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                   Colors.transparent,
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'MENU_PAGE_PAGE_Column_qs38bnq5_ON_TAP');
-                                                logFirebaseEvent(
-                                                    'Column_navigate_to');
-
-                                                context
-                                                    .pushNamed('EgresadosPage');
-                                              },
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Icon(
-                                                    Icons.person,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 36.0,
-                                                  ),
-                                                  Text(
-                                                    'Perfil',
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 13.0,
-                                                          lineHeight: 1.3,
-                                                        ),
-                                                  ),
-                                                ].divide(
-                                                    SizedBox(height: 12.0)),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        onEnter: ((event) async {
-                                          setState(() => _model
-                                              .mouseRegionHovered1 = true);
-                                        }),
-                                        onExit: ((event) async {
-                                          setState(() => _model
-                                              .mouseRegionHovered1 = false);
-                                        }),
-                                      ),
-                                      MouseRegion(
-                                        opaque: false,
-                                        cursor: MouseCursor.defer ??
-                                            MouseCursor.defer,
-                                        child: Material(
-                                          color: Colors.transparent,
-                                          elevation: 3.0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          child: Container(
-                                            width: 100.0,
-                                            height: 100.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            child: InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                logFirebaseEvent(
                                                     'MENU_PAGE_PAGE_Column_oevgwgjf_ON_TAP');
                                                 logFirebaseEvent(
                                                     'Column_navigate_to');
@@ -284,12 +209,12 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                           ),
                                         ),
                                         onEnter: ((event) async {
-                                          setState(() => _model
-                                              .mouseRegionHovered2 = true);
+                                          setState(() =>
+                                              _model.mouseRegionHovered = true);
                                         }),
                                         onExit: ((event) async {
                                           setState(() => _model
-                                              .mouseRegionHovered2 = false);
+                                              .mouseRegionHovered = false);
                                         }),
                                       ),
                                       InkWell(
@@ -636,6 +561,65 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                             onTap: () async {
                                               logFirebaseEvent(
                                                   'MENU_PAGE_PAGE_Column_s3hyli4x_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Column_navigate_to');
+
+                                              context
+                                                  .pushNamed('ListBoletinPage');
+                                            },
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.notifications_sharp,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 36.0,
+                                                ),
+                                                Text(
+                                                  'Notificaciones',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 13.0,
+                                                        lineHeight: 1.2,
+                                                      ),
+                                                ),
+                                              ].divide(SizedBox(height: 10.0)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Material(
+                                        color: Colors.transparent,
+                                        elevation: 3.0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Container(
+                                          width: 100.0,
+                                          height: 100.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'MENU_PAGE_PAGE_Column_6mglaouq_ON_TAP');
                                               logFirebaseEvent(
                                                   'Column_navigate_to');
 
