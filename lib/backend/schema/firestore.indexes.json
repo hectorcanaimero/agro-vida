@@ -1,6 +1,34 @@
 {
   "indexes": [
     {
+      "collectionGroup": "publications",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "published",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "created_on",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "blogs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "published",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "created_on",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "advisors",
       "queryScope": "COLLECTION",
       "fields": [
@@ -39,20 +67,6 @@
         {
           "fieldPath": "categories",
           "arrayConfig": "CONTAINS"
-        },
-        {
-          "fieldPath": "created_on",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "blogs",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "published",
-          "order": "ASCENDING"
         },
         {
           "fieldPath": "created_on",
