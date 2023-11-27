@@ -1,6 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/empleos/ofertas_create_page/ofertas_create_page_widget.dart';
+import '/empleos/ofertas_edit_page/ofertas_edit_page_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -110,9 +110,7 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                             : FocusScope.of(context).unfocus(),
                         child: Padding(
                           padding: MediaQuery.viewInsetsOf(context),
-                          child: OfertasCreatePageWidget(
-                            uid: widget.uid,
-                          ),
+                          child: OfertasEditPageWidget(),
                         ),
                       ));
                     },
@@ -122,7 +120,7 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                 elevation: 8.0,
                 child: Icon(
                   Icons.edit,
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
                   size: 24.0,
                 ),
               ),
@@ -166,7 +164,7 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                       buttonSize: 40.0,
                       icon: FaIcon(
                         FontAwesomeIcons.trash,
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         size: 24.0,
                       ),
                       onPressed: () async {
