@@ -553,78 +553,64 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              logFirebaseEvent(
-                                                  'MENU_PAGE_PAGE_Column_s3hyli4x_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'Column_navigate_to');
-
-                                              context
-                                                  .pushNamed('ListBoletinPage');
-                                            },
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.notifications_sharp,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 36.0,
-                                                ),
-                                                Text(
-                                                  'Notificaciones',
-                                                  textAlign: TextAlign.center,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 13.0,
-                                                        lineHeight: 1.2,
-                                                      ),
-                                                ),
-                                              ].divide(SizedBox(height: 10.0)),
-                                            ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.notifications_sharp,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 36.0,
+                                              ),
+                                              Text(
+                                                'Notificaciones',
+                                                textAlign: TextAlign.center,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 13.0,
+                                                          lineHeight: 1.2,
+                                                        ),
+                                              ),
+                                            ].divide(SizedBox(height: 10.0)),
                                           ),
                                         ),
                                       ),
-                                      Material(
-                                        color: Colors.transparent,
-                                        elevation: 3.0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Container(
-                                          width: 100.0,
-                                          height: 100.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'MENU_PAGE_PAGE_Soporte_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Soporte_navigate_to');
+
+                                          context.pushNamed('SupportPage');
+                                        },
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          elevation: 3.0,
+                                          shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              logFirebaseEvent(
-                                                  'MENU_PAGE_PAGE_Column_6mglaouq_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'Column_navigate_to');
-
-                                              context.pushNamed('SupportPage');
-                                            },
+                                          child: Container(
+                                            width: 100.0,
+                                            height: 100.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:

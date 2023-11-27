@@ -303,17 +303,18 @@ class _ListBoletinPageWidgetState extends State<ListBoletinPageWidget> {
                                                 thickness: 1.0,
                                                 color: Color(0xFFB4B4B4),
                                               ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 10.0),
-                                                child: Text(
-                                                  listViewBlogsRecord
-                                                      .description,
-                                                  maxLines: 2,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium,
+                                              Expanded(
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(),
+                                                  child: Text(
+                                                    listViewBlogsRecord
+                                                        .description,
+                                                    maxLines: 2,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                  ),
                                                 ),
                                               ),
                                             ],
