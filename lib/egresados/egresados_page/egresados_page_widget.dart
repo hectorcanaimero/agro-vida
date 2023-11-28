@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -180,11 +179,16 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                                   .cedulaTextFieldControllerValidator
                                   .asValidator(context),
                             ),
-                            Text(
-                              (_model.cedulaTextFieldFocusNode?.hasFocus ??
-                                      false)
-                                  .toString(),
-                              style: FlutterFlowTheme.of(context).bodyMedium,
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Cedula INT: ',
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                              ],
                             ),
                           ].divide(SizedBox(height: 24.0)),
                         ),
@@ -206,62 +210,32 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                         logFirebaseEvent(
                             'EGRESADOS_BUSCAR_MIS_DATOS_BTN_ON_TAP');
                         logFirebaseEvent('Button_firestore_query');
-                        _model.searchEgresado = await queryEgresadosRecordOnce(
+                        _model.successEgresado = await queryEgresadosRecordOnce(
                           queryBuilder: (egresadosRecord) =>
                               egresadosRecord.where(
                             'identificador',
-                            isEqualTo: functions
-                                .numberToString(
-                                    _model.cedulaTextFieldController.text)
-                                .toString(),
+                            isEqualTo: _model.cedulaTextFieldController.text,
                           ),
                           singleRecord: true,
                         ).then((s) => s.firstOrNull);
-                        if (_model.searchEgresado != null) {
-                          if (FFAppState().yaRegistro) {
-                            logFirebaseEvent('Button_navigate_to');
-
-                            context.pushNamed(
-                              'EgresadosRegisterPage',
-                              queryParameters: {
-                                'uid': serializeParam(
-                                  _model.searchEgresado?.reference,
-                                  ParamType.DocumentReference,
-                                ),
-                              }.withoutNulls,
-                            );
-                          } else {
-                            logFirebaseEvent('Button_alert_dialog');
-                            await showDialog(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return WebViewAware(
-                                    child: AlertDialog(
-                                  title: Text('Info'),
-                                  content: Text(
-                                      'Vamos actualizar tuss datos, es importante llenar toda la información '),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(alertDialogContext),
-                                      child: Text('Ok'),
-                                    ),
-                                  ],
-                                ));
-                              },
-                            );
-                            logFirebaseEvent('Button_navigate_to');
-
-                            context.pushNamed(
-                              'EgresadosRegisterPage',
-                              queryParameters: {
-                                'uid': serializeParam(
-                                  _model.searchEgresado?.reference,
-                                  ParamType.DocumentReference,
-                                ),
-                              }.withoutNulls,
-                            );
-                          }
+                        if (_model.successEgresado != null) {
+                          logFirebaseEvent('Button_alert_dialog');
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return WebViewAware(
+                                  child: AlertDialog(
+                                content: Text('Bethoven'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: Text('Ok'),
+                                  ),
+                                ],
+                              ));
+                            },
+                          );
                         } else {
                           logFirebaseEvent('Button_alert_dialog');
                           await showDialog(
@@ -269,9 +243,7 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                             builder: (alertDialogContext) {
                               return WebViewAware(
                                   child: AlertDialog(
-                                title: Text('Error'),
-                                content: Text(
-                                    'La cedula no existe.  Si hay problemas, entra en contacto al siguiente email contact@fagronet.com'),
+                                content: Text('Beta'),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
