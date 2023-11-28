@@ -377,17 +377,25 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                                           .secondaryText,
                                       size: 28.0,
                                     ),
-                                    Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.00, 0.00),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 18.0, 0.0, 24.0),
-                                        child: Text(
-                                          detailsOfertaPageJobsRecord
-                                              .description,
-                                          style: FlutterFlowTheme.of(context)
-                                              .labelLarge,
+                                    Expanded(
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(-1.00, 0.00),
+                                        child: Container(
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 18.0, 0.0, 24.0),
+                                            child: Text(
+                                              detailsOfertaPageJobsRecord
+                                                  .description,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelLarge,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),

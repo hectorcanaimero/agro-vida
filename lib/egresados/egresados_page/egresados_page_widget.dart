@@ -226,7 +226,19 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                           ),
                           singleRecord: true,
                         ).then((s) => s.firstOrNull);
-                        if (!(_model.successEgresado != null)) {
+                        if (_model.successEgresado != null) {
+                          logFirebaseEvent('Button_navigate_to');
+
+                          context.pushNamed(
+                            'EgresadosRegisterPage',
+                            queryParameters: {
+                              'uid': serializeParam(
+                                _model.successEgresado?.reference,
+                                ParamType.DocumentReference,
+                              ),
+                            }.withoutNulls,
+                          );
+                        } else {
                           logFirebaseEvent('Button_alert_dialog');
                           await showDialog(
                             context: context,
@@ -246,18 +258,12 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                               ));
                             },
                           );
+                          logFirebaseEvent(
+                              'Button_clear_text_fields_pin_codes');
+                          setState(() {
+                            _model.cedulaTextFieldController?.clear();
+                          });
                         }
-                        logFirebaseEvent('Button_navigate_to');
-
-                        context.pushNamed(
-                          'EgresadosRegisterPage',
-                          queryParameters: {
-                            'uid': serializeParam(
-                              _model.successEgresado?.reference,
-                              ParamType.DocumentReference,
-                            ),
-                          }.withoutNulls,
-                        );
 
                         setState(() {});
                       },

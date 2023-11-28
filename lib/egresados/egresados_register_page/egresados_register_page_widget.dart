@@ -45,8 +45,6 @@ class _EgresadosRegisterPageWidgetState
 
     _model.nameFieldFocusNode ??= FocusNode();
 
-    _model.idFieldController ??=
-        TextEditingController(text: FFAppState().idEgresados);
     _model.idFieldFocusNode ??= FocusNode();
 
     _model.bornFocusNode ??= FocusNode();
@@ -268,7 +266,13 @@ class _EgresadosRegisterPageWidgetState
                                     ),
                                     Expanded(
                                       child: TextFormField(
-                                        controller: _model.idFieldController,
+                                        controller: _model.idFieldController ??=
+                                            TextEditingController(
+                                          text:
+                                              egresadosRegisterPageEgresadosRecord
+                                                  .identificator
+                                                  .toString(),
+                                        ),
                                         focusNode: _model.idFieldFocusNode,
                                         readOnly: true,
                                         obscureText: false,
