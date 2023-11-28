@@ -86,7 +86,7 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
             },
           ),
           title: Text(
-            'Registro Egresados',
+            'Regresar',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Poppins',
                   color: FlutterFlowTheme.of(context).primaryText,
@@ -102,6 +102,18 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                child: Text(
+                  '¡Actualiza tus Datos como \nEgresado de Agronomía en la UCV!',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).headlineSmall.override(
+                        fontFamily: 'Poppins',
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ),
               Expanded(
                 child: Padding(
                   padding:
@@ -120,9 +132,15 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                             Align(
                               alignment: AlignmentDirectional(-1.00, 0.00),
                               child: Text(
-                                'Hello World',
+                                '¡Nos emociona invitarte a actualizar tus datos para fortalecer nuestra red de profesionales! Queremos destacar tus logros y conectar contigo. Tu participación es clave para mantenernos informados, colaborar en proyectos futuros y ampliar tu red de contactos.',
                                 textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 15.0,
+                                      lineHeight: 1.6,
+                                    ),
                               ),
                             ),
                             TextFormField(
@@ -179,17 +197,6 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                                   .cedulaTextFieldControllerValidator
                                   .asValidator(context),
                             ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Cedula INT: ',
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ),
-                              ],
-                            ),
                           ].divide(SizedBox(height: 24.0)),
                         ),
                       ),
@@ -219,32 +226,16 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                           ),
                           singleRecord: true,
                         ).then((s) => s.firstOrNull);
-                        if (_model.successEgresado != null) {
+                        if (!(_model.successEgresado != null)) {
                           logFirebaseEvent('Button_alert_dialog');
                           await showDialog(
                             context: context,
                             builder: (alertDialogContext) {
                               return WebViewAware(
                                   child: AlertDialog(
-                                content: Text('Bethoven'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: Text('Ok'),
-                                  ),
-                                ],
-                              ));
-                            },
-                          );
-                        } else {
-                          logFirebaseEvent('Button_alert_dialog');
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return WebViewAware(
-                                  child: AlertDialog(
-                                content: Text('Beta'),
+                                title: Text('Erro'),
+                                content: Text(
+                                    'Tu cédula de identidad no esta registrada, si eres un egresado entra en ocntacto con nosotros en el siguiente email egresados@ucv.edu.ve'),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
@@ -256,6 +247,17 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                             },
                           );
                         }
+                        logFirebaseEvent('Button_navigate_to');
+
+                        context.pushNamed(
+                          'EgresadosRegisterPage',
+                          queryParameters: {
+                            'uid': serializeParam(
+                              _model.successEgresado?.reference,
+                              ParamType.DocumentReference,
+                            ),
+                          }.withoutNulls,
+                        );
 
                         setState(() {});
                       },
