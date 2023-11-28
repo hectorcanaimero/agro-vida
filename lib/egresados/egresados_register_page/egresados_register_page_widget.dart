@@ -253,8 +253,8 @@ class _EgresadosRegisterPageWidgetState
                                             .secondaryText,
                                         size: 24.0,
                                       ),
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      fillColor:
+                                          FlutterFlowTheme.of(context).bgInput,
                                       elevation: 2.0,
                                       borderColor: FlutterFlowTheme.of(context)
                                           .alternate,
@@ -270,6 +270,7 @@ class _EgresadosRegisterPageWidgetState
                                       child: TextFormField(
                                         controller: _model.idFieldController,
                                         focusNode: _model.idFieldFocusNode,
+                                        readOnly: true,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'Cedula de Identidad',
@@ -1163,7 +1164,6 @@ class _EgresadosRegisterPageWidgetState
                             logFirebaseEvent('Button_backend_call');
 
                             await widget.uid!.update(createEgresadosRecordData(
-                              identificador: _model.idFieldController.text,
                               name: _model.nameFieldController.text,
                               nacionality: _model.nacDropDownValue,
                               country: _model.countryFieldController.text,
@@ -1184,6 +1184,9 @@ class _EgresadosRegisterPageWidgetState
                               instagram: egresadosRegisterPageEgresadosRecord
                                   .instagram,
                               twitter: _model.xFieldController.text,
+                              identificator:
+                                  egresadosRegisterPageEgresadosRecord
+                                      .identificator,
                             ));
                             logFirebaseEvent('Button_alert_dialog');
                             await showDialog(

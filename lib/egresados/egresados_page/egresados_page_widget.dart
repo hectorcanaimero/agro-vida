@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -214,11 +213,9 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                         _model.successEgresado = await queryEgresadosRecordOnce(
                           queryBuilder: (egresadosRecord) =>
                               egresadosRecord.where(
-                            'identificador',
-                            isEqualTo: functions
-                                .numberToString(
-                                    _model.cedulaTextFieldController.text)
-                                .toString(),
+                            'identificator',
+                            isEqualTo: int.tryParse(
+                                _model.cedulaTextFieldController.text),
                           ),
                           singleRecord: true,
                         ).then((s) => s.firstOrNull);

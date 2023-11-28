@@ -16,11 +16,6 @@ class EgresadosRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "identificador" field.
-  String? _identificador;
-  String get identificador => _identificador ?? '';
-  bool hasIdentificador() => _identificador != null;
-
   // "name" field.
   String? _name;
   String get name => _name ?? '';
@@ -106,8 +101,12 @@ class EgresadosRecord extends FirestoreRecord {
   DateTime? get updateTime => _updateTime;
   bool hasUpdateTime() => _updateTime != null;
 
+  // "identificator" field.
+  int? _identificator;
+  int get identificator => _identificator ?? 0;
+  bool hasIdentificator() => _identificator != null;
+
   void _initializeFields() {
-    _identificador = snapshotData['identificador'] as String?;
     _name = snapshotData['name'] as String?;
     _nacionality = snapshotData['nacionality'] as String?;
     _country = snapshotData['country'] as String?;
@@ -125,6 +124,7 @@ class EgresadosRecord extends FirestoreRecord {
     _instagram = snapshotData['instagram'] as String?;
     _twitter = snapshotData['twitter'] as String?;
     _updateTime = snapshotData['update_time'] as DateTime?;
+    _identificator = castToType<int>(snapshotData['identificator']);
   }
 
   static CollectionReference get collection =>
@@ -162,7 +162,6 @@ class EgresadosRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createEgresadosRecordData({
-  String? identificador,
   String? name,
   String? nacionality,
   String? country,
@@ -180,10 +179,10 @@ Map<String, dynamic> createEgresadosRecordData({
   String? instagram,
   String? twitter,
   DateTime? updateTime,
+  int? identificator,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'identificador': identificador,
       'name': name,
       'nacionality': nacionality,
       'country': country,
@@ -201,6 +200,7 @@ Map<String, dynamic> createEgresadosRecordData({
       'instagram': instagram,
       'twitter': twitter,
       'update_time': updateTime,
+      'identificator': identificator,
     }.withoutNulls,
   );
 
@@ -212,8 +212,7 @@ class EgresadosRecordDocumentEquality implements Equality<EgresadosRecord> {
 
   @override
   bool equals(EgresadosRecord? e1, EgresadosRecord? e2) {
-    return e1?.identificador == e2?.identificador &&
-        e1?.name == e2?.name &&
+    return e1?.name == e2?.name &&
         e1?.nacionality == e2?.nacionality &&
         e1?.country == e2?.country &&
         e1?.city == e2?.city &&
@@ -229,12 +228,12 @@ class EgresadosRecordDocumentEquality implements Equality<EgresadosRecord> {
         e1?.facebook == e2?.facebook &&
         e1?.instagram == e2?.instagram &&
         e1?.twitter == e2?.twitter &&
-        e1?.updateTime == e2?.updateTime;
+        e1?.updateTime == e2?.updateTime &&
+        e1?.identificator == e2?.identificator;
   }
 
   @override
   int hash(EgresadosRecord? e) => const ListEquality().hash([
-        e?.identificador,
         e?.name,
         e?.nacionality,
         e?.country,
@@ -251,7 +250,8 @@ class EgresadosRecordDocumentEquality implements Equality<EgresadosRecord> {
         e?.facebook,
         e?.instagram,
         e?.twitter,
-        e?.updateTime
+        e?.updateTime,
+        e?.identificator
       ]);
 
   @override
