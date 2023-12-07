@@ -103,8 +103,9 @@ class _DetailBoletinPageWidgetState extends State<DetailBoletinPageWidget> {
                 ),
                 onPressed: () async {
                   logFirebaseEvent('DETAIL_BOLETIN_arrow_back_rounded_ICN_ON');
-                  logFirebaseEvent('IconButton_navigate_back');
-                  context.pop();
+                  logFirebaseEvent('IconButton_navigate_to');
+
+                  context.pushNamed('ListBoletinPage');
                 },
               ),
               title: Text(

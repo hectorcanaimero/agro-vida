@@ -156,6 +156,12 @@ final parametersBuilderMap =
   'HomePage': ParameterData.none(),
   'FagroIAPage': ParameterData.none(),
   'SupportPage': ParameterData.none(),
+  'NewsList': ParameterData.none(),
+  'DetailsNewsPage': (data) async => ParameterData(
+        allParams: {
+          'uid': getParameter<DocumentReference>(data, 'uid'),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

@@ -19,7 +19,7 @@ export 'egresados_register_page_model.dart';
 class EgresadosRegisterPageWidget extends StatefulWidget {
   const EgresadosRegisterPageWidget({
     Key? key,
-    required this.uid,
+    this.uid,
   }) : super(key: key);
 
   final DocumentReference? uid;
@@ -56,6 +56,10 @@ class _EgresadosRegisterPageWidgetState
     _model.countryFieldFocusNode ??= FocusNode();
 
     _model.cityFieldFocusNode ??= FocusNode();
+
+    _model.universidadController ??=
+        TextEditingController(text: widget.uid != null ? 'UCV' : ' ');
+    _model.universidadFocusNode ??= FocusNode();
 
     _model.anoEgredsadoFocusNode ??= FocusNode();
 
@@ -274,7 +278,7 @@ class _EgresadosRegisterPageWidgetState
                                                   .toString(),
                                         ),
                                         focusNode: _model.idFieldFocusNode,
-                                        readOnly: true,
+                                        readOnly: widget.uid != null,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'Cedula de Identidad',
@@ -693,16 +697,13 @@ class _EgresadosRegisterPageWidgetState
                                   ),
                                 ),
                                 TextFormField(
-                                  controller: _model.anoEgredsadoController ??=
-                                      TextEditingController(
-                                    text: egresadosRegisterPageEgresadosRecord
-                                        .dataEgresado,
-                                  ),
-                                  focusNode: _model.anoEgredsadoFocusNode,
-                                  autofillHints: [AutofillHints.email],
+                                  controller: _model.universidadController,
+                                  focusNode: _model.universidadFocusNode,
+                                  textCapitalization: TextCapitalization.words,
+                                  readOnly: widget.uid != null,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Año de Egresado',
+                                    labelText: 'Universidad',
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium,
                                     hintStyle: FlutterFlowTheme.of(context)
@@ -743,105 +744,171 @@ class _EgresadosRegisterPageWidgetState
                                   ),
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
-                                  keyboardType: TextInputType.number,
                                   validator: _model
-                                      .anoEgredsadoControllerValidator
+                                      .universidadControllerValidator
                                       .asValidator(context),
-                                  inputFormatters: [_model.anoEgredsadoMask],
+                                  inputFormatters: [_model.universidadMask],
                                 ),
-                                FlutterFlowDropDown<String>(
-                                  controller: _model
-                                          .areaDesempanoDropDownValueController ??=
-                                      FormFieldController<String>(
-                                    _model.areaDesempanoDropDownValue ??=
-                                        egresadosRegisterPageEgresadosRecord
-                                            .areaLaboral,
+                                if ((FFAppState().tipoUsuario != 'Productor') ||
+                                    (FFAppState().tipoUsuario != 'Estudiante'))
+                                  TextFormField(
+                                    controller:
+                                        _model.anoEgredsadoController ??=
+                                            TextEditingController(
+                                      text: egresadosRegisterPageEgresadosRecord
+                                          .dataEgresado,
+                                    ),
+                                    focusNode: _model.anoEgredsadoFocusNode,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Año de Egresado',
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      filled: true,
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    keyboardType: TextInputType.number,
+                                    validator: _model
+                                        .anoEgredsadoControllerValidator
+                                        .asValidator(context),
+                                    inputFormatters: [_model.anoEgredsadoMask],
                                   ),
-                                  options: [
-                                    'Producción vegetal',
-                                    'Producción animal',
-                                    'Agroindustrial',
-                                    'Ingeniería agrícola y/ o asesorías ',
-                                    'Venta y comercialización',
-                                    'Gerencia pública o privada ',
-                                    'Docencia , investigación  y extención',
-                                    'Productor independiente'
-                                  ],
-                                  onChanged: (val) => setState(() =>
-                                      _model.areaDesempanoDropDownValue = val),
-                                  width: double.infinity,
-                                  height: 50.0,
-                                  textStyle:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                  hintText: 'Área laboral de desempeño ',
-                                  icon: Icon(
-                                    Icons.keyboard_arrow_down_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24.0,
+                                if (FFAppState().tipoUsuario !=
+                                    'Productor, estudiante u otro')
+                                  FlutterFlowDropDown<String>(
+                                    controller: _model
+                                            .areaDesempanoDropDownValueController ??=
+                                        FormFieldController<String>(
+                                      _model.areaDesempanoDropDownValue ??=
+                                          egresadosRegisterPageEgresadosRecord
+                                              .areaLaboral,
+                                    ),
+                                    options: [
+                                      'Producción vegetal',
+                                      'Producción animal',
+                                      'Agroindustrial',
+                                      'Ingeniería agrícola y/ o asesorías ',
+                                      'Venta y comercialización',
+                                      'Gerencia pública o privada ',
+                                      'Docencia , investigación  y extención',
+                                      'Productor independiente'
+                                    ],
+                                    onChanged: (val) => setState(() => _model
+                                        .areaDesempanoDropDownValue = val),
+                                    width: double.infinity,
+                                    height: 50.0,
+                                    textStyle:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    hintText: 'Área laboral de desempeño ',
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                    fillColor:
+                                        FlutterFlowTheme.of(context).bgInput,
+                                    elevation: 2.0,
+                                    borderColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    borderWidth: 2.0,
+                                    borderRadius: 8.0,
+                                    margin: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 4.0, 16.0, 4.0),
+                                    hidesUnderline: true,
+                                    isSearchable: false,
+                                    isMultiSelect: false,
                                   ),
-                                  fillColor:
-                                      FlutterFlowTheme.of(context).bgInput,
-                                  elevation: 2.0,
-                                  borderColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  borderWidth: 2.0,
-                                  borderRadius: 8.0,
-                                  margin: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 4.0, 16.0, 4.0),
-                                  hidesUnderline: true,
-                                  isSearchable: false,
-                                  isMultiSelect: false,
-                                ),
-                                FlutterFlowDropDown<String>(
-                                  controller: _model
-                                          .interesesDropDownValueController ??=
-                                      FormFieldController<String>(
-                                    _model.interesesDropDownValue ??=
-                                        egresadosRegisterPageEgresadosRecord
-                                            .intereses,
+                                if ((FFAppState().tipoUsuario != 'Productor') ||
+                                    (FFAppState().tipoUsuario != 'Estudiante'))
+                                  FlutterFlowDropDown<String>(
+                                    controller: _model
+                                            .interesesDropDownValueController ??=
+                                        FormFieldController<String>(
+                                      _model.interesesDropDownValue ??=
+                                          egresadosRegisterPageEgresadosRecord
+                                              .intereses,
+                                    ),
+                                    options: [
+                                      'Estudios de cuartinivel',
+                                      'Ampliación de conocimiento corto plazo',
+                                      'Otros'
+                                    ],
+                                    onChanged: (val) async {
+                                      setState(() =>
+                                          _model.interesesDropDownValue = val);
+                                      logFirebaseEvent(
+                                          'EGRESADOS_REGISTER_InteresesDropDown_ON_');
+                                      logFirebaseEvent(
+                                          'InteresesDropDown_update_page_state');
+                                      setState(() {
+                                        _model.intereses =
+                                            _model.interesesDropDownValue!;
+                                      });
+                                    },
+                                    width: double.infinity,
+                                    height: 50.0,
+                                    textStyle:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    hintText: 'intrereses  profesionales',
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                    fillColor:
+                                        FlutterFlowTheme.of(context).bgInput,
+                                    elevation: 2.0,
+                                    borderColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    borderWidth: 2.0,
+                                    borderRadius: 8.0,
+                                    margin: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 4.0, 16.0, 4.0),
+                                    hidesUnderline: true,
+                                    isSearchable: false,
+                                    isMultiSelect: false,
                                   ),
-                                  options: [
-                                    'Estudios de cuartinivel',
-                                    'Ampliación de conocimiento corto plazo',
-                                    'Otros'
-                                  ],
-                                  onChanged: (val) async {
-                                    setState(() =>
-                                        _model.interesesDropDownValue = val);
-                                    logFirebaseEvent(
-                                        'EGRESADOS_REGISTER_InteresesDropDown_ON_');
-                                    logFirebaseEvent(
-                                        'InteresesDropDown_update_page_state');
-                                    setState(() {
-                                      _model.intereses =
-                                          _model.interesesDropDownValue!;
-                                    });
-                                  },
-                                  width: double.infinity,
-                                  height: 50.0,
-                                  textStyle:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                  hintText: 'intrereses  profesionales',
-                                  icon: Icon(
-                                    Icons.keyboard_arrow_down_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24.0,
-                                  ),
-                                  fillColor:
-                                      FlutterFlowTheme.of(context).bgInput,
-                                  elevation: 2.0,
-                                  borderColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  borderWidth: 2.0,
-                                  borderRadius: 8.0,
-                                  margin: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 4.0, 16.0, 4.0),
-                                  hidesUnderline: true,
-                                  isSearchable: false,
-                                  isMultiSelect: false,
-                                ),
                                 if (_model.intereses == 'Otros')
                                   TextFormField(
                                     controller: _model.otrosFieldController ??=
@@ -903,65 +970,71 @@ class _EgresadosRegisterPageWidgetState
                                         .otrosFieldControllerValidator
                                         .asValidator(context),
                                   ),
-                                TextFormField(
-                                  controller: _model
-                                          .estudiosCuartinivelFieldController ??=
-                                      TextEditingController(
-                                    text: egresadosRegisterPageEgresadosRecord
-                                        .estudiosCuartinivel,
+                                if ((FFAppState().tipoUsuario != 'Productor') ||
+                                    (FFAppState().tipoUsuario != 'Estudiante'))
+                                  TextFormField(
+                                    controller: _model
+                                            .estudiosCuartinivelFieldController ??=
+                                        TextEditingController(
+                                      text: egresadosRegisterPageEgresadosRecord
+                                          .estudiosCuartinivel,
+                                    ),
+                                    focusNode: _model
+                                        .estudiosCuartinivelFieldFocusNode,
+                                    autofocus: true,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText:
+                                          'Posee estudios de 4 nivel .  Cuales?',
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      filled: true,
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    maxLines: 3,
+                                    validator: _model
+                                        .estudiosCuartinivelFieldControllerValidator
+                                        .asValidator(context),
                                   ),
-                                  focusNode:
-                                      _model.estudiosCuartinivelFieldFocusNode,
-                                  autofocus: true,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText:
-                                        'Posee estudios de 4 nivel .  Cuales?',
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    filled: true,
-                                  ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                  maxLines: 3,
-                                  validator: _model
-                                      .estudiosCuartinivelFieldControllerValidator
-                                      .asValidator(context),
-                                ),
                                 Divider(
                                   thickness: 1.0,
                                   color: Color(0xFFBFBFC8),
@@ -1160,69 +1233,140 @@ class _EgresadosRegisterPageWidgetState
                           onPressed: () async {
                             logFirebaseEvent(
                                 'EGRESADOS_REGISTER_SALVAR_REGISTRO_BTN_O');
-                            logFirebaseEvent('Button_validate_form');
-                            if (_model.formKey.currentState == null ||
-                                !_model.formKey.currentState!.validate()) {
-                              return;
+                            if (widget.uid != null) {
+                              logFirebaseEvent('Button_validate_form');
+                              if (_model.formKey.currentState == null ||
+                                  !_model.formKey.currentState!.validate()) {
+                                return;
+                              }
+                              logFirebaseEvent('Button_backend_call');
+
+                              await widget.uid!
+                                  .update(createEgresadosRecordData(
+                                name: _model.nameFieldController.text,
+                                nacionality: _model.nacDropDownValue,
+                                country: _model.countryFieldController.text,
+                                city: _model.cityFieldController.text,
+                                email: _model.emailFieldController.text,
+                                phone: _model.phoneFieldController.text,
+                                intereses: _model.interesesDropDownValue,
+                                others: _model.otrosFieldController.text,
+                                areaLaboral: _model.areaDesempanoDropDownValue,
+                                estudiosCuartinivel: _model
+                                    .estudiosCuartinivelFieldController.text,
+                                dataEgresado: _model.universidadController.text,
+                                sexo: _model.sexoDropDownValue,
+                                dataNacimiento: valueOrDefault(
+                                    currentUserDocument?.born, ''),
+                                facebook: egresadosRegisterPageEgresadosRecord
+                                    .facebook,
+                                instagram: egresadosRegisterPageEgresadosRecord
+                                    .instagram,
+                                twitter: _model.xFieldController.text,
+                                identificator:
+                                    egresadosRegisterPageEgresadosRecord
+                                        .identificator,
+                              ));
+                              logFirebaseEvent('Button_alert_dialog');
+                              await showDialog(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return WebViewAware(
+                                      child: AlertDialog(
+                                    title: Text('Info'),
+                                    content: Text(
+                                        'Su registro fue actualizo con éxito!'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
+                                  ));
+                                },
+                              );
+                              logFirebaseEvent('Button_navigate_to');
+
+                              context.pushNamed(
+                                'HomePage',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
+                              );
+                            } else {
+                              logFirebaseEvent('Button_validate_form');
+                              if (_model.formKey.currentState == null ||
+                                  !_model.formKey.currentState!.validate()) {
+                                return;
+                              }
+                              logFirebaseEvent('Button_backend_call');
+
+                              await EgresadosRecord.collection
+                                  .doc()
+                                  .set(createEgresadosRecordData(
+                                    name: _model.nameFieldController.text,
+                                    nacionality: _model.nacDropDownValue,
+                                    country: _model.countryFieldController.text,
+                                    city: _model.cityFieldController.text,
+                                    email: _model.emailFieldController.text,
+                                    phone: _model.phoneFieldController.text,
+                                    intereses: _model.interesesDropDownValue,
+                                    others: _model.otrosFieldController.text,
+                                    areaLaboral:
+                                        _model.areaDesempanoDropDownValue,
+                                    estudiosCuartinivel: _model
+                                        .estudiosCuartinivelFieldController
+                                        .text,
+                                    dataEgresado:
+                                        _model.anoEgredsadoController.text,
+                                    sexo: _model.sexoDropDownValue,
+                                    dataNacimiento: _model.bornController.text,
+                                    facebook: _model.fbFieldController.text,
+                                    instagram: _model.igFieldController.text,
+                                    twitter: _model.xFieldController.text,
+                                    updateTime: getCurrentTimestamp,
+                                    identificator: int.tryParse(
+                                        _model.idFieldController.text),
+                                    universidad:
+                                        _model.universidadController.text,
+                                  ));
+                              logFirebaseEvent('Button_alert_dialog');
+                              await showDialog(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return WebViewAware(
+                                      child: AlertDialog(
+                                    title: Text('Info'),
+                                    content: Text(
+                                        'Su registro fue creado con éxito!'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
+                                  ));
+                                },
+                              );
+                              logFirebaseEvent('Button_navigate_to');
+
+                              context.pushNamed(
+                                'HomePage',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
+                              );
                             }
-                            logFirebaseEvent('Button_backend_call');
-
-                            await widget.uid!.update(createEgresadosRecordData(
-                              name: _model.nameFieldController.text,
-                              nacionality: _model.nacDropDownValue,
-                              country: _model.countryFieldController.text,
-                              city: _model.cityFieldController.text,
-                              email: _model.emailFieldController.text,
-                              phone: _model.phoneFieldController.text,
-                              intereses: _model.interesesDropDownValue,
-                              others: _model.otrosFieldController.text,
-                              areaLaboral: _model.areaDesempanoDropDownValue,
-                              estudiosCuartinivel: _model
-                                  .estudiosCuartinivelFieldController.text,
-                              dataEgresado: _model.anoEgredsadoController.text,
-                              sexo: _model.sexoDropDownValue,
-                              dataNacimiento:
-                                  valueOrDefault(currentUserDocument?.born, ''),
-                              facebook:
-                                  egresadosRegisterPageEgresadosRecord.facebook,
-                              instagram: egresadosRegisterPageEgresadosRecord
-                                  .instagram,
-                              twitter: _model.xFieldController.text,
-                              identificator:
-                                  egresadosRegisterPageEgresadosRecord
-                                      .identificator,
-                            ));
-                            logFirebaseEvent('Button_alert_dialog');
-                            await showDialog(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return WebViewAware(
-                                    child: AlertDialog(
-                                  title: Text('Info'),
-                                  content: Text(
-                                      'Su registro fue actualizo con éxito!'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(alertDialogContext),
-                                      child: Text('Ok'),
-                                    ),
-                                  ],
-                                ));
-                              },
-                            );
-                            logFirebaseEvent('Button_navigate_to');
-
-                            context.pushNamed(
-                              'HomePage',
-                              extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
-                                  hasTransition: true,
-                                  transitionType: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                ),
-                              },
-                            );
                           },
                           text: 'Salvar Registro',
                           options: FFButtonOptions(

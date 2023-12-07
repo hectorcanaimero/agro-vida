@@ -32,3 +32,6 @@ export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
 export '/pages/fagro_i_a_page/fagro_i_a_page_widget.dart'
     show FagroIAPageWidget;
 export '/support_page/support_page_widget.dart' show SupportPageWidget;
+export '/pages/news_list/news_list_widget.dart' show NewsListWidget;
+export '/details_news_page/details_news_page_widget.dart'
+    show DetailsNewsPageWidget;

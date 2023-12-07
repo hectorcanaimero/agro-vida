@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/typo_registro_component_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -103,9 +104,9 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(30.0, 12.0, 30.0, 0.0),
                 child: Text(
-                  '¡Actualiza tus Datos como \nEgresado de Agronomía en la UCV!',
+                  '¡Ahora queremos saber \nun poco mas de ti!',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).headlineSmall.override(
                         fontFamily: 'Poppins',
@@ -132,7 +133,7 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                             Align(
                               alignment: AlignmentDirectional(-1.00, 0.00),
                               child: Text(
-                                '¡Nos emociona invitarte a actualizar tus datos para fortalecer nuestra red de profesionales! Queremos destacar tus logros y conectar contigo. Tu participación es clave para mantenernos informados, colaborar en proyectos futuros y ampliar tu red de contactos.',
+                                '¡Nos emociona invitarte a actualizar tus datos para fortalecer nuestra red de profesionales!  Queremos destacar tus logros y conectar contigo. \n\nTu participación es clave para mantenernos informados, colaborar en proyectos futuros y ampliar tu red de contactos.',
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -143,60 +144,62 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                                     ),
                               ),
                             ),
-                            TextFormField(
-                              controller: _model.cedulaTextFieldController,
-                              focusNode: _model.cedulaTextFieldFocusNode,
-                              textInputAction: TextInputAction.send,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Cédula de Identidad',
-                                labelStyle:
-                                    FlutterFlowTheme.of(context).labelMedium,
-                                hintStyle:
-                                    FlutterFlowTheme.of(context).labelMedium,
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 2.0,
+                            if (FFAppState().tipoUsuario == 'Egresado UCV')
+                              TextFormField(
+                                controller: _model.cedulaTextFieldController,
+                                focusNode: _model.cedulaTextFieldFocusNode,
+                                textInputAction: TextInputAction.send,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Cédula de Identidad',
+                                  labelStyle:
+                                      FlutterFlowTheme.of(context).labelMedium,
+                                  hintStyle:
+                                      FlutterFlowTheme.of(context).labelMedium,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 2.0,
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2.0,
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2.0,
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(8.0),
+                                  filled: true,
                                 ),
-                                filled: true,
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                maxLength: 8,
+                                buildCounter: (context,
+                                        {required currentLength,
+                                        required isFocused,
+                                        maxLength}) =>
+                                    null,
+                                keyboardType: TextInputType.number,
+                                validator: _model
+                                    .cedulaTextFieldControllerValidator
+                                    .asValidator(context),
                               ),
-                              style: FlutterFlowTheme.of(context).bodyMedium,
-                              maxLength: 8,
-                              buildCounter: (context,
-                                      {required currentLength,
-                                      required isFocused,
-                                      maxLength}) =>
-                                  null,
-                              keyboardType: TextInputType.number,
-                              validator: _model
-                                  .cedulaTextFieldControllerValidator
-                                  .asValidator(context),
-                            ),
                           ].divide(SizedBox(height: 24.0)),
                         ),
                       ),
@@ -204,90 +207,103 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 120.0,
-                  decoration: BoxDecoration(),
-                  child: Align(
-                    alignment: AlignmentDirectional(0.00, 0.00),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        logFirebaseEvent(
-                            'EGRESADOS_BUSCAR_MIS_DATOS_BTN_ON_TAP');
-                        logFirebaseEvent('Button_firestore_query');
-                        _model.successEgresado = await queryEgresadosRecordOnce(
-                          queryBuilder: (egresadosRecord) =>
-                              egresadosRecord.where(
-                            'identificator',
-                            isEqualTo: int.tryParse(
-                                _model.cedulaTextFieldController.text),
-                          ),
-                          singleRecord: true,
-                        ).then((s) => s.firstOrNull);
-                        if (_model.successEgresado != null) {
-                          logFirebaseEvent('Button_navigate_to');
-
-                          context.pushNamed(
-                            'EgresadosRegisterPage',
-                            queryParameters: {
-                              'uid': serializeParam(
-                                _model.successEgresado?.reference,
-                                ParamType.DocumentReference,
-                              ),
-                            }.withoutNulls,
-                          );
-                        } else {
-                          logFirebaseEvent('Button_alert_dialog');
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return WebViewAware(
-                                  child: AlertDialog(
-                                title: Text('Erro'),
-                                content: Text(
-                                    'Tu cédula de identidad no esta registrada, si eres un egresado entra en ocntacto con nosotros en el siguiente email egresados@ucv.edu.ve'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: Text('Ok'),
-                                  ),
-                                ],
-                              ));
-                            },
-                          );
-                          logFirebaseEvent(
-                              'Button_clear_text_fields_pin_codes');
-                          setState(() {
-                            _model.cedulaTextFieldController?.clear();
-                          });
-                        }
-
-                        setState(() {});
-                      },
-                      text: 'Buscar mis datos',
-                      options: FFButtonOptions(
-                        width: 270.0,
-                        height: 55.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Poppins',
-                                  color: Colors.white,
+              Align(
+                alignment: AlignmentDirectional(0.00, 0.00),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 80.0,
+                    decoration: BoxDecoration(),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Align(
+                          alignment: AlignmentDirectional(0.00, 0.00),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'EGRESADOS_BUSCAR_MIS_DATOS_BTN_ON_TAP');
+                              logFirebaseEvent('Button_firestore_query');
+                              _model.successEgresado =
+                                  await queryEgresadosRecordOnce(
+                                queryBuilder: (egresadosRecord) =>
+                                    egresadosRecord.where(
+                                  'identificator',
+                                  isEqualTo: int.tryParse(
+                                      _model.cedulaTextFieldController.text),
                                 ),
-                        elevation: 3.0,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                                singleRecord: true,
+                              ).then((s) => s.firstOrNull);
+                              if (_model.successEgresado != null) {
+                                logFirebaseEvent('Button_update_app_state');
+                                setState(() {
+                                  FFAppState().tipoUsuario = 'Egresado UCV';
+                                });
+                                logFirebaseEvent('Button_navigate_to');
+
+                                context.pushNamed(
+                                  'EgresadosRegisterPage',
+                                  queryParameters: {
+                                    'uid': serializeParam(
+                                      _model.successEgresado?.reference,
+                                      ParamType.DocumentReference,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              } else {
+                                logFirebaseEvent('Button_bottom_sheet');
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return WebViewAware(
+                                        child: GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: TypoRegistroComponentWidget(),
+                                      ),
+                                    ));
+                                  },
+                                ).then((value) => safeSetState(() {}));
+                              }
+
+                              setState(() {});
+                            },
+                            text: 'Buscar mis datos',
+                            options: FFButtonOptions(
+                              width: 270.0,
+                              height: 55.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.white,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
+                      ],
                     ),
                   ),
                 ),

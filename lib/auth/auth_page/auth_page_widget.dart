@@ -13,6 +13,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'auth_page_model.dart';
 export 'auth_page_model.dart';
 
@@ -164,7 +165,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -224,7 +225,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                   alignment: AlignmentDirectional(0.00, 0.00),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     child: Container(
                       width: double.infinity,
                       height: MediaQuery.sizeOf(context).height * 0.8,
@@ -268,29 +269,22 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                       .secondaryBackground,
                                                 ),
                                               ),
-                                            Text(
-                                              'Crear Cuenta',
-                                              textAlign: TextAlign.start,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineMedium,
-                                            ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      0.0, 4.0, 0.0, 24.0),
+                                                      0.0, 0.0, 0.0, 12.0),
                                               child: Text(
-                                                'Comencemos completando el formulario a continuación.',
+                                                'Crear Cuenta',
                                                 textAlign: TextAlign.start,
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .labelMedium,
+                                                        .headlineMedium,
                                               ),
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      0.0, 0.0, 0.0, 16.0),
+                                                      0.0, 0.0, 0.0, 24.0),
                                               child: Container(
                                                 width: double.infinity,
                                                 child: TextFormField(
@@ -400,7 +394,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                             Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      0.0, 0.0, 0.0, 16.0),
+                                                      0.0, 0.0, 0.0, 24.0),
                                               child: Container(
                                                 width: double.infinity,
                                                 child: TextFormField(
@@ -511,7 +505,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                             Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      0.0, 0.0, 0.0, 16.0),
+                                                      0.0, 0.0, 0.0, 24.0),
                                               child: Container(
                                                 width: double.infinity,
                                                 child: TextFormField(
@@ -642,7 +636,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                             Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      0.0, 0.0, 0.0, 16.0),
+                                                      0.0, 0.0, 0.0, 24.0),
                                               child: Container(
                                                 width: double.infinity,
                                                 child: TextFormField(
@@ -827,34 +821,33 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                         ));
 
                                                     logFirebaseEvent(
+                                                        'Button_alert_dialog');
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return WebViewAware(
+                                                            child: AlertDialog(
+                                                          title: Text('Info'),
+                                                          content: Text(
+                                                              'Show! Ahora vamos atualizar tu  perfil'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        ));
+                                                      },
+                                                    );
+                                                    logFirebaseEvent(
                                                         'Button_navigate_to');
 
                                                     context.pushNamedAuth(
-                                                        'HomePage',
+                                                        'EgresadosPage',
                                                         context.mounted);
-
-                                                    logFirebaseEvent(
-                                                        'Button_show_snack_bar');
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(
-                                                      SnackBar(
-                                                        content: Text(
-                                                          'Bienvenido a AgroVida',
-                                                          style: TextStyle(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                          ),
-                                                        ),
-                                                        duration: Duration(
-                                                            milliseconds: 3500),
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                      ),
-                                                    );
                                                   },
                                                   text: 'Registrar',
                                                   options: FFButtonOptions(

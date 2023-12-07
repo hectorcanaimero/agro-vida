@@ -26,6 +26,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _yaRegistro = prefs.getBool('ff_yaRegistro') ?? _yaRegistro;
     });
+    _safeInit(() {
+      _tipoUsuario = prefs.getString('ff_tipoUsuario') ?? _tipoUsuario;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -53,6 +56,13 @@ class FFAppState extends ChangeNotifier {
   set yaRegistro(bool _value) {
     _yaRegistro = _value;
     prefs.setBool('ff_yaRegistro', _value);
+  }
+
+  String _tipoUsuario = '';
+  String get tipoUsuario => _tipoUsuario;
+  set tipoUsuario(String _value) {
+    _tipoUsuario = _value;
+    prefs.setString('ff_tipoUsuario', _value);
   }
 }
 

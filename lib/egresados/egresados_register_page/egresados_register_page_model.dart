@@ -60,6 +60,11 @@ class EgresadosRegisterPageModel
   FocusNode? cityFieldFocusNode;
   TextEditingController? cityFieldController;
   String? Function(BuildContext, String?)? cityFieldControllerValidator;
+  // State field(s) for universidad widget.
+  FocusNode? universidadFocusNode;
+  TextEditingController? universidadController;
+  final universidadMask = MaskTextInputFormatter(mask: '####');
+  String? Function(BuildContext, String?)? universidadControllerValidator;
   // State field(s) for anoEgredsado widget.
   FocusNode? anoEgredsadoFocusNode;
   TextEditingController? anoEgredsadoController;
@@ -119,6 +124,9 @@ class EgresadosRegisterPageModel
 
     cityFieldFocusNode?.dispose();
     cityFieldController?.dispose();
+
+    universidadFocusNode?.dispose();
+    universidadController?.dispose();
 
     anoEgredsadoFocusNode?.dispose();
     anoEgredsadoController?.dispose();

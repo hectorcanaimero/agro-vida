@@ -141,6 +141,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomePage': HomePageWidget(),
+      'NewsList': NewsListWidget(),
       'BoletimPage': BoletimPageWidget(),
       'MenuPage': MenuPageWidget(),
     };
@@ -154,7 +155,7 @@ class _NavBarPageState extends State<NavBarPage> {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
-        backgroundColor: FlutterFlowTheme.of(context).backgroundComponents,
+        backgroundColor: FlutterFlowTheme.of(context).secondary,
         selectedItemColor: FlutterFlowTheme.of(context).primaryBackground,
         unselectedItemColor: Color(0xFFC0C0C0),
         showSelectedLabels: true,
@@ -167,6 +168,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.newspaper_sharp,
+              size: 24.0,
+            ),
+            label: 'Noticias',
             tooltip: '',
           ),
           BottomNavigationBarItem(

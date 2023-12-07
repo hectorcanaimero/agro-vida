@@ -106,6 +106,11 @@ class EgresadosRecord extends FirestoreRecord {
   int get identificator => _identificator ?? 0;
   bool hasIdentificator() => _identificator != null;
 
+  // "universidad" field.
+  String? _universidad;
+  String get universidad => _universidad ?? '';
+  bool hasUniversidad() => _universidad != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _nacionality = snapshotData['nacionality'] as String?;
@@ -125,6 +130,7 @@ class EgresadosRecord extends FirestoreRecord {
     _twitter = snapshotData['twitter'] as String?;
     _updateTime = snapshotData['update_time'] as DateTime?;
     _identificator = castToType<int>(snapshotData['identificator']);
+    _universidad = snapshotData['universidad'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -180,6 +186,7 @@ Map<String, dynamic> createEgresadosRecordData({
   String? twitter,
   DateTime? updateTime,
   int? identificator,
+  String? universidad,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -201,6 +208,7 @@ Map<String, dynamic> createEgresadosRecordData({
       'twitter': twitter,
       'update_time': updateTime,
       'identificator': identificator,
+      'universidad': universidad,
     }.withoutNulls,
   );
 
@@ -229,7 +237,8 @@ class EgresadosRecordDocumentEquality implements Equality<EgresadosRecord> {
         e1?.instagram == e2?.instagram &&
         e1?.twitter == e2?.twitter &&
         e1?.updateTime == e2?.updateTime &&
-        e1?.identificator == e2?.identificator;
+        e1?.identificator == e2?.identificator &&
+        e1?.universidad == e2?.universidad;
   }
 
   @override
@@ -251,7 +260,8 @@ class EgresadosRecordDocumentEquality implements Equality<EgresadosRecord> {
         e?.instagram,
         e?.twitter,
         e?.updateTime,
-        e?.identificator
+        e?.identificator,
+        e?.universidad
       ]);
 
   @override

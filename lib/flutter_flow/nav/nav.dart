@@ -213,6 +213,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SupportPage',
           path: '/supportPage',
           builder: (context, params) => SupportPageWidget(),
+        ),
+        FFRoute(
+          name: 'NewsList',
+          path: '/newsList',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'NewsList')
+              : NewsListWidget(),
+        ),
+        FFRoute(
+          name: 'DetailsNewsPage',
+          path: '/detailsNewsPage',
+          builder: (context, params) => DetailsNewsPageWidget(
+            uid: params
+                .getParam('uid', ParamType.DocumentReference, false, ['news']),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
