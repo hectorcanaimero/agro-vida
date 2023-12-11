@@ -172,7 +172,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 'position',
                                 isEqualTo: 'block-1',
                               )
-                              .orderBy('created_on', descending: true),
+                              .orderBy('createdAt', descending: true),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.

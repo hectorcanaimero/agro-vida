@@ -56,6 +56,11 @@ class BannersRecord extends FirestoreRecord {
   String get position => _position ?? '';
   bool hasPosition() => _position != null;
 
+  // "createdAt" field.
+  DateTime? _createdAt;
+  DateTime? get createdAt => _createdAt;
+  bool hasCreatedAt() => _createdAt != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _url = snapshotData['url'] as String?;
@@ -65,6 +70,7 @@ class BannersRecord extends FirestoreRecord {
     _createdOn = snapshotData['created_on'] as DateTime?;
     _expiresOn = snapshotData['expires_on'] as DateTime?;
     _position = snapshotData['position'] as String?;
+    _createdAt = snapshotData['createdAt'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -110,6 +116,7 @@ Map<String, dynamic> createBannersRecordData({
   DateTime? createdOn,
   DateTime? expiresOn,
   String? position,
+  DateTime? createdAt,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -121,6 +128,7 @@ Map<String, dynamic> createBannersRecordData({
       'created_on': createdOn,
       'expires_on': expiresOn,
       'position': position,
+      'createdAt': createdAt,
     }.withoutNulls,
   );
 
@@ -139,7 +147,8 @@ class BannersRecordDocumentEquality implements Equality<BannersRecord> {
         e1?.published == e2?.published &&
         e1?.createdOn == e2?.createdOn &&
         e1?.expiresOn == e2?.expiresOn &&
-        e1?.position == e2?.position;
+        e1?.position == e2?.position &&
+        e1?.createdAt == e2?.createdAt;
   }
 
   @override
@@ -151,7 +160,8 @@ class BannersRecordDocumentEquality implements Equality<BannersRecord> {
         e?.published,
         e?.createdOn,
         e?.expiresOn,
-        e?.position
+        e?.position,
+        e?.createdAt
       ]);
 
   @override
