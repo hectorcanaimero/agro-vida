@@ -64,7 +64,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
           children: [
             Container(
               width: double.infinity,
-              height: 100.0,
+              height: 140.0,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
                 image: DecorationImage(
@@ -76,7 +76,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
               ),
               child: Container(
                 width: double.infinity,
-                height: 100.0,
+                height: 140.0,
                 decoration: BoxDecoration(
                   color: Color(0xBE1D2428),
                 ),
@@ -97,6 +97,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
                               .override(
                                 fontFamily: 'Poppins',
                                 color: Colors.white,
+                                fontSize: 28.0,
                               ),
                         ),
                       ),
@@ -141,6 +142,8 @@ class _NewsListWidgetState extends State<NewsListWidget> {
                       List<NewsRecord> listViewNewsRecordList = snapshot.data!;
                       return ListView.builder(
                         padding: EdgeInsets.zero,
+                        primary: false,
+                        shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: listViewNewsRecordList.length,
                         itemBuilder: (context, listViewIndex) {

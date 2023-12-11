@@ -97,6 +97,8 @@ class EgresadosRegisterPageModel
   FocusNode? igFieldFocusNode;
   TextEditingController? igFieldController;
   String? Function(BuildContext, String?)? igFieldControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  EgresadosRecord? createEgresado;
 
   /// Initialization and disposal methods.
 

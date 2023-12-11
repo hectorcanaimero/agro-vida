@@ -114,7 +114,6 @@ final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
   'AuthPage': ParameterData.none(),
   'ForgotPasswordPage': ParameterData.none(),
-  'ProfilePage': ParameterData.none(),
   'BoletimPage': ParameterData.none(),
   'ListAdvidorsPage': ParameterData.none(),
   'DetailAdvisorPage': (data) async => ParameterData(

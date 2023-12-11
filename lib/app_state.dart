@@ -29,6 +29,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _tipoUsuario = prefs.getString('ff_tipoUsuario') ?? _tipoUsuario;
     });
+    _safeInit(() {
+      _egresadoRef = prefs.getString('ff_egresadoRef')?.ref ?? _egresadoRef;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -58,11 +61,20 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_yaRegistro', _value);
   }
 
-  String _tipoUsuario = '';
+  String _tipoUsuario = 'UCV';
   String get tipoUsuario => _tipoUsuario;
   set tipoUsuario(String _value) {
     _tipoUsuario = _value;
     prefs.setString('ff_tipoUsuario', _value);
+  }
+
+  DocumentReference? _egresadoRef;
+  DocumentReference? get egresadoRef => _egresadoRef;
+  set egresadoRef(DocumentReference? _value) {
+    _egresadoRef = _value;
+    _value != null
+        ? prefs.setString('ff_egresadoRef', _value.path)
+        : prefs.remove('ff_egresadoRef');
   }
 }
 

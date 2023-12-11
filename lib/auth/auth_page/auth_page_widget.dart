@@ -830,7 +830,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                             child: AlertDialog(
                                                           title: Text('Info'),
                                                           content: Text(
-                                                              'Show! Ahora vamos atualizar tu  perfil'),
+                                                              'Show! Ahora vamos atualizar tu  perfil técnico'),
                                                           actions: [
                                                             TextButton(
                                                               onPressed: () =>
@@ -1307,29 +1307,6 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                     context.pushNamedAuth(
                                                         'HomePage',
                                                         context.mounted);
-
-                                                    logFirebaseEvent(
-                                                        'Button_show_snack_bar');
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(
-                                                      SnackBar(
-                                                        content: Text(
-                                                          'Bienvenido a AgroVida',
-                                                          style: TextStyle(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                          ),
-                                                        ),
-                                                        duration: Duration(
-                                                            milliseconds: 3500),
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                      ),
-                                                    );
                                                   },
                                                   text: 'Iniciar sesión',
                                                   options: FFButtonOptions(
@@ -1587,7 +1564,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                     text: 'Crear',
                                   ),
                                   Tab(
-                                    text: 'Acceso',
+                                    text: 'Entrar',
                                   ),
                                 ],
                                 controller: _model.tabBarController,

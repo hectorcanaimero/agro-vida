@@ -101,11 +101,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ForgotPasswordPageWidget(),
         ),
         FFRoute(
-          name: 'ProfilePage',
-          path: '/profilePage',
-          builder: (context, params) => ProfilePageWidget(),
-        ),
-        FFRoute(
           name: 'BoletimPage',
           path: '/boletimPage',
           builder: (context, params) => params.isEmpty

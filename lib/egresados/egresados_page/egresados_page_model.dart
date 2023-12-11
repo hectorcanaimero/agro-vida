@@ -19,10 +19,6 @@ class EgresadosPageModel extends FlutterFlowModel<EgresadosPageWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
-  // State field(s) for CedulaTextField widget.
-  FocusNode? cedulaTextFieldFocusNode;
-  TextEditingController? cedulaTextFieldController;
-  String? Function(BuildContext, String?)? cedulaTextFieldControllerValidator;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   EgresadosRecord? successEgresado;
 
@@ -32,8 +28,6 @@ class EgresadosPageModel extends FlutterFlowModel<EgresadosPageWidget> {
 
   void dispose() {
     unfocusNode.dispose();
-    cedulaTextFieldFocusNode?.dispose();
-    cedulaTextFieldController?.dispose();
   }
 
   /// Action blocks are added here.

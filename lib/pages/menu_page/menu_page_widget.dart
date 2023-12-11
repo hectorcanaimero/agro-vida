@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'menu_page_model.dart';
 export 'menu_page_model.dart';
 
@@ -60,51 +61,54 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Container(
-                width: double.infinity,
-                height: 96.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 0.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AuthUserStreamWidget(
-                        builder: (context) => Text(
-                          currentUserDisplayName,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 96.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 18.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AuthUserStreamWidget(
+                          builder: (context) => Text(
+                            currentUserDisplayName,
+                            style: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                ),
+                          ),
+                        ),
+                        Text(
+                          currentUserEmail,
                           style: FlutterFlowTheme.of(context)
-                              .titleSmall
+                              .bodyMedium
                               .override(
                                 fontFamily: 'Poppins',
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                               ),
                         ),
-                      ),
-                      Text(
-                        currentUserEmail,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Poppins',
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                            ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: Padding(
+                Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                   child: Container(
                     width: double.infinity,
-                    height: 100.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
@@ -136,6 +140,8 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                       mainAxisSpacing: 15.0,
                                       childAspectRatio: 1.0,
                                     ),
+                                    primary: false,
+                                    shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
                                     children: [
                                       MouseRegion(
@@ -167,12 +173,20 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                   Colors.transparent,
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'MENU_PAGE_PAGE_Column_oevgwgjf_ON_TAP');
+                                                    'MENU_PAGE_PAGE_Column_j1p6fqwp_ON_TAP');
                                                 logFirebaseEvent(
                                                     'Column_navigate_to');
 
-                                                context
-                                                    .pushNamed('EgresadosPage');
+                                                context.pushNamed(
+                                                  'EgresadosRegisterPage',
+                                                  queryParameters: {
+                                                    'uid': serializeParam(
+                                                      FFAppState().egresadoRef,
+                                                      ParamType
+                                                          .DocumentReference,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
                                               },
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -184,14 +198,14 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                         BorderRadius.circular(
                                                             8.0),
                                                     child: Image.asset(
-                                                      'assets/images/mortarboard.png',
+                                                      'assets/images/avatar_(1).png',
                                                       width: 36.0,
                                                       height: 36.0,
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),
                                                   Text(
-                                                    'Egresados',
+                                                    'Pérfil \nProfesional',
                                                     textAlign: TextAlign.center,
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -227,7 +241,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                               'MENU_PAGE_PAGE_Tools_ON_TAP');
                                           logFirebaseEvent('Tools_navigate_to');
 
-                                          context.pushNamed('ToolsPage');
+                                          context.pushNamed('NewsList');
                                         },
                                         child: Material(
                                           color: Colors.transparent,
@@ -256,14 +270,14 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                       BorderRadius.circular(
                                                           8.0),
                                                   child: Image.asset(
-                                                    'assets/images/construction-tools.png',
+                                                    'assets/images/newspaper.png',
                                                     width: 36.0,
                                                     height: 36.0,
                                                     fit: BoxFit.cover,
                                                   ),
                                                 ),
                                                 Text(
-                                                  'Herramientas',
+                                                  'Noticias\n',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -324,7 +338,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  'FAGROIA',
+                                                  'FAGROIA\n',
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -368,7 +382,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               logFirebaseEvent(
-                                                  'MENU_PAGE_PAGE_Column_wo84svuz_ON_TAP');
+                                                  'MENU_PAGE_PAGE_Column_cktnoowm_ON_TAP');
                                               logFirebaseEvent(
                                                   'Column_navigate_to');
 
@@ -429,7 +443,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               logFirebaseEvent(
-                                                  'MENU_PAGE_PAGE_Column_nk9ugj34_ON_TAP');
+                                                  'MENU_PAGE_PAGE_Column_u9q4cb19_ON_TAP');
                                               logFirebaseEvent(
                                                   'Column_navigate_to');
 
@@ -457,7 +471,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                       AlignmentDirectional(
                                                           0.00, 0.00),
                                                   child: Text(
-                                                    'Revista Uniersitaria',
+                                                    'Revista y \nTesis de Grado',
                                                     textAlign: TextAlign.center,
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -497,7 +511,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               logFirebaseEvent(
-                                                  'MENU_PAGE_PAGE_Column_hfcyuz5x_ON_TAP');
+                                                  'MENU_PAGE_PAGE_Column_a14djt6m_ON_TAP');
                                               logFirebaseEvent(
                                                   'Column_navigate_to');
 
@@ -521,7 +535,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  'Boletín\nMensual',
+                                                  'Boletín Agro\n',
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -549,7 +563,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                           height: 100.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
-                                                .success,
+                                                .secondaryBackground,
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
@@ -560,7 +574,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               logFirebaseEvent(
-                                                  'MENU_PAGE_PAGE_Column_s3hyli4x_ON_TAP');
+                                                  'MENU_PAGE_PAGE_Column_uhp1cfhe_ON_TAP');
                                               logFirebaseEvent(
                                                   'Column_navigate_to');
 
@@ -577,73 +591,30 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                       BorderRadius.circular(
                                                           8.0),
                                                   child: Image.asset(
-                                                    'assets/images/analista-de-negocios.png',
+                                                    'assets/images/consultant.png',
                                                     width: 36.0,
                                                     height: 36.0,
                                                     fit: BoxFit.cover,
                                                   ),
                                                 ),
                                                 Text(
-                                                  'Asesores\nTécnicos',
+                                                  'Asesores \nTécnicos',
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Poppins',
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
                                                         fontSize: 13.0,
                                                         lineHeight: 1.2,
                                                       ),
                                                 ),
                                               ].divide(SizedBox(height: 10.0)),
                                             ),
-                                          ),
-                                        ),
-                                      ),
-                                      Material(
-                                        color: Colors.transparent,
-                                        elevation: 3.0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Container(
-                                          width: 100.0,
-                                          height: 100.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.notifications_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 36.0,
-                                              ),
-                                              Text(
-                                                'Notificaciones',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 13.0,
-                                                          lineHeight: 1.2,
-                                                        ),
-                                              ),
-                                            ].divide(SizedBox(height: 10.0)),
                                           ),
                                         ),
                                       ),
@@ -670,52 +641,22 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               logFirebaseEvent(
-                                                  'MENU_PAGE_PAGE_Column_ev1rdnio_ON_TAP');
-                                              logFirebaseEvent('Column_auth');
-                                              GoRouter.of(context)
-                                                  .prepareAuthEvent();
-                                              await authManager.signOut();
-                                              GoRouter.of(context)
-                                                  .clearRedirectLocation();
-
+                                                  'MENU_PAGE_PAGE_Column_x1y1mw76_ON_TAP');
                                               logFirebaseEvent(
-                                                  'Column_show_snack_bar');
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'Que pena! Esperamos que vuelvas pronto',
-                                                    style: TextStyle(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                    ),
-                                                  ),
-                                                  duration: Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .backgroundComponents,
-                                                ),
-                                              );
-                                              logFirebaseEvent(
-                                                  'Column_navigate_to');
-
-                                              context.pushNamedAuth(
-                                                'AuthPage',
-                                                context.mounted,
-                                                extra: <String, dynamic>{
-                                                  kTransitionInfoKey:
-                                                      TransitionInfo(
-                                                    hasTransition: true,
-                                                    transitionType:
-                                                        PageTransitionType.fade,
-                                                    duration: Duration(
-                                                        milliseconds: 0),
-                                                  ),
-                                                },
-                                              );
+                                                  'Column_send_email');
+                                              await launchUrl(Uri(
+                                                  scheme: 'mailto',
+                                                  path: 'knaimero@gmail.com',
+                                                  query: {
+                                                    'subject':
+                                                        'Entre  en contato: ${currentUserDisplayName}',
+                                                  }
+                                                      .entries
+                                                      .map((MapEntry<String,
+                                                                  String>
+                                                              e) =>
+                                                          '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+                                                      .join('&')));
                                             },
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -723,10 +664,77 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Icon(
-                                                  Icons.logout_outlined,
+                                                  Icons.support_agent_sharp,
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .secondaryText,
+                                                      .primaryText,
+                                                  size: 36.0,
+                                                ),
+                                                Text(
+                                                  'Entre en \nContacto',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 13.0,
+                                                        lineHeight: 1.2,
+                                                      ),
+                                                ),
+                                              ].divide(SizedBox(height: 10.0)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Material(
+                                        color: Colors.transparent,
+                                        elevation: 3.0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Container(
+                                          width: 100.0,
+                                          height: 100.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'MENU_PAGE_PAGE_Column_o1rnx4xl_ON_TAP');
+                                              logFirebaseEvent('Column_auth');
+                                              GoRouter.of(context)
+                                                  .prepareAuthEvent();
+                                              await authManager.signOut();
+                                              GoRouter.of(context)
+                                                  .clearRedirectLocation();
+
+                                              context.goNamedAuth(
+                                                  'AuthPage', context.mounted);
+                                            },
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.logout_rounded,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
                                                   size: 36.0,
                                                 ),
                                                 Text(
@@ -737,6 +745,10 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Poppins',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
                                                         fontSize: 13.0,
                                                         lineHeight: 1.2,
                                                       ),
@@ -851,8 +863,8 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

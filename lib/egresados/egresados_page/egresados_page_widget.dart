@@ -34,9 +34,6 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'EgresadosPage'});
-    _model.cedulaTextFieldController ??= TextEditingController();
-    _model.cedulaTextFieldFocusNode ??= FocusNode();
-
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -133,7 +130,7 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                             Align(
                               alignment: AlignmentDirectional(-1.00, 0.00),
                               child: Text(
-                                '¡Nos emociona invitarte a actualizar tus datos para fortalecer nuestra red de profesionales!  Queremos destacar tus logros y conectar contigo. \n\nTu participación es clave para mantenernos informados, colaborar en proyectos futuros y ampliar tu red de contactos.',
+                                '¡Nos emociona  que seas parte de nuestra comunidad,  ahora necesitamos actualizar tus datos para fortalecer nuestra red de profesionales!  \n\nQueremos destacar tus logros y conectar contigo. \n\nTu participación es clave para mantenernos informados, colaborar en proyectos futuros y ampliar tu red de contactos.',
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -144,62 +141,6 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                                     ),
                               ),
                             ),
-                            if (FFAppState().tipoUsuario == 'Egresado UCV')
-                              TextFormField(
-                                controller: _model.cedulaTextFieldController,
-                                focusNode: _model.cedulaTextFieldFocusNode,
-                                textInputAction: TextInputAction.send,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Cédula de Identidad',
-                                  labelStyle:
-                                      FlutterFlowTheme.of(context).labelMedium,
-                                  hintStyle:
-                                      FlutterFlowTheme.of(context).labelMedium,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  filled: true,
-                                ),
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                                maxLength: 8,
-                                buildCounter: (context,
-                                        {required currentLength,
-                                        required isFocused,
-                                        maxLength}) =>
-                                    null,
-                                keyboardType: TextInputType.number,
-                                validator: _model
-                                    .cedulaTextFieldControllerValidator
-                                    .asValidator(context),
-                              ),
                           ].divide(SizedBox(height: 24.0)),
                         ),
                       ),
@@ -230,9 +171,8 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                                   await queryEgresadosRecordOnce(
                                 queryBuilder: (egresadosRecord) =>
                                     egresadosRecord.where(
-                                  'identificator',
-                                  isEqualTo: int.tryParse(
-                                      _model.cedulaTextFieldController.text),
+                                  'userRef',
+                                  isEqualTo: currentUserReference,
                                 ),
                                 singleRecord: true,
                               ).then((s) => s.firstOrNull);
@@ -240,14 +180,22 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                                 logFirebaseEvent('Button_update_app_state');
                                 setState(() {
                                   FFAppState().tipoUsuario = 'Egresado UCV';
+                                  FFAppState().egresadoRef =
+                                      _model.successEgresado?.reference;
                                 });
+                                logFirebaseEvent('Button_backend_call');
+
+                                await _model.successEgresado!.reference
+                                    .update(createEgresadosRecordData(
+                                  userRef: currentUserReference,
+                                ));
                                 logFirebaseEvent('Button_navigate_to');
 
                                 context.pushNamed(
                                   'EgresadosRegisterPage',
                                   queryParameters: {
                                     'uid': serializeParam(
-                                      _model.successEgresado?.reference,
+                                      FFAppState().egresadoRef,
                                       ParamType.DocumentReference,
                                     ),
                                   }.withoutNulls,
@@ -257,6 +205,7 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                                 await showModalBottomSheet(
                                   isScrollControlled: true,
                                   backgroundColor: Colors.transparent,
+                                  isDismissible: false,
                                   enableDrag: false,
                                   context: context,
                                   builder: (context) {

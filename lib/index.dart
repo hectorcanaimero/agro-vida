@@ -2,7 +2,6 @@
 export '/auth/auth_page/auth_page_widget.dart' show AuthPageWidget;
 export '/auth/forgot_password_page/forgot_password_page_widget.dart'
     show ForgotPasswordPageWidget;
-export '/auth/profile_page/profile_page_widget.dart' show ProfilePageWidget;
 export '/pages/boletim_page/boletim_page_widget.dart' show BoletimPageWidget;
 export '/advisors/list_advidors_page/list_advidors_page_widget.dart'
     show ListAdvidorsPageWidget;

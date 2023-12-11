@@ -27,7 +27,7 @@ dependencies:
     sdk: flutter
   auto_size_text: 3.0.0
   cached_network_image: 3.2.1
-  carousel_slider:
+  carousel_slider: 4.2.1
   cloud_firestore: 4.8.0
   cloud_firestore_platform_interface: 5.15.0
   cloud_firestore_web: 3.6.0
@@ -105,8 +105,6 @@ dependencies:
   sign_in_with_apple: 4.3.0
   sign_in_with_apple_platform_interface: 1.0.0
   sign_in_with_apple_web: 1.0.1
-  simple_gradient_text: 1.2.3
-  smooth_page_indicator: 1.1.0
   sqflite: 2.2.6
   stream_transform: 2.1.0
   timeago: 3.2.2

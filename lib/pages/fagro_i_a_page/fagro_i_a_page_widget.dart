@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -98,12 +99,15 @@ class _FagroIAPageWidgetState extends State<FagroIAPageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
-                child: FlutterFlowWebView(
-                  content: 'https://chat.guayoyoltda.com/fagronet-ia',
-                  bypass: false,
-                  height: MediaQuery.sizeOf(context).height * 1.0,
-                  verticalScroll: true,
-                  horizontalScroll: false,
+                child: AuthUserStreamWidget(
+                  builder: (context) => FlutterFlowWebView(
+                    content:
+                        'https://chat.guayoyoltda.com/fagronet-ia-v2?userRef=${currentUserDisplayName}',
+                    bypass: false,
+                    height: MediaQuery.sizeOf(context).height * 1.0,
+                    verticalScroll: true,
+                    horizontalScroll: false,
+                  ),
                 ),
               ),
             ].divide(SizedBox(height: 18.0)),

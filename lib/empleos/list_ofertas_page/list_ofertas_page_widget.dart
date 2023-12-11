@@ -197,6 +197,7 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
                     List<JobsRecord> listViewJobsRecordList = snapshot.data!;
                     return ListView.builder(
                       padding: EdgeInsets.zero,
+                      primary: false,
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: listViewJobsRecordList.length,

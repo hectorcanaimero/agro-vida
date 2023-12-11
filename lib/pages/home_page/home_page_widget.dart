@@ -3,8 +3,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -169,6 +168,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       child: StreamBuilder<List<BannersRecord>>(
                         stream: queryBannersRecord(
                           queryBuilder: (bannersRecord) => bannersRecord
+                              .where(
+                                'position',
+                                isEqualTo: 'block-1',
+                              )
                               .orderBy('created_on', descending: true),
                         ),
                         builder: (context, snapshot) {
@@ -186,102 +189,47 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                             );
                           }
-                          List<BannersRecord> pageViewBannersRecordList =
+                          List<BannersRecord> carouselBannersRecordList =
                               snapshot.data!;
                           return Container(
                             width: double.infinity,
-                            height: 400.0,
-                            child: Stack(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 40.0),
-                                  child: PageView.builder(
-                                    controller: _model.pageViewController ??=
-                                        PageController(
-                                            initialPage: min(
-                                                0,
-                                                pageViewBannersRecordList
-                                                        .length -
-                                                    1)),
-                                    onPageChanged: (_) => setState(() {}),
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: pageViewBannersRecordList.length,
-                                    itemBuilder: (context, pageViewIndex) {
-                                      final pageViewBannersRecord =
-                                          pageViewBannersRecordList[
-                                              pageViewIndex];
-                                      return InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          logFirebaseEvent(
-                                              'HOME_PAGE_PAGE_Image_5ntau9rn_ON_TAP');
-                                          logFirebaseEvent(
-                                              'Image_launch_u_r_l');
-                                          await launchURL(
-                                              pageViewBannersRecord.url);
-                                        },
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                          child: Image.network(
-                                            pageViewBannersRecord.image,
-                                            width: double.infinity,
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                1.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      );
-                                    },
+                            height: 300.0,
+                            child: CarouselSlider.builder(
+                              itemCount: carouselBannersRecordList.length,
+                              itemBuilder: (context, carouselIndex, _) {
+                                final carouselBannersRecord =
+                                    carouselBannersRecordList[carouselIndex];
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.network(
+                                    carouselBannersRecord.image,
+                                    width: 300.0,
+                                    height: 200.0,
+                                    fit: BoxFit.cover,
                                   ),
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional(0.00, 1.00),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 16.0),
-                                    child: smooth_page_indicator
-                                        .SmoothPageIndicator(
-                                      controller: _model.pageViewController ??=
-                                          PageController(
-                                              initialPage: min(
-                                                  0,
-                                                  pageViewBannersRecordList
-                                                          .length -
-                                                      1)),
-                                      count: pageViewBannersRecordList.length,
-                                      axisDirection: Axis.horizontal,
-                                      onDotClicked: (i) async {
-                                        await _model.pageViewController!
-                                            .animateToPage(
-                                          i,
-                                          duration: Duration(milliseconds: 500),
-                                          curve: Curves.ease,
-                                        );
-                                      },
-                                      effect: smooth_page_indicator
-                                          .ExpandingDotsEffect(
-                                        expansionFactor: 3.0,
-                                        spacing: 8.0,
-                                        radius: 16.0,
-                                        dotWidth: 16.0,
-                                        dotHeight: 8.0,
-                                        dotColor: FlutterFlowTheme.of(context)
-                                            .accent1,
-                                        activeDotColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                        paintStyle: PaintingStyle.fill,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                                );
+                              },
+                              carouselController: _model.carouselController ??=
+                                  CarouselController(),
+                              options: CarouselOptions(
+                                initialPage: min(
+                                    1, carouselBannersRecordList.length - 1),
+                                viewportFraction: 0.95,
+                                disableCenter: true,
+                                enlargeCenterPage: true,
+                                enlargeFactor: 0.25,
+                                enableInfiniteScroll: true,
+                                scrollDirection: Axis.horizontal,
+                                autoPlay: true,
+                                autoPlayAnimationDuration:
+                                    Duration(milliseconds: 800),
+                                autoPlayInterval:
+                                    Duration(milliseconds: (800 + 4000)),
+                                autoPlayCurve: Curves.linear,
+                                pauseAutoPlayInFiniteScroll: true,
+                                onPageChanged: (index, _) =>
+                                    _model.carouselCurrentIndex = index,
+                              ),
                             ),
                           );
                         },
@@ -306,6 +254,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               mainAxisSpacing: 15.0,
                               childAspectRatio: 1.0,
                             ),
+                            primary: false,
+                            shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             children: [
                               MouseRegion(
@@ -335,7 +285,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             'HOME_PAGE_PAGE_Column_u5hxpgoa_ON_TAP');
                                         logFirebaseEvent('Column_navigate_to');
 
-                                        context.pushNamed('EgresadosPage');
+                                        context.pushNamed(
+                                          'EgresadosRegisterPage',
+                                          queryParameters: {
+                                            'uid': serializeParam(
+                                              FFAppState().egresadoRef,
+                                              ParamType.DocumentReference,
+                                            ),
+                                          }.withoutNulls,
+                                        );
                                       },
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -346,14 +304,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                             child: Image.asset(
-                                              'assets/images/mortarboard.png',
+                                              'assets/images/avatar_(1).png',
                                               width: 36.0,
                                               height: 36.0,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
                                           Text(
-                                            'Egresados',
+                                            'Pérfil \nProfesional',
                                             textAlign: TextAlign.center,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -387,7 +345,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       'HOME_PAGE_PAGE_Tools_ON_TAP');
                                   logFirebaseEvent('Tools_navigate_to');
 
-                                  context.pushNamed('ToolsPage');
+                                  context.pushNamed('NewsList');
                                 },
                                 child: Material(
                                   color: Colors.transparent,
@@ -412,14 +370,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: Image.asset(
-                                            'assets/images/construction-tools.png',
+                                            'assets/images/newspaper.png',
                                             width: 36.0,
                                             height: 36.0,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
                                         Text(
-                                          'Herramientas',
+                                          'Noticias\n',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -474,7 +432,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                         ),
                                         Text(
-                                          'FAGROIA',
+                                          'FAGROIA\n',
                                           textAlign: TextAlign.center,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -593,7 +551,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           alignment:
                                               AlignmentDirectional(0.00, 0.00),
                                           child: Text(
-                                            'Revista Uniersitaria',
+                                            'Revista y \nTesis de Grado',
                                             textAlign: TextAlign.center,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -651,7 +609,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                         ),
                                         Text(
-                                          'Boletín\nMensual',
+                                          'Boletín Agro\n',
                                           textAlign: TextAlign.center,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -676,7 +634,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   width: 100.0,
                                   height: 100.0,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).success,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: InkWell(
@@ -700,7 +659,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: Image.asset(
-                                            'assets/images/analista-de-negocios.png',
+                                            'assets/images/consultant.png',
                                             width: 36.0,
                                             height: 36.0,
                                             fit: BoxFit.cover,
@@ -715,7 +674,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 fontFamily: 'Poppins',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .primaryText,
                                                 fontSize: 13.0,
                                                 lineHeight: 1.2,
                                               ),
@@ -740,29 +699,82 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
-                        child: ListView(
-                          padding: EdgeInsets.zero,
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            Container(
-                              width: MediaQuery.sizeOf(context).width * 1.0,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(0.0),
-                                child: Image.network(
-                                  'https://images.unsplash.com/photo-1625758477730-e228a4b58adb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80',
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 1.0,
-                                  fit: BoxFit.cover,
-                                  alignment: Alignment(0.00, 0.00),
+                        child: StreamBuilder<List<BannersRecord>>(
+                          stream: queryBannersRecord(
+                            queryBuilder: (bannersRecord) => bannersRecord
+                                .where(
+                                  'position',
+                                  isEqualTo: 'block-2',
+                                )
+                                .orderBy('created_on', descending: true),
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 36.0,
+                                  height: 36.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ],
+                              );
+                            }
+                            List<BannersRecord> listViewBannersRecordList =
+                                snapshot.data!;
+                            if (listViewBannersRecordList.isEmpty) {
+                              return Image.asset(
+                                'https://images.unsplash.com/photo-1625758477730-e228a4b58adb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80',
+                              );
+                            }
+                            return ListView.separated(
+                              padding: EdgeInsets.zero,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: listViewBannersRecordList.length,
+                              separatorBuilder: (_, __) =>
+                                  SizedBox(width: 15.0),
+                              itemBuilder: (context, listViewIndex) {
+                                final listViewBannersRecord =
+                                    listViewBannersRecordList[listViewIndex];
+                                return Container(
+                                  width:
+                                      MediaQuery.sizeOf(context).width * 0.85,
+                                  height: 100.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'HOME_PAGE_PAGE_Image_o4i24hcy_ON_TAP');
+                                      logFirebaseEvent('Image_launch_u_r_l');
+                                      await launchURL(
+                                          listViewBannersRecord.url);
+                                    },
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(0.0),
+                                      child: Image.network(
+                                        listViewBannersRecord.image,
+                                        height:
+                                            MediaQuery.sizeOf(context).height *
+                                                1.0,
+                                        fit: BoxFit.cover,
+                                        alignment: Alignment(0.00, 0.00),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
                         ),
                       ),
                     ),
@@ -784,7 +796,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    'Boletín Agro',
+                                    'Noticias',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -803,7 +815,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           'HOME_PAGE_PAGE_Text_yvo5sni4_ON_TAP');
                                       logFirebaseEvent('Text_navigate_to');
 
-                                      context.pushNamed('BoletimPage');
+                                      context.pushNamed('NewsList');
                                     },
                                     child: Text(
                                       'Ver Todas',
@@ -825,9 +837,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                               ),
-                              child: StreamBuilder<List<BlogsRecord>>(
-                                stream: queryBlogsRecord(
-                                  queryBuilder: (blogsRecord) => blogsRecord
+                              child: StreamBuilder<List<NewsRecord>>(
+                                stream: queryNewsRecord(
+                                  queryBuilder: (newsRecord) => newsRecord
                                       .where(
                                         'published',
                                         isEqualTo: true,
@@ -852,19 +864,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                     );
                                   }
-                                  List<BlogsRecord> listViewBlogsRecordList =
+                                  List<NewsRecord> listViewNewsRecordList =
                                       snapshot.data!;
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
+                                    primary: false,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
-                                    itemCount: listViewBlogsRecordList.length,
+                                    itemCount: listViewNewsRecordList.length,
                                     separatorBuilder: (_, __) =>
                                         SizedBox(height: 12.0),
                                     itemBuilder: (context, listViewIndex) {
-                                      final listViewBlogsRecord =
-                                          listViewBlogsRecordList[
-                                              listViewIndex];
+                                      final listViewNewsRecord =
+                                          listViewNewsRecordList[listViewIndex];
                                       return InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -877,10 +889,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               'Container_navigate_to');
 
                                           context.pushNamed(
-                                            'DetailBoletinPage',
+                                            'DetailsNewsPage',
                                             queryParameters: {
                                               'uid': serializeParam(
-                                                listViewBlogsRecord.reference,
+                                                listViewNewsRecord.reference,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -899,7 +911,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                                 child: Image.network(
-                                                  listViewBlogsRecord.image,
+                                                  listViewNewsRecord.image,
                                                   width: 80.0,
                                                   height: 80.0,
                                                   fit: BoxFit.cover,
@@ -924,8 +936,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        listViewBlogsRecord
-                                                            .name,
+                                                        listViewNewsRecord.name,
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .bodyMedium
@@ -948,7 +959,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           Text(
                                                             dateTimeFormat(
                                                                 'MMMEd',
-                                                                listViewBlogsRecord
+                                                                listViewNewsRecord
                                                                     .createdOn!),
                                                             style: FlutterFlowTheme
                                                                     .of(context)

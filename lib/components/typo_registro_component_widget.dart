@@ -49,7 +49,7 @@ class _TypoRegistroComponentWidgetState
 
     return Container(
       width: double.infinity,
-      height: 300.0,
+      height: 350.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
         boxShadow: [
@@ -75,7 +75,7 @@ class _TypoRegistroComponentWidgetState
             Align(
               alignment: AlignmentDirectional(-1.00, 0.00),
               child: Text(
-                'Su cedula no esta en nuestra registro,  puede escoger que tipo de perfil y continuar con el registro',
+                'Para continuar, es necesario definir cual es tu perfil?',
                 textAlign: TextAlign.start,
                 style: FlutterFlowTheme.of(context).bodyMedium,
               ),
@@ -116,7 +116,15 @@ class _TypoRegistroComponentWidgetState
                 Navigator.pop(context);
                 logFirebaseEvent('Button_navigate_to');
 
-                context.pushNamed('EgresadosRegisterPage');
+                context.pushNamed(
+                  'EgresadosRegisterPage',
+                  queryParameters: {
+                    'uid': serializeParam(
+                      FFAppState().egresadoRef,
+                      ParamType.DocumentReference,
+                    ),
+                  }.withoutNulls,
+                );
               },
               text: 'Siguiente',
               options: FFButtonOptions(

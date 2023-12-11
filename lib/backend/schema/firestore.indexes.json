@@ -75,6 +75,20 @@
       ]
     },
     {
+      "collectionGroup": "banners",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "position",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "created_on",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "news",
       "queryScope": "COLLECTION",
       "fields": [

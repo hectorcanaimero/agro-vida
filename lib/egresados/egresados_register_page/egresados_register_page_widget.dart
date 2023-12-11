@@ -19,7 +19,7 @@ export 'egresados_register_page_model.dart';
 class EgresadosRegisterPageWidget extends StatefulWidget {
   const EgresadosRegisterPageWidget({
     Key? key,
-    this.uid,
+    required this.uid,
   }) : super(key: key);
 
   final DocumentReference? uid;
@@ -42,13 +42,16 @@ class _EgresadosRegisterPageWidgetState
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'EgresadosRegisterPage'});
-
+    _model.nameFieldController ??=
+        TextEditingController(text: currentUserDisplayName);
     _model.nameFieldFocusNode ??= FocusNode();
 
     _model.idFieldFocusNode ??= FocusNode();
 
     _model.bornFocusNode ??= FocusNode();
 
+    _model.emailFieldController ??=
+        TextEditingController(text: currentUserEmail);
     _model.emailFieldFocusNode ??= FocusNode();
 
     _model.phoneFieldFocusNode ??= FocusNode();
@@ -57,8 +60,6 @@ class _EgresadosRegisterPageWidgetState
 
     _model.cityFieldFocusNode ??= FocusNode();
 
-    _model.universidadController ??=
-        TextEditingController(text: widget.uid != null ? 'UCV' : ' ');
     _model.universidadFocusNode ??= FocusNode();
 
     _model.anoEgredsadoFocusNode ??= FocusNode();
@@ -97,7 +98,7 @@ class _EgresadosRegisterPageWidgetState
     context.watch<FFAppState>();
 
     return StreamBuilder<EgresadosRecord>(
-      stream: EgresadosRecord.getDocument(widget.uid!),
+      stream: EgresadosRecord.getDocument(FFAppState().egresadoRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -175,59 +176,63 @@ class _EgresadosRegisterPageWidgetState
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                TextFormField(
-                                  controller: _model.nameFieldController ??=
-                                      TextEditingController(
-                                    text: egresadosRegisterPageEgresadosRecord
-                                        .name,
+                                AuthUserStreamWidget(
+                                  builder: (context) => TextFormField(
+                                    controller: _model.nameFieldController,
+                                    focusNode: _model.nameFieldFocusNode,
+                                    autofocus: true,
+                                    readOnly: true,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Nombre Completo',
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      filled: true,
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    validator: _model
+                                        .nameFieldControllerValidator
+                                        .asValidator(context),
                                   ),
-                                  focusNode: _model.nameFieldFocusNode,
-                                  autofocus: true,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'Nombre Completo',
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    filled: true,
-                                  ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                  validator: _model.nameFieldControllerValidator
-                                      .asValidator(context),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -278,7 +283,6 @@ class _EgresadosRegisterPageWidgetState
                                                   .toString(),
                                         ),
                                         focusNode: _model.idFieldFocusNode,
-                                        readOnly: widget.uid != null,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'Cedula de Identidad',
@@ -395,7 +399,7 @@ class _EgresadosRegisterPageWidgetState
                                         autofillHints: [AutofillHints.email],
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: 'Fecha Nacimiento',
+                                          labelText: 'Fecha Nascimiento',
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium,
@@ -457,13 +461,10 @@ class _EgresadosRegisterPageWidgetState
                                   ].divide(SizedBox(width: 12.0)),
                                 ),
                                 TextFormField(
-                                  controller: _model.emailFieldController ??=
-                                      TextEditingController(
-                                    text: egresadosRegisterPageEgresadosRecord
-                                        .email,
-                                  ),
+                                  controller: _model.emailFieldController,
                                   focusNode: _model.emailFieldFocusNode,
                                   autofillHints: [AutofillHints.email],
+                                  readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'E-mail',
@@ -697,10 +698,21 @@ class _EgresadosRegisterPageWidgetState
                                   ),
                                 ),
                                 TextFormField(
-                                  controller: _model.universidadController,
+                                  controller: _model.universidadController ??=
+                                      TextEditingController(
+                                    text: egresadosRegisterPageEgresadosRecord
+                                                    .universidad !=
+                                                null &&
+                                            egresadosRegisterPageEgresadosRecord
+                                                    .universidad !=
+                                                ''
+                                        ? egresadosRegisterPageEgresadosRecord
+                                            .universidad
+                                        : FFAppState().tipoUsuario,
+                                  ),
                                   focusNode: _model.universidadFocusNode,
                                   textCapitalization: TextCapitalization.words,
-                                  readOnly: widget.uid != null,
+                                  readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Universidad',
@@ -826,7 +838,7 @@ class _EgresadosRegisterPageWidgetState
                                       'Producción vegetal',
                                       'Producción animal',
                                       'Agroindustrial',
-                                      'Ingeniería agrícola y/ o asesorías ',
+                                      'Ingeniería agrícola y/o asesorías ',
                                       'Venta y comercialización',
                                       'Gerencia pública o privada ',
                                       'Docencia , investigación  y extención',
@@ -1266,6 +1278,7 @@ class _EgresadosRegisterPageWidgetState
                                 identificator:
                                     egresadosRegisterPageEgresadosRecord
                                         .identificator,
+                                userRef: currentUserReference,
                               ));
                               logFirebaseEvent('Button_alert_dialog');
                               await showDialog(
@@ -1298,6 +1311,13 @@ class _EgresadosRegisterPageWidgetState
                                   ),
                                 },
                               );
+
+                              logFirebaseEvent('Button_update_app_state');
+                              setState(() {
+                                FFAppState().egresadoRef =
+                                    egresadosRegisterPageEgresadosRecord
+                                        .reference;
+                              });
                             } else {
                               logFirebaseEvent('Button_validate_form');
                               if (_model.formKey.currentState == null ||
@@ -1306,35 +1326,70 @@ class _EgresadosRegisterPageWidgetState
                               }
                               logFirebaseEvent('Button_backend_call');
 
-                              await EgresadosRecord.collection
-                                  .doc()
+                              var egresadosRecordReference =
+                                  EgresadosRecord.collection.doc();
+                              await egresadosRecordReference
                                   .set(createEgresadosRecordData(
-                                    name: _model.nameFieldController.text,
-                                    nacionality: _model.nacDropDownValue,
-                                    country: _model.countryFieldController.text,
-                                    city: _model.cityFieldController.text,
-                                    email: _model.emailFieldController.text,
-                                    phone: _model.phoneFieldController.text,
-                                    intereses: _model.interesesDropDownValue,
-                                    others: _model.otrosFieldController.text,
-                                    areaLaboral:
-                                        _model.areaDesempanoDropDownValue,
-                                    estudiosCuartinivel: _model
-                                        .estudiosCuartinivelFieldController
-                                        .text,
-                                    dataEgresado:
-                                        _model.anoEgredsadoController.text,
-                                    sexo: _model.sexoDropDownValue,
-                                    dataNacimiento: _model.bornController.text,
-                                    facebook: _model.fbFieldController.text,
-                                    instagram: _model.igFieldController.text,
-                                    twitter: _model.xFieldController.text,
-                                    updateTime: getCurrentTimestamp,
-                                    identificator: int.tryParse(
-                                        _model.idFieldController.text),
-                                    universidad:
-                                        _model.universidadController.text,
-                                  ));
+                                name: _model.nameFieldController.text,
+                                nacionality: _model.nacDropDownValue,
+                                country: _model.countryFieldController.text,
+                                city: _model.cityFieldController.text,
+                                email: _model.emailFieldController.text,
+                                phone: _model.phoneFieldController.text,
+                                intereses: _model.interesesDropDownValue,
+                                others: _model.otrosFieldController.text,
+                                areaLaboral: _model.areaDesempanoDropDownValue,
+                                estudiosCuartinivel: _model
+                                    .estudiosCuartinivelFieldController.text,
+                                dataEgresado:
+                                    _model.anoEgredsadoController.text,
+                                sexo: _model.sexoDropDownValue,
+                                dataNacimiento: _model.bornController.text,
+                                facebook: _model.fbFieldController.text,
+                                instagram: _model.igFieldController.text,
+                                twitter: _model.xFieldController.text,
+                                updateTime: getCurrentTimestamp,
+                                identificator:
+                                    int.tryParse(_model.idFieldController.text),
+                                universidad: _model.universidadController.text,
+                                userRef: currentUserReference,
+                              ));
+                              _model.createEgresado =
+                                  EgresadosRecord.getDocumentFromData(
+                                      createEgresadosRecordData(
+                                        name: _model.nameFieldController.text,
+                                        nacionality: _model.nacDropDownValue,
+                                        country:
+                                            _model.countryFieldController.text,
+                                        city: _model.cityFieldController.text,
+                                        email: _model.emailFieldController.text,
+                                        phone: _model.phoneFieldController.text,
+                                        intereses:
+                                            _model.interesesDropDownValue,
+                                        others:
+                                            _model.otrosFieldController.text,
+                                        areaLaboral:
+                                            _model.areaDesempanoDropDownValue,
+                                        estudiosCuartinivel: _model
+                                            .estudiosCuartinivelFieldController
+                                            .text,
+                                        dataEgresado:
+                                            _model.anoEgredsadoController.text,
+                                        sexo: _model.sexoDropDownValue,
+                                        dataNacimiento:
+                                            _model.bornController.text,
+                                        facebook: _model.fbFieldController.text,
+                                        instagram:
+                                            _model.igFieldController.text,
+                                        twitter: _model.xFieldController.text,
+                                        updateTime: getCurrentTimestamp,
+                                        identificator: int.tryParse(
+                                            _model.idFieldController.text),
+                                        universidad:
+                                            _model.universidadController.text,
+                                        userRef: currentUserReference,
+                                      ),
+                                      egresadosRecordReference);
                               logFirebaseEvent('Button_alert_dialog');
                               await showDialog(
                                 context: context,
@@ -1366,7 +1421,15 @@ class _EgresadosRegisterPageWidgetState
                                   ),
                                 },
                               );
+
+                              logFirebaseEvent('Button_update_app_state');
+                              setState(() {
+                                FFAppState().egresadoRef =
+                                    _model.createEgresado?.reference;
+                              });
                             }
+
+                            setState(() {});
                           },
                           text: 'Salvar Registro',
                           options: FFButtonOptions(
