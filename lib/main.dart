@@ -27,6 +27,7 @@ void main() async {
 
   // Start initial custom actions code
   await actions.oneSignal();
+  await actions.lockOrientation();
   // End initial custom actions code
 
   final appState = FFAppState(); // Initialize FFAppState

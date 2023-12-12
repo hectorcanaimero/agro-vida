@@ -160,80 +160,98 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                    StreamBuilder<List<BannersRecord>>(
+                      stream: queryBannersRecord(
+                        queryBuilder: (bannersRecord) => bannersRecord
+                            .where(
+                              'position',
+                              isEqualTo: 'block-1',
+                            )
+                            .orderBy('created_on', descending: true),
                       ),
-                      child: StreamBuilder<List<BannersRecord>>(
-                        stream: queryBannersRecord(
-                          queryBuilder: (bannersRecord) => bannersRecord
-                              .where(
-                                'position',
-                                isEqualTo: 'block-1',
-                              )
-                              .orderBy('createdAt', descending: true),
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 36.0,
-                                height: 36.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
-                                  ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 36.0,
+                              height: 36.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
                                 ),
-                              ),
-                            );
-                          }
-                          List<BannersRecord> carouselBannersRecordList =
-                              snapshot.data!;
-                          return Container(
-                            width: double.infinity,
-                            height: 300.0,
-                            child: CarouselSlider.builder(
-                              itemCount: carouselBannersRecordList.length,
-                              itemBuilder: (context, carouselIndex, _) {
-                                final carouselBannersRecord =
-                                    carouselBannersRecordList[carouselIndex];
-                                return ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.network(
-                                    carouselBannersRecord.image,
-                                    width: 300.0,
-                                    height: 200.0,
-                                    fit: BoxFit.cover,
-                                  ),
-                                );
-                              },
-                              carouselController: _model.carouselController ??=
-                                  CarouselController(),
-                              options: CarouselOptions(
-                                initialPage: min(
-                                    1, carouselBannersRecordList.length - 1),
-                                viewportFraction: 0.95,
-                                disableCenter: true,
-                                enlargeCenterPage: true,
-                                enlargeFactor: 0.25,
-                                enableInfiniteScroll: true,
-                                scrollDirection: Axis.horizontal,
-                                autoPlay: true,
-                                autoPlayAnimationDuration:
-                                    Duration(milliseconds: 800),
-                                autoPlayInterval:
-                                    Duration(milliseconds: (800 + 4000)),
-                                autoPlayCurve: Curves.linear,
-                                pauseAutoPlayInFiniteScroll: true,
-                                onPageChanged: (index, _) =>
-                                    _model.carouselCurrentIndex = index,
                               ),
                             ),
                           );
-                        },
-                      ),
+                        }
+                        List<BannersRecord> bannerBannersRecordList =
+                            snapshot.data!;
+                        return Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: Builder(
+                            builder: (context) {
+                              final banner2 = bannerBannersRecordList.toList();
+                              return Container(
+                                width: double.infinity,
+                                height: 300.0,
+                                child: CarouselSlider.builder(
+                                  itemCount: banner2.length,
+                                  itemBuilder: (context, banner2Index, _) {
+                                    final banner2Item = banner2[banner2Index];
+                                    return InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'HOME_PAGE_PAGE_Image_pojkcfcs_ON_TAP');
+                                        logFirebaseEvent('Image_launch_u_r_l');
+                                        await launchURL(banner2Item.url);
+                                      },
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.network(
+                                          banner2Item.image,
+                                          width: 300.0,
+                                          height: 200.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  carouselController:
+                                      _model.carouselController ??=
+                                          CarouselController(),
+                                  options: CarouselOptions(
+                                    initialPage: min(1, banner2.length - 1),
+                                    viewportFraction: 0.95,
+                                    disableCenter: true,
+                                    enlargeCenterPage: true,
+                                    enlargeFactor: 0.25,
+                                    enableInfiniteScroll: true,
+                                    scrollDirection: Axis.horizontal,
+                                    autoPlay: true,
+                                    autoPlayAnimationDuration:
+                                        Duration(milliseconds: 800),
+                                    autoPlayInterval:
+                                        Duration(milliseconds: (800 + 4000)),
+                                    autoPlayCurve: Curves.linear,
+                                    pauseAutoPlayInFiniteScroll: true,
+                                    onPageChanged: (index, _) =>
+                                        _model.carouselCurrentIndex = index,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      },
                     ),
                     Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
@@ -692,90 +710,97 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 100.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                      child: StreamBuilder<List<BannersRecord>>(
+                        stream: queryBannersRecord(
+                          queryBuilder: (bannersRecord) => bannersRecord
+                              .where(
+                                'position',
+                                isEqualTo: 'block-2',
+                              )
+                              .orderBy('created_on', descending: true),
                         ),
-                        child: StreamBuilder<List<BannersRecord>>(
-                          stream: queryBannersRecord(
-                            queryBuilder: (bannersRecord) => bannersRecord
-                                .where(
-                                  'position',
-                                  isEqualTo: 'block-2',
-                                )
-                                .orderBy('created_on', descending: true),
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 36.0,
-                                  height: 36.0,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
-                                    ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 36.0,
+                                height: 36.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
                                   ),
                                 ),
-                              );
-                            }
-                            List<BannersRecord> listViewBannersRecordList =
-                                snapshot.data!;
-                            if (listViewBannersRecordList.isEmpty) {
-                              return Image.asset(
-                                'https://images.unsplash.com/photo-1625758477730-e228a4b58adb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80',
-                              );
-                            }
-                            return ListView.separated(
-                              padding: EdgeInsets.zero,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: listViewBannersRecordList.length,
-                              separatorBuilder: (_, __) =>
-                                  SizedBox(width: 15.0),
-                              itemBuilder: (context, listViewIndex) {
-                                final listViewBannersRecord =
-                                    listViewBannersRecordList[listViewIndex];
-                                return Container(
-                                  width:
-                                      MediaQuery.sizeOf(context).width * 0.85,
-                                  height: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'HOME_PAGE_PAGE_Image_o4i24hcy_ON_TAP');
-                                      logFirebaseEvent('Image_launch_u_r_l');
-                                      await launchURL(
-                                          listViewBannersRecord.url);
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(0.0),
-                                      child: Image.network(
-                                        listViewBannersRecord.image,
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                1.0,
-                                        fit: BoxFit.cover,
-                                        alignment: Alignment(0.00, 0.00),
+                              ),
+                            );
+                          }
+                          List<BannersRecord> banner2BannersRecordList =
+                              snapshot.data!;
+                          return Container(
+                            width: double.infinity,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: Builder(
+                              builder: (context) {
+                                final banner2Var =
+                                    banner2BannersRecordList.toList();
+                                if (banner2Var.isEmpty) {
+                                  return Image.asset(
+                                    'https://images.unsplash.com/photo-1625758477730-e228a4b58adb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80',
+                                  );
+                                }
+                                return ListView.separated(
+                                  padding: EdgeInsets.zero,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: banner2Var.length,
+                                  separatorBuilder: (_, __) =>
+                                      SizedBox(width: 15.0),
+                                  itemBuilder: (context, banner2VarIndex) {
+                                    final banner2VarItem =
+                                        banner2Var[banner2VarIndex];
+                                    return Container(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          0.85,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
                                       ),
-                                    ),
-                                  ),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'HOME_PAGE_PAGE_Image_o4i24hcy_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Image_launch_u_r_l');
+                                          await launchURL(banner2VarItem.url);
+                                        },
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
+                                          child: Image.network(
+                                            banner2VarItem.image,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.cover,
+                                            alignment: Alignment(0.00, 0.00),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 );
                               },
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                     Container(

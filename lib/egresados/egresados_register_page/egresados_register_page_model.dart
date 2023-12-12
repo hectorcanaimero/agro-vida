@@ -8,6 +8,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'egresados_register_page_widget.dart' show EgresadosRegisterPageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,6 +22,8 @@ class EgresadosRegisterPageModel
   ///  Local state fields for this page.
 
   String intereses = '';
+
+  bool update = false;
 
   ///  State fields for stateful widgets in this page.
 
@@ -36,6 +40,8 @@ class EgresadosRegisterPageModel
   FocusNode? idFieldFocusNode;
   TextEditingController? idFieldController;
   String? Function(BuildContext, String?)? idFieldControllerValidator;
+  // Stores action output result for [Firestore Query - Query a collection] action in idField widget.
+  EgresadosRecord? existCedula;
   // State field(s) for SexoDropDown widget.
   String? sexoDropDownValue;
   FormFieldController<String>? sexoDropDownValueController;
@@ -60,11 +66,9 @@ class EgresadosRegisterPageModel
   FocusNode? cityFieldFocusNode;
   TextEditingController? cityFieldController;
   String? Function(BuildContext, String?)? cityFieldControllerValidator;
-  // State field(s) for universidad widget.
-  FocusNode? universidadFocusNode;
-  TextEditingController? universidadController;
-  final universidadMask = MaskTextInputFormatter(mask: '####');
-  String? Function(BuildContext, String?)? universidadControllerValidator;
+  // State field(s) for perfilDropDown widget.
+  String? perfilDropDownValue;
+  FormFieldController<String>? perfilDropDownValueController;
   // State field(s) for anoEgredsado widget.
   FocusNode? anoEgredsadoFocusNode;
   TextEditingController? anoEgredsadoController;
@@ -126,9 +130,6 @@ class EgresadosRegisterPageModel
 
     cityFieldFocusNode?.dispose();
     cityFieldController?.dispose();
-
-    universidadFocusNode?.dispose();
-    universidadController?.dispose();
 
     anoEgredsadoFocusNode?.dispose();
     anoEgredsadoController?.dispose();
