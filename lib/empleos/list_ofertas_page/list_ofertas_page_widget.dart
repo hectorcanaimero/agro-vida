@@ -13,10 +13,10 @@ import 'list_ofertas_page_model.dart';
 export 'list_ofertas_page_model.dart';
 
 class ListOfertasPageWidget extends StatefulWidget {
-  const ListOfertasPageWidget({Key? key}) : super(key: key);
+  const ListOfertasPageWidget({super.key});
 
   @override
-  _ListOfertasPageWidgetState createState() => _ListOfertasPageWidgetState();
+  State<ListOfertasPageWidget> createState() => _ListOfertasPageWidgetState();
 }
 
 class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
@@ -71,18 +71,20 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
               context: context,
               builder: (context) {
                 return WebViewAware(
-                    child: GestureDetector(
-                  onTap: () => _model.unfocusNode.canRequestFocus
-                      ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                      : FocusScope.of(context).unfocus(),
-                  child: Padding(
-                    padding: MediaQuery.viewInsetsOf(context),
-                    child: Container(
-                      height: MediaQuery.sizeOf(context).height * 0.9,
-                      child: OfertasCreatePageWidget(),
+                  child: GestureDetector(
+                    onTap: () => _model.unfocusNode.canRequestFocus
+                        ? FocusScope.of(context)
+                            .requestFocus(_model.unfocusNode)
+                        : FocusScope.of(context).unfocus(),
+                    child: Padding(
+                      padding: MediaQuery.viewInsetsOf(context),
+                      child: Container(
+                        height: MediaQuery.sizeOf(context).height * 0.9,
+                        child: OfertasCreatePageWidget(),
+                      ),
                     ),
                   ),
-                ));
+                );
               },
             ).then((value) => safeSetState(() {}));
           },
@@ -133,7 +135,7 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(0.00, 0.00),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 24.0),
@@ -149,10 +151,9 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Align(
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 16.0),
+                            padding: EdgeInsets.all(16.0),
                             child: Text(
                               'Descubre ofertas de empleo compartidas por otros usuarios de la aplicación en nuestra comunidad de agrotecnología.',
                               textAlign: TextAlign.justify,
@@ -241,8 +242,7 @@ class _ListOfertasPageWidgetState extends State<ListOfertasPageWidget> {
                                   borderRadius: BorderRadius.circular(0.0),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      12.0, 12.0, 12.0, 12.0),
+                                  padding: EdgeInsets.all(12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:

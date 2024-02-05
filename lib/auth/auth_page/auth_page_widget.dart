@@ -18,10 +18,10 @@ import 'auth_page_model.dart';
 export 'auth_page_model.dart';
 
 class AuthPageWidget extends StatefulWidget {
-  const AuthPageWidget({Key? key}) : super(key: key);
+  const AuthPageWidget({super.key});
 
   @override
-  _AuthPageWidgetState createState() => _AuthPageWidgetState();
+  State<AuthPageWidget> createState() => _AuthPageWidgetState();
 }
 
 class _AuthPageWidgetState extends State<AuthPageWidget>
@@ -171,9 +171,9 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  alignment: AlignmentDirectional(0.00, 0.00),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Align(
-                    alignment: AlignmentDirectional(0.00, 0.00),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -222,7 +222,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
               ),
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(0.00, 0.00),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
@@ -236,7 +236,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Column(
                           children: [
                             Expanded(
@@ -244,8 +244,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                 controller: _model.tabBarController,
                                 children: [
                                   Align(
-                                    alignment:
-                                        AlignmentDirectional(0.00, -1.00),
+                                    alignment: AlignmentDirectional(0.0, -1.0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 16.0, 0.0, 0.0),
@@ -367,12 +366,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                             .of(context)
                                                         .secondaryBackground,
                                                     contentPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                14.0,
-                                                                14.0,
-                                                                14.0,
-                                                                14.0),
+                                                        EdgeInsets.all(14.0),
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -476,12 +470,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                             .of(context)
                                                         .secondaryBackground,
                                                     contentPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                14.0,
-                                                                14.0,
-                                                                14.0,
-                                                                14.0),
+                                                        EdgeInsets.all(14.0),
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -587,12 +576,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                             .of(context)
                                                         .secondaryBackground,
                                                     contentPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                14.0,
-                                                                14.0,
-                                                                14.0,
-                                                                14.0),
+                                                        EdgeInsets.all(14.0),
                                                     suffixIcon: InkWell(
                                                       onTap: () => setState(
                                                         () => _model
@@ -719,12 +703,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                             .of(context)
                                                         .secondaryBackground,
                                                     contentPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                14.0,
-                                                                14.0,
-                                                                14.0,
-                                                                14.0),
+                                                        EdgeInsets.all(14.0),
                                                     suffixIcon: InkWell(
                                                       onTap: () => setState(
                                                         () => _model
@@ -767,7 +746,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                             ),
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -827,19 +806,21 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                       builder:
                                                           (alertDialogContext) {
                                                         return WebViewAware(
-                                                            child: AlertDialog(
-                                                          title: Text('Info'),
-                                                          content: Text(
-                                                              'Show! Ahora vamos atualizar tu  perfil técnico'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        ));
+                                                          child: AlertDialog(
+                                                            title: Text('Info'),
+                                                            content: Text(
+                                                                'Show! Ahora vamos atualizar tu  perfil técnico'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        );
                                                       },
                                                     );
                                                     logFirebaseEvent(
@@ -889,7 +870,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                             ))
                                               Align(
                                                 alignment: AlignmentDirectional(
-                                                    0.00, 0.00),
+                                                    0.0, 0.0),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
@@ -908,7 +889,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                             ))
                                               Align(
                                                 alignment: AlignmentDirectional(
-                                                    0.00, 0.00),
+                                                    0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     logFirebaseEvent(
@@ -1000,8 +981,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                     ),
                                   ),
                                   Align(
-                                    alignment:
-                                        AlignmentDirectional(0.00, -1.00),
+                                    alignment: AlignmentDirectional(0.0, -1.0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 16.0, 0.0, 0.0),
@@ -1121,12 +1101,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                             .of(context)
                                                         .secondaryBackground,
                                                     contentPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                14.0,
-                                                                14.0,
-                                                                14.0,
-                                                                14.0),
+                                                        EdgeInsets.all(14.0),
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1225,12 +1200,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                                             .of(context)
                                                         .secondaryBackground,
                                                     contentPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                14.0,
-                                                                14.0,
-                                                                14.0,
-                                                                14.0),
+                                                        EdgeInsets.all(14.0),
                                                     suffixIcon: InkWell(
                                                       onTap: () => setState(
                                                         () => _model
@@ -1272,7 +1242,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                             ),
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -1348,7 +1318,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                             ))
                                               Align(
                                                 alignment: AlignmentDirectional(
-                                                    0.00, 0.00),
+                                                    0.0, 0.0),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
@@ -1367,7 +1337,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                             ))
                                               Align(
                                                 alignment: AlignmentDirectional(
-                                                    0.00, 0.00),
+                                                    0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     logFirebaseEvent(
@@ -1454,7 +1424,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                               ),
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  0.00, 0.00),
+                                                  0.0, 0.0),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -1568,6 +1538,9 @@ class _AuthPageWidgetState extends State<AuthPageWidget>
                                   ),
                                 ],
                                 controller: _model.tabBarController,
+                                onTap: (i) async {
+                                  [() async {}, () async {}][i]();
+                                },
                               ),
                             ),
                           ],

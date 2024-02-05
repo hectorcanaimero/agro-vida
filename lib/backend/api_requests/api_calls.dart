@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import '../schema/structs/index.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
@@ -39,14 +40,15 @@ class TodosLosBoletinesUniversitariosCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 
-  dynamic global(dynamic response) => getJsonField(
+  List? global(dynamic response) => getJsonField(
         response,
         r'''$.data''',
         true,
-      );
+      ) as List?;
   dynamic year(dynamic response) => getJsonField(
         response,
         r'''$.data[:].attributes.Year''',
@@ -82,14 +84,15 @@ class TodosLosBoletinesUniversitarioConFiltroCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 
-  dynamic global(dynamic response) => getJsonField(
+  List? global(dynamic response) => getJsonField(
         response,
         r'''$.data''',
         true,
-      );
+      ) as List?;
 }
 
 class TodosLosBannersCall {
@@ -109,24 +112,25 @@ class TodosLosBannersCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 
-  dynamic global(dynamic response) => getJsonField(
+  List? global(dynamic response) => getJsonField(
         response,
         r'''$.data''',
         true,
-      );
-  dynamic url(dynamic response) => getJsonField(
+      ) as List?;
+  List? url(dynamic response) => getJsonField(
         response,
         r'''$.data[:].attributes.Url''',
         true,
-      );
-  dynamic upload(dynamic response) => getJsonField(
+      ) as List?;
+  List? upload(dynamic response) => getJsonField(
         response,
         r'''$.data[:].attributes.Image.data.attributes.url''',
         true,
-      );
+      ) as List?;
 }
 
 class GetToolsCall {
@@ -146,6 +150,7 @@ class GetToolsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 }
@@ -164,6 +169,7 @@ class GetToolByIdCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 }
@@ -182,6 +188,7 @@ class GetArticlesCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 

@@ -27,8 +27,9 @@ class LinkedWorkStruct extends FFFirebaseStruct {
         name: getDataList(data['name']),
       );
 
-  static LinkedWorkStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic> ? LinkedWorkStruct.fromMap(data) : null;
+  static LinkedWorkStruct? maybeFromMap(dynamic data) => data is Map
+      ? LinkedWorkStruct.fromMap(data.cast<String, dynamic>())
+      : null;
 
   Map<String, dynamic> toMap() => {
         'name': _name,

@@ -11,10 +11,10 @@ import 'news_list_model.dart';
 export 'news_list_model.dart';
 
 class NewsListWidget extends StatefulWidget {
-  const NewsListWidget({Key? key}) : super(key: key);
+  const NewsListWidget({super.key});
 
   @override
-  _NewsListWidgetState createState() => _NewsListWidgetState();
+  State<NewsListWidget> createState() => _NewsListWidgetState();
 }
 
 class _NewsListWidgetState extends State<NewsListWidget> {
@@ -187,8 +187,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4.0, 4.0, 4.0, 4.0),
+                                  padding: EdgeInsets.all(4.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:

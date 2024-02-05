@@ -44,8 +44,9 @@ class UserUbicationStruct extends FFFirebaseStruct {
         stateOfResidence: data['stateOfResidence'] as String?,
       );
 
-  static UserUbicationStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic> ? UserUbicationStruct.fromMap(data) : null;
+  static UserUbicationStruct? maybeFromMap(dynamic data) => data is Map
+      ? UserUbicationStruct.fromMap(data.cast<String, dynamic>())
+      : null;
 
   Map<String, dynamic> toMap() => {
         'countryOfResidence': _countryOfResidence,

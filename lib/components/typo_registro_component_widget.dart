@@ -11,10 +11,10 @@ import 'typo_registro_component_model.dart';
 export 'typo_registro_component_model.dart';
 
 class TypoRegistroComponentWidget extends StatefulWidget {
-  const TypoRegistroComponentWidget({Key? key}) : super(key: key);
+  const TypoRegistroComponentWidget({super.key});
 
   @override
-  _TypoRegistroComponentWidgetState createState() =>
+  State<TypoRegistroComponentWidget> createState() =>
       _TypoRegistroComponentWidgetState();
 }
 
@@ -67,13 +67,13 @@ class _TypoRegistroComponentWidgetState
         ),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Align(
-              alignment: AlignmentDirectional(-1.00, 0.00),
+              alignment: AlignmentDirectional(-1.0, 0.0),
               child: Text(
                 'Para continuar, es necesario definir cual es tu perfil?',
                 textAlign: TextAlign.start,

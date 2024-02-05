@@ -12,10 +12,10 @@ import 'fagro_i_a_page_model.dart';
 export 'fagro_i_a_page_model.dart';
 
 class FagroIAPageWidget extends StatefulWidget {
-  const FagroIAPageWidget({Key? key}) : super(key: key);
+  const FagroIAPageWidget({super.key});
 
   @override
-  _FagroIAPageWidgetState createState() => _FagroIAPageWidgetState();
+  State<FagroIAPageWidget> createState() => _FagroIAPageWidgetState();
 }
 
 class _FagroIAPageWidgetState extends State<FagroIAPageWidget> {
@@ -79,7 +79,7 @@ class _FagroIAPageWidgetState extends State<FagroIAPageWidget> {
             },
           ),
           title: Align(
-            alignment: AlignmentDirectional(-1.00, 0.00),
+            alignment: AlignmentDirectional(-1.0, 0.0),
             child: Text(
               'Regresar',
               style: FlutterFlowTheme.of(context).headlineMedium.override(

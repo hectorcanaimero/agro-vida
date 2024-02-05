@@ -68,8 +68,8 @@ class SoporteRecord extends FirestoreRecord {
           ? parent.collection('soporte')
           : FirebaseFirestore.instance.collectionGroup('soporte');
 
-  static DocumentReference createDoc(DocumentReference parent) =>
-      parent.collection('soporte').doc();
+  static DocumentReference createDoc(DocumentReference parent, {String? id}) =>
+      parent.collection('soporte').doc(id);
 
   static Stream<SoporteRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => SoporteRecord.fromSnapshot(s));

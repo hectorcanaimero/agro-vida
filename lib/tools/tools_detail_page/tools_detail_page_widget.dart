@@ -14,14 +14,14 @@ export 'tools_detail_page_model.dart';
 
 class ToolsDetailPageWidget extends StatefulWidget {
   const ToolsDetailPageWidget({
-    Key? key,
+    super.key,
     required this.id,
-  }) : super(key: key);
+  });
 
   final DocumentReference? id;
 
   @override
-  _ToolsDetailPageWidgetState createState() => _ToolsDetailPageWidgetState();
+  State<ToolsDetailPageWidget> createState() => _ToolsDetailPageWidgetState();
 }
 
 class _ToolsDetailPageWidgetState extends State<ToolsDetailPageWidget> {
@@ -107,7 +107,7 @@ class _ToolsDetailPageWidgetState extends State<ToolsDetailPageWidget> {
                 },
               ),
               title: Align(
-                alignment: AlignmentDirectional(-1.00, 0.00),
+                alignment: AlignmentDirectional(-1.0, 0.0),
                 child: Text(
                   'Regresar',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -127,7 +127,7 @@ class _ToolsDetailPageWidgetState extends State<ToolsDetailPageWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(0.00, 0.00),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Text(
                       toolsDetailPageToolsRecord.name,
                       style: FlutterFlowTheme.of(context).headlineMedium,

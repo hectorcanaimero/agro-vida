@@ -12,10 +12,10 @@ import 'list_revista_page_model.dart';
 export 'list_revista_page_model.dart';
 
 class ListRevistaPageWidget extends StatefulWidget {
-  const ListRevistaPageWidget({Key? key}) : super(key: key);
+  const ListRevistaPageWidget({super.key});
 
   @override
-  _ListRevistaPageWidgetState createState() => _ListRevistaPageWidgetState();
+  State<ListRevistaPageWidget> createState() => _ListRevistaPageWidgetState();
 }
 
 class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
@@ -127,7 +127,7 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                             'https://images.unsplash.com/photo-1625758477730-e228a4b58adb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80',
                             height: MediaQuery.sizeOf(context).height * 1.0,
                             fit: BoxFit.cover,
-                            alignment: Alignment(0.00, 0.00),
+                            alignment: Alignment(0.0, 0.0),
                           ),
                         ),
                       ),
@@ -161,8 +161,7 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                           elevation: 0.0,
                           buttonMargin: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              4.0, 4.0, 4.0, 4.0),
+                          padding: EdgeInsets.all(4.0),
                           tabs: [
                             Tab(
                               text: 'Publicaciones',
@@ -172,6 +171,9 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                             ),
                           ],
                           controller: _model.tabBarController,
+                          onTap: (i) async {
+                            [() async {}, () async {}][i]();
+                          },
                         ),
                       ),
                       Expanded(
@@ -306,7 +308,7 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                                                     decoration: BoxDecoration(),
                                                     alignment:
                                                         AlignmentDirectional(
-                                                            1.00, 0.00),
+                                                            1.0, 0.0),
                                                     child: Icon(
                                                       Icons
                                                           .arrow_forward_ios_sharp,
@@ -460,7 +462,7 @@ class _ListRevistaPageWidgetState extends State<ListRevistaPageWidget>
                                                     decoration: BoxDecoration(),
                                                     alignment:
                                                         AlignmentDirectional(
-                                                            1.00, 0.00),
+                                                            1.0, 0.0),
                                                     child: Icon(
                                                       Icons
                                                           .arrow_forward_ios_sharp,

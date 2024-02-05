@@ -14,14 +14,14 @@ export 'message_advisor_component_model.dart';
 
 class MessageAdvisorComponentWidget extends StatefulWidget {
   const MessageAdvisorComponentWidget({
-    Key? key,
+    super.key,
     required this.email,
-  }) : super(key: key);
+  });
 
   final String? email;
 
   @override
-  _MessageAdvisorComponentWidgetState createState() =>
+  State<MessageAdvisorComponentWidget> createState() =>
       _MessageAdvisorComponentWidgetState();
 }
 
@@ -69,7 +69,7 @@ class _MessageAdvisorComponentWidgetState
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).accent4,
           ),
-          alignment: AlignmentDirectional(0.00, 1.00),
+          alignment: AlignmentDirectional(0.0, 1.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -204,17 +204,19 @@ class _MessageAdvisorComponentWidgetState
                               context: context,
                               builder: (alertDialogContext) {
                                 return WebViewAware(
-                                    child: AlertDialog(
-                                  title: Text('Info'),
-                                  content: Text('Se envio un email con éxito!'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(alertDialogContext),
-                                      child: Text('Ok'),
-                                    ),
-                                  ],
-                                ));
+                                  child: AlertDialog(
+                                    title: Text('Info'),
+                                    content:
+                                        Text('Se envio un email con éxito!'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
+                                  ),
+                                );
                               },
                             );
                             logFirebaseEvent('Button_bottom_sheet');

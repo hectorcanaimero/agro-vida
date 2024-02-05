@@ -11,10 +11,10 @@ import 'forgot_password_page_model.dart';
 export 'forgot_password_page_model.dart';
 
 class ForgotPasswordPageWidget extends StatefulWidget {
-  const ForgotPasswordPageWidget({Key? key}) : super(key: key);
+  const ForgotPasswordPageWidget({super.key});
 
   @override
-  _ForgotPasswordPageWidgetState createState() =>
+  State<ForgotPasswordPageWidget> createState() =>
       _ForgotPasswordPageWidgetState();
 }
 
@@ -83,7 +83,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
         elevation: 0.0,
       ),
       body: Align(
-        alignment: AlignmentDirectional(0.00, -1.00),
+        alignment: AlignmentDirectional(0.0, -1.0),
         child: Container(
           width: double.infinity,
           constraints: BoxConstraints(
@@ -202,8 +202,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                         filled: true,
                         fillColor:
                             FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding: EdgeInsetsDirectional.fromSTEB(
-                            24.0, 24.0, 24.0, 24.0),
+                        contentPadding: EdgeInsets.all(24.0),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium,
                       maxLines: null,
@@ -215,7 +214,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(0.00, 0.00),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),

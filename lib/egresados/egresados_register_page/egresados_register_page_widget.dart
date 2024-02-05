@@ -20,14 +20,14 @@ export 'egresados_register_page_model.dart';
 
 class EgresadosRegisterPageWidget extends StatefulWidget {
   const EgresadosRegisterPageWidget({
-    Key? key,
+    super.key,
     required this.uid,
-  }) : super(key: key);
+  });
 
   final DocumentReference? uid;
 
   @override
-  _EgresadosRegisterPageWidgetState createState() =>
+  State<EgresadosRegisterPageWidget> createState() =>
       _EgresadosRegisterPageWidgetState();
 }
 
@@ -541,7 +541,7 @@ class _EgresadosRegisterPageWidgetState
                               color: Color(0xFFBFBFC8),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(-1.00, 0.00),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
                                 'Datos Geográficos',
                                 style:
@@ -641,7 +641,7 @@ class _EgresadosRegisterPageWidgetState
                                   .asValidator(context),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(-1.00, 0.00),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
                                 'Datos Facultad',
                                 style:
@@ -929,7 +929,7 @@ class _EgresadosRegisterPageWidgetState
                               color: Color(0xFFBFBFC8),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(-1.00, 0.00),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
                                 'Redes Sociales',
                                 style:
@@ -1135,18 +1135,19 @@ class _EgresadosRegisterPageWidgetState
                             context: context,
                             builder: (alertDialogContext) {
                               return WebViewAware(
-                                  child: AlertDialog(
-                                title: Text('Info'),
-                                content: Text(
-                                    'Su registro fue actualizo con éxito!'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: Text('Ok'),
-                                  ),
-                                ],
-                              ));
+                                child: AlertDialog(
+                                  title: Text('Info'),
+                                  content: Text(
+                                      'Su registro fue actualizo con éxito!'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: Text('Ok'),
+                                    ),
+                                  ],
+                                ),
+                              );
                             },
                           );
                           logFirebaseEvent('Button_navigate_to');
@@ -1236,18 +1237,19 @@ class _EgresadosRegisterPageWidgetState
                             context: context,
                             builder: (alertDialogContext) {
                               return WebViewAware(
-                                  child: AlertDialog(
-                                title: Text('Info'),
-                                content:
-                                    Text('Su registro fue creado con éxito!'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: Text('Ok'),
-                                  ),
-                                ],
-                              ));
+                                child: AlertDialog(
+                                  title: Text('Info'),
+                                  content:
+                                      Text('Su registro fue creado con éxito!'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: Text('Ok'),
+                                    ),
+                                  ],
+                                ),
+                              );
                             },
                           );
                           logFirebaseEvent('Button_navigate_to');

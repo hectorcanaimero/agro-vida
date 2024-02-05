@@ -15,14 +15,14 @@ export 'ofertas_edit_page_model.dart';
 
 class OfertasEditPageWidget extends StatefulWidget {
   const OfertasEditPageWidget({
-    Key? key,
+    super.key,
     this.uid,
-  }) : super(key: key);
+  });
 
   final DocumentReference? uid;
 
   @override
-  _OfertasEditPageWidgetState createState() => _OfertasEditPageWidgetState();
+  State<OfertasEditPageWidget> createState() => _OfertasEditPageWidgetState();
 }
 
 class _OfertasEditPageWidgetState extends State<OfertasEditPageWidget> {
@@ -64,7 +64,7 @@ class _OfertasEditPageWidgetState extends State<OfertasEditPageWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.00, 1.00),
+      alignment: AlignmentDirectional(0.0, 1.0),
       child: StreamBuilder<JobsRecord>(
         stream: JobsRecord.getDocument(widget.uid!),
         builder: (context, snapshot) {
@@ -129,7 +129,7 @@ class _OfertasEditPageWidgetState extends State<OfertasEditPageWidget> {
                     ],
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.00, 0.00),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
@@ -497,19 +497,20 @@ class _OfertasEditPageWidgetState extends State<OfertasEditPageWidget> {
                                           context: context,
                                           builder: (alertDialogContext) {
                                             return WebViewAware(
-                                                child: AlertDialog(
-                                              title: Text('Show'),
-                                              content: Text(
-                                                  'Se Actualizo con éxito!'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: Text('Ok'),
-                                                ),
-                                              ],
-                                            ));
+                                              child: AlertDialog(
+                                                title: Text('Show'),
+                                                content: Text(
+                                                    'Se Actualizo con éxito!'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
                                           },
                                         );
                                         logFirebaseEvent('Button_bottom_sheet');

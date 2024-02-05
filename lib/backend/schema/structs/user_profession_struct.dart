@@ -55,8 +55,9 @@ class UserProfessionStruct extends FFFirebaseStruct {
         linkedWork: LinkedWorkStruct.maybeFromMap(data['linked_work']),
       );
 
-  static UserProfessionStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic> ? UserProfessionStruct.fromMap(data) : null;
+  static UserProfessionStruct? maybeFromMap(dynamic data) => data is Map
+      ? UserProfessionStruct.fromMap(data.cast<String, dynamic>())
+      : null;
 
   Map<String, dynamic> toMap() => {
         'working': _working,

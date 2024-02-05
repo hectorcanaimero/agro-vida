@@ -16,10 +16,10 @@ import 'egresados_page_model.dart';
 export 'egresados_page_model.dart';
 
 class EgresadosPageWidget extends StatefulWidget {
-  const EgresadosPageWidget({Key? key}) : super(key: key);
+  const EgresadosPageWidget({super.key});
 
   @override
-  _EgresadosPageWidgetState createState() => _EgresadosPageWidgetState();
+  State<EgresadosPageWidget> createState() => _EgresadosPageWidgetState();
 }
 
 class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
@@ -128,7 +128,7 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(-1.00, 0.00),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
                                 '¡Nos emociona  que seas parte de nuestra comunidad,  ahora necesitamos actualizar tus datos para fortalecer nuestra red de profesionales!  \n\nQueremos destacar tus logros y conectar contigo. \n\nTu participación es clave para mantenernos informados, colaborar en proyectos futuros y ampliar tu red de contactos.',
                                 textAlign: TextAlign.start,
@@ -149,7 +149,7 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   child: Container(
@@ -161,7 +161,7 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               logFirebaseEvent(
@@ -210,18 +210,20 @@ class _EgresadosPageWidgetState extends State<EgresadosPageWidget> {
                                   context: context,
                                   builder: (context) {
                                     return WebViewAware(
-                                        child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: TypoRegistroComponentWidget(),
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: TypoRegistroComponentWidget(),
+                                        ),
                                       ),
-                                    ));
+                                    );
                                   },
                                 ).then((value) => safeSetState(() {}));
                               }

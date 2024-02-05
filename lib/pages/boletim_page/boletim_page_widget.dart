@@ -10,10 +10,10 @@ import 'boletim_page_model.dart';
 export 'boletim_page_model.dart';
 
 class BoletimPageWidget extends StatefulWidget {
-  const BoletimPageWidget({Key? key}) : super(key: key);
+  const BoletimPageWidget({super.key});
 
   @override
-  _BoletimPageWidgetState createState() => _BoletimPageWidgetState();
+  State<BoletimPageWidget> createState() => _BoletimPageWidgetState();
 }
 
 class _BoletimPageWidgetState extends State<BoletimPageWidget> {
@@ -264,7 +264,7 @@ class _BoletimPageWidgetState extends State<BoletimPageWidget> {
                                                     decoration: BoxDecoration(),
                                                     alignment:
                                                         AlignmentDirectional(
-                                                            1.00, 0.00),
+                                                            1.0, 0.0),
                                                     child: Icon(
                                                       Icons
                                                           .arrow_forward_ios_sharp,

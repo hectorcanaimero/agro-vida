@@ -14,10 +14,10 @@ import 'ofertas_create_page_model.dart';
 export 'ofertas_create_page_model.dart';
 
 class OfertasCreatePageWidget extends StatefulWidget {
-  const OfertasCreatePageWidget({Key? key}) : super(key: key);
+  const OfertasCreatePageWidget({super.key});
 
   @override
-  _OfertasCreatePageWidgetState createState() =>
+  State<OfertasCreatePageWidget> createState() =>
       _OfertasCreatePageWidgetState();
 }
 
@@ -65,7 +65,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.00, 1.00),
+      alignment: AlignmentDirectional(0.0, 1.0),
       child: Material(
         color: Colors.transparent,
         elevation: 5.0,
@@ -112,7 +112,7 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                 ],
               ),
               Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
                   child: Text(
@@ -424,18 +424,19 @@ class _OfertasCreatePageWidgetState extends State<OfertasCreatePageWidget> {
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return WebViewAware(
-                                            child: AlertDialog(
-                                          title: Text('Show'),
-                                          content:
-                                              Text('Se registro con éxito!'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ));
+                                          child: AlertDialog(
+                                            title: Text('Show'),
+                                            content:
+                                                Text('Se registro con éxito!'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
                                       },
                                     );
                                     logFirebaseEvent('Button_bottom_sheet');

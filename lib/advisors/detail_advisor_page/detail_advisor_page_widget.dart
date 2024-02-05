@@ -17,14 +17,14 @@ export 'detail_advisor_page_model.dart';
 
 class DetailAdvisorPageWidget extends StatefulWidget {
   const DetailAdvisorPageWidget({
-    Key? key,
+    super.key,
     required this.uid,
-  }) : super(key: key);
+  });
 
   final DocumentReference? uid;
 
   @override
-  _DetailAdvisorPageWidgetState createState() =>
+  State<DetailAdvisorPageWidget> createState() =>
       _DetailAdvisorPageWidgetState();
 }
 
@@ -141,8 +141,7 @@ class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 8.0, 8.0, 8.0),
+                                padding: EdgeInsets.all(8.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: CachedNetworkImage(
@@ -174,8 +173,7 @@ class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 12.0, 12.0, 12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: SingleChildScrollView(
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -298,27 +296,27 @@ class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget> {
                                                                 builder:
                                                                     (context) {
                                                                   return WebViewAware(
-                                                                      child:
-                                                                          GestureDetector(
-                                                                    onTap: () => _model
-                                                                            .unfocusNode
-                                                                            .canRequestFocus
-                                                                        ? FocusScope.of(context).requestFocus(_model
-                                                                            .unfocusNode)
-                                                                        : FocusScope.of(context)
-                                                                            .unfocus(),
                                                                     child:
-                                                                        Padding(
-                                                                      padding: MediaQuery
-                                                                          .viewInsetsOf(
-                                                                              context),
+                                                                        GestureDetector(
+                                                                      onTap: () => _model
+                                                                              .unfocusNode
+                                                                              .canRequestFocus
+                                                                          ? FocusScope.of(context).requestFocus(_model
+                                                                              .unfocusNode)
+                                                                          : FocusScope.of(context)
+                                                                              .unfocus(),
                                                                       child:
-                                                                          MessageAdvisorComponentWidget(
-                                                                        email: detailAdvisorPageAdvisorsRecord
-                                                                            .email,
+                                                                          Padding(
+                                                                        padding:
+                                                                            MediaQuery.viewInsetsOf(context),
+                                                                        child:
+                                                                            MessageAdvisorComponentWidget(
+                                                                          email:
+                                                                              detailAdvisorPageAdvisorsRecord.email,
+                                                                        ),
                                                                       ),
                                                                     ),
-                                                                  ));
+                                                                  );
                                                                 },
                                                               ).then((value) =>
                                                                   safeSetState(
@@ -381,7 +379,7 @@ class _DetailAdvisorPageWidgetState extends State<DetailAdvisorPageWidget> {
                                               ),
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  -1.00, 0.00),
+                                                  -1.0, 0.0),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(

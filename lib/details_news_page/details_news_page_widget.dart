@@ -14,14 +14,14 @@ export 'details_news_page_model.dart';
 
 class DetailsNewsPageWidget extends StatefulWidget {
   const DetailsNewsPageWidget({
-    Key? key,
+    super.key,
     required this.uid,
-  }) : super(key: key);
+  });
 
   final DocumentReference? uid;
 
   @override
-  _DetailsNewsPageWidgetState createState() => _DetailsNewsPageWidgetState();
+  State<DetailsNewsPageWidget> createState() => _DetailsNewsPageWidgetState();
 }
 
 class _DetailsNewsPageWidgetState extends State<DetailsNewsPageWidget> {

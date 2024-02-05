@@ -17,14 +17,14 @@ export 'details_oferta_page_model.dart';
 
 class DetailsOfertaPageWidget extends StatefulWidget {
   const DetailsOfertaPageWidget({
-    Key? key,
+    super.key,
     required this.uid,
-  }) : super(key: key);
+  });
 
   final DocumentReference? uid;
 
   @override
-  _DetailsOfertaPageWidgetState createState() =>
+  State<DetailsOfertaPageWidget> createState() =>
       _DetailsOfertaPageWidgetState();
 }
 
@@ -103,16 +103,17 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                     context: context,
                     builder: (context) {
                       return WebViewAware(
-                          child: GestureDetector(
-                        onTap: () => _model.unfocusNode.canRequestFocus
-                            ? FocusScope.of(context)
-                                .requestFocus(_model.unfocusNode)
-                            : FocusScope.of(context).unfocus(),
-                        child: Padding(
-                          padding: MediaQuery.viewInsetsOf(context),
-                          child: OfertasEditPageWidget(),
+                        child: GestureDetector(
+                          onTap: () => _model.unfocusNode.canRequestFocus
+                              ? FocusScope.of(context)
+                                  .requestFocus(_model.unfocusNode)
+                              : FocusScope.of(context).unfocus(),
+                          child: Padding(
+                            padding: MediaQuery.viewInsetsOf(context),
+                            child: OfertasEditPageWidget(),
+                          ),
                         ),
-                      ));
+                      );
                     },
                   ).then((value) => safeSetState(() {}));
                 },
@@ -174,23 +175,24 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                               context: context,
                               builder: (alertDialogContext) {
                                 return WebViewAware(
-                                    child: AlertDialog(
-                                  title: Text('Info'),
-                                  content: Text(
-                                      'Quiere eliminar esta oferta de empleo?'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(
-                                          alertDialogContext, false),
-                                      child: Text('Cancel'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(
-                                          alertDialogContext, true),
-                                      child: Text('Confirm'),
-                                    ),
-                                  ],
-                                ));
+                                  child: AlertDialog(
+                                    title: Text('Info'),
+                                    content: Text(
+                                        'Quiere eliminar esta oferta de empleo?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, false),
+                                        child: Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, true),
+                                        child: Text('Confirm'),
+                                      ),
+                                    ],
+                                  ),
+                                );
                               },
                             ) ??
                             false;
@@ -242,7 +244,7 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(-1.00, 0.00),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 12.0),
@@ -258,7 +260,7 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(-1.00, 0.00),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 12.0),
@@ -300,7 +302,7 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                                             ),
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  -1.00, 0.00),
+                                                  -1.0, 0.0),
                                               child: Text(
                                                 dateTimeFormat(
                                                     'd/M H:mm',
@@ -349,7 +351,7 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(-1.00, 0.00),
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Text(
                                           containerUsersRecord.displayName,
                                           style: FlutterFlowTheme.of(context)
@@ -380,7 +382,7 @@ class _DetailsOfertaPageWidgetState extends State<DetailsOfertaPageWidget> {
                                     Expanded(
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(-1.00, 0.00),
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(),

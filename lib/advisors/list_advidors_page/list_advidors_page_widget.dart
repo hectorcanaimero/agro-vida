@@ -16,10 +16,10 @@ import 'list_advidors_page_model.dart';
 export 'list_advidors_page_model.dart';
 
 class ListAdvidorsPageWidget extends StatefulWidget {
-  const ListAdvidorsPageWidget({Key? key}) : super(key: key);
+  const ListAdvidorsPageWidget({super.key});
 
   @override
-  _ListAdvidorsPageWidgetState createState() => _ListAdvidorsPageWidgetState();
+  State<ListAdvidorsPageWidget> createState() => _ListAdvidorsPageWidgetState();
 }
 
 class _ListAdvidorsPageWidgetState extends State<ListAdvidorsPageWidget> {
@@ -78,16 +78,17 @@ class _ListAdvidorsPageWidgetState extends State<ListAdvidorsPageWidget> {
                   context: context,
                   builder: (context) {
                     return WebViewAware(
-                        child: GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
-                      child: Padding(
-                        padding: MediaQuery.viewInsetsOf(context),
-                        child: CreateAdvisorPageWidget(),
+                      child: GestureDetector(
+                        onTap: () => _model.unfocusNode.canRequestFocus
+                            ? FocusScope.of(context)
+                                .requestFocus(_model.unfocusNode)
+                            : FocusScope.of(context).unfocus(),
+                        child: Padding(
+                          padding: MediaQuery.viewInsetsOf(context),
+                          child: CreateAdvisorPageWidget(),
+                        ),
                       ),
-                    ));
+                    );
                   },
                 ).then((value) => safeSetState(() {}));
               },

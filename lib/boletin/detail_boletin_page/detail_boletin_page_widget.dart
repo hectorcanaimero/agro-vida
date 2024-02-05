@@ -14,14 +14,14 @@ export 'detail_boletin_page_model.dart';
 
 class DetailBoletinPageWidget extends StatefulWidget {
   const DetailBoletinPageWidget({
-    Key? key,
+    super.key,
     required this.uid,
-  }) : super(key: key);
+  });
 
   final DocumentReference? uid;
 
   @override
-  _DetailBoletinPageWidgetState createState() =>
+  State<DetailBoletinPageWidget> createState() =>
       _DetailBoletinPageWidgetState();
 }
 

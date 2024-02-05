@@ -14,14 +14,14 @@ export 'detail_revista_page_model.dart';
 
 class DetailRevistaPageWidget extends StatefulWidget {
   const DetailRevistaPageWidget({
-    Key? key,
+    super.key,
     required this.uid,
-  }) : super(key: key);
+  });
 
   final DocumentReference? uid;
 
   @override
-  _DetailRevistaPageWidgetState createState() =>
+  State<DetailRevistaPageWidget> createState() =>
       _DetailRevistaPageWidgetState();
 }
 
@@ -126,7 +126,7 @@ class _DetailRevistaPageWidgetState extends State<DetailRevistaPageWidget> {
                 children: [
                   Expanded(
                     child: Align(
-                      alignment: AlignmentDirectional(0.00, 0.00),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: FlutterFlowPdfViewer(
                         networkPath:
                             detailRevistaPagePublicationsRecord.fileUpload,

@@ -12,10 +12,10 @@ import 'menu_page_model.dart';
 export 'menu_page_model.dart';
 
 class MenuPageWidget extends StatefulWidget {
-  const MenuPageWidget({Key? key}) : super(key: key);
+  const MenuPageWidget({super.key});
 
   @override
-  _MenuPageWidgetState createState() => _MenuPageWidgetState();
+  State<MenuPageWidget> createState() => _MenuPageWidgetState();
 }
 
 class _MenuPageWidgetState extends State<MenuPageWidget> {
@@ -127,7 +127,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                     .secondaryBackground,
                               ),
                               child: Align(
-                                alignment: AlignmentDirectional(0.00, 0.00),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       18.0, 0.0, 18.0, 0.0),
@@ -469,7 +469,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                                 Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: Text(
                                                     'Revista y \nTesis de Grado',
                                                     textAlign: TextAlign.center,
@@ -777,7 +777,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                   children: [
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.00, 0.00),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 16.0),
@@ -832,8 +832,7 @@ class _MenuPageWidgetState extends State<MenuPageWidget> {
                                       ],
                                     ),
                                     Align(
-                                      alignment:
-                                          AlignmentDirectional(0.00, 0.00),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 16.0),

@@ -16,10 +16,10 @@ import 'create_advisor_page_model.dart';
 export 'create_advisor_page_model.dart';
 
 class CreateAdvisorPageWidget extends StatefulWidget {
-  const CreateAdvisorPageWidget({Key? key}) : super(key: key);
+  const CreateAdvisorPageWidget({super.key});
 
   @override
-  _CreateAdvisorPageWidgetState createState() =>
+  State<CreateAdvisorPageWidget> createState() =>
       _CreateAdvisorPageWidgetState();
 }
 
@@ -62,7 +62,7 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.00, 1.00),
+      alignment: AlignmentDirectional(0.0, 1.0),
       child: StreamBuilder<List<AdvisorsRecord>>(
         stream: queryAdvisorsRecord(
           queryBuilder: (advisorsRecord) => advisorsRecord.where(
@@ -141,7 +141,7 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                     ],
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.00, 0.00),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
@@ -598,7 +598,7 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                             children: [
                                               Align(
                                                 alignment: AlignmentDirectional(
-                                                    0.00, 0.00),
+                                                    0.0, 0.0),
                                                 child: Text(
                                                   'Imagen de 80x80 pixeles.',
                                                   textAlign: TextAlign.center,
@@ -678,19 +678,20 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return WebViewAware(
-                                                  child: AlertDialog(
-                                                title: Text('Show'),
-                                                content: Text(
-                                                    'Se Actualizo con éxito!'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ));
+                                                child: AlertDialog(
+                                                  title: Text('Show'),
+                                                  content: Text(
+                                                      'Se Actualizo con éxito!'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
                                             },
                                           );
                                           logFirebaseEvent(
@@ -735,19 +736,20 @@ class _CreateAdvisorPageWidgetState extends State<CreateAdvisorPageWidget> {
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return WebViewAware(
-                                                  child: AlertDialog(
-                                                title: Text('Show'),
-                                                content: Text(
-                                                    'Se registro con éxito!'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ));
+                                                child: AlertDialog(
+                                                  title: Text('Show'),
+                                                  content: Text(
+                                                      'Se registro con éxito!'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
                                             },
                                           );
                                           logFirebaseEvent(

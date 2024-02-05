@@ -12,10 +12,10 @@ import 'home_page_model.dart';
 export 'home_page_model.dart';
 
 class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({Key? key}) : super(key: key);
+  const HomePageWidget({super.key});
 
   @override
-  _HomePageWidgetState createState() => _HomePageWidgetState();
+  State<HomePageWidget> createState() => _HomePageWidgetState();
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
@@ -257,9 +257,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 370.0,
                       decoration: BoxDecoration(),
-                      alignment: AlignmentDirectional(0.00, 0.00),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               18.0, 0.0, 18.0, 0.0),
@@ -567,7 +567,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0.00, 0.00),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'Revista y \nTesis de Grado',
                                             textAlign: TextAlign.center,
@@ -790,7 +790,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     .height *
                                                 1.0,
                                             fit: BoxFit.cover,
-                                            alignment: Alignment(0.00, 0.00),
+                                            alignment: Alignment(0.0, 0.0),
                                           ),
                                         ),
                                       ),

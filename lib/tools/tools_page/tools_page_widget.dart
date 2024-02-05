@@ -11,10 +11,10 @@ import 'tools_page_model.dart';
 export 'tools_page_model.dart';
 
 class ToolsPageWidget extends StatefulWidget {
-  const ToolsPageWidget({Key? key}) : super(key: key);
+  const ToolsPageWidget({super.key});
 
   @override
-  _ToolsPageWidgetState createState() => _ToolsPageWidgetState();
+  State<ToolsPageWidget> createState() => _ToolsPageWidgetState();
 }
 
 class _ToolsPageWidgetState extends State<ToolsPageWidget> {
@@ -78,7 +78,7 @@ class _ToolsPageWidgetState extends State<ToolsPageWidget> {
             },
           ),
           title: Align(
-            alignment: AlignmentDirectional(-1.00, 0.00),
+            alignment: AlignmentDirectional(-1.0, 0.0),
             child: Text(
               'Utilidades del Agro',
               style: FlutterFlowTheme.of(context).headlineMedium.override(
